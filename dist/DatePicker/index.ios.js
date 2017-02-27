@@ -8,10 +8,9 @@ import {
     DatePickerIOS,
 } from 'react-native';
 import TimerMixin from 'react-timer-mixin';
-import Color from '../../res/colors';
 import Dimensions from 'Dimensions';
 
-class DatePickerRN extends React.Component
+class DatePicker extends React.Component
 {
     constructor(props)
     {
@@ -113,11 +112,11 @@ class DatePickerRN extends React.Component
                                     height: 56,
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    borderColor: Color.Grey300,
+                                    borderColor: '#E0E0E0',
                                     borderWidth: 0.5,
                                     borderBottomLeftRadius: 15,
                                 }}
-                                underlayColor={Color.Grey300}
+                                underlayColor='#E0E0E0'
                                 onPress={() => this.cancelar()}
                             >
                                 <Text style={{ fontSize: 18, color: 'dodgerblue' }}>
@@ -131,11 +130,11 @@ class DatePickerRN extends React.Component
                                     height: 56,
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    borderColor: Color.Grey300,
+                                    borderColor: '#E0E0E0',
                                     borderWidth: 0.5,
                                     borderBottomRightRadius: 15,
                                 }}
-                                underlayColor={Color.Grey300}
+                                underlayColor='#E0E0E0'
                                 onPress={() => this.salvar()}
                             >
                                 <Text style={{ fontSize: 18, color: 'dodgerblue'}}>
@@ -150,4 +149,4 @@ class DatePickerRN extends React.Component
     }
 };
 
-export default DatePickerRN;
+module.exports = DatePicker;

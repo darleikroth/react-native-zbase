@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import TimerMixin from 'react-timer-mixin';
 
-class DatePickerRN extends React.Component
+class DatePicker extends React.Component
 {
     constructor(props)
     {
@@ -55,4 +55,4 @@ class DatePickerRN extends React.Component
     }
 };
 
-export default DatePickerRN;
+module.exports = DatePicker;

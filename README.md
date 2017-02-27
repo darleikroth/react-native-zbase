@@ -6,7 +6,7 @@ Módulo que reúne componentes nativos customizados. O objetivo é facilitar a o
 
 - [CardView](#cardview)
 - [DatePicker](#datepicker)
-- [Navbar](#vavbar)
+- [Navbar](#navbar)
 - [TouchableView](#touchableview)
 
 ## CardView
