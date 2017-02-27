@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     StyleSheet,
+    Dimensions,
     View,
     Text,
     TouchableHighlight,
@@ -8,7 +9,6 @@ import {
     DatePickerIOS,
 } from 'react-native';
 import TimerMixin from 'react-timer-mixin';
-import Dimensions from 'Dimensions';
 
 class DatePicker extends React.Component
 {
