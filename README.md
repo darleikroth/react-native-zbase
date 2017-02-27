@@ -27,6 +27,6 @@ Reúne os componentes nativos [TouchableHighlight](https://facebook.github.io/re
 
 ## Para fazer
 
-- Melhorar melhorar e detalhar a documentação de cada componente.
+- Melhorar e detalhar a documentação de cada componente.
 - Melhorar os atuais componentes.
 - Adicionar novos componentes.
