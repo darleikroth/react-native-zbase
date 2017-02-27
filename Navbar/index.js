@@ -9,13 +9,13 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 
 var ios = Platform.OS === 'ios';
+var themeIOS = false;
 
 class Navbar extends React.Component
 {
     styles()
     {
         let backgroundColor = this.props.color;
-        let themeIOS = false;
 
         if (this.props.theme) {
             themeIOS = this.props.theme === 'ios'
@@ -60,7 +60,7 @@ class Navbar extends React.Component
                 <View
                     style={{
                         flex: 10,
-                        alignItems: ios ? 'center' : undefined,
+                        alignItems: (ios || themeIOS) ? 'center' : undefined,
                         justifyContent: 'center',
                     }}
                 >
