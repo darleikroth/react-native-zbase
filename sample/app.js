@@ -12,12 +12,15 @@ import {
     View
 } from 'react-native';
 
-import {TouchableView, Navbar, DatePicker, CardView} from 'react-native-zbase';
+import {TouchableView, Navbar, DatePicker} from './dist';
+import CardView from 'react-native-zbase/CardView';
 
 const ios = Platform.OS === 'ios';
 
-export default class sample extends Component {
-    render() {
+class sample extends Component
+{
+    render()
+    {
         return (
             <View style={styles.header}>
                 <Navbar
@@ -65,7 +68,7 @@ export default class sample extends Component {
             </View>
         );
     }
-}
+};
 
 const styles = StyleSheet.create({
     header: {
@@ -88,3 +91,5 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
 });
+
+module.exports = sample;
