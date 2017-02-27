@@ -11,9 +11,12 @@ import {
     Text,
     View
 } from 'react-native';
-
-import {TouchableView, Navbar, DatePicker} from './dist';
-import CardView from 'react-native-zbase/CardView';
+import {
+    CardView,
+    TouchableView,
+    Navbar,
+    DatePicker
+} from 'react-native-zbase';
 
 const ios = Platform.OS === 'ios';
 
