@@ -8,19 +8,24 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const ios = Platform.OS === 'ios';
+var ios = Platform.OS === 'ios';
 
 class Navbar extends React.Component
 {
     styles()
     {
         let backgroundColor = this.props.color;
+        let themeIOS = false;
+
+        if (this.props.theme) {
+            themeIOS = this.props.theme === 'ios'
+        }
 
         return StyleSheet.create({
             header:{
                 flexDirection: 'row',
-                height: ios ? 64 : 56,
-                paddingTop: ios ? 15 : 0,
+                height: (ios || themeIOS) ? 64 : 56,
+                paddingTop: (ios || themeIOS) ? 15 : 0,
                 backgroundColor: this.props.color || 'dodgerblue',
                 shadowColor: ios ? 'rgba(0, 0, 0, 0.3)' : undefined,
                 shadowOffset: ios ? { width: 0.5, height: 2 * .65 } : undefined,
