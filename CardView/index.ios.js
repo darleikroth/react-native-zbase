@@ -1,12 +1,9 @@
 import React from 'react';
 import {
-    Platform,
+    TouchableOpacity,
     TouchableWithoutFeedback,
     View,
 } from 'react-native';
-import TouchableView from '../TouchableView';
-
-const ios = Platform.OS === 'ios';
 
 class CardView extends React.Component
 {
@@ -47,12 +44,11 @@ class CardView extends React.Component
                 marginVertical: marginVertical || undefined,
                 marginHorizontal: marginHorizontal || undefined,
                 backgroundColor: backgroundColor || '#FFF',
-                borderRadius: borderRadius || 2,
-                shadowColor: ios ? 'rgba(0, 0, 0, 0.3)' : undefined,
-                shadowOffset: ios ? { width: 0.5, height: (elevation || 2) * .65 } : undefined,
-                shadowOpacity: ios ? 1 : undefined,
-                shadowRadius: ios ? ((elevation || 2) * .65) : undefined,
-                elevation: !ios ? elevation || 2 : undefined,
+                borderRadius: 2,
+                shadowColor: 'rgba(0, 0, 0, 0.3)',
+                shadowOffset: { width: 0.5, height: (elevation || 2) * .65 },
+                shadowOpacity: 1,
+                shadowRadius: (elevation || 2) * .65,
             }
         });
     }
@@ -60,10 +56,6 @@ class CardView extends React.Component
     render()
     {
         const styles = this.getInitialStyle();
-        var content =
-            <View style={styles.card}>
-                {this.props.children}
-            </View>
 
         return(
             this.props.noFeedback ?
@@ -72,16 +64,19 @@ class CardView extends React.Component
                     onLongPress={this.props.onLongPress}
                     onLayout={this.props.onLayout}
                 >
-                    { content }
+                    <View style={styles.card}>
+                        {this.props.children}
+                    </View>
                 </TouchableWithoutFeedback> :
-                <TouchableView
-                    borderRadius={styles.card.borderRadius}
+                <TouchableOpacity
+                    activeOpacity={0.4}
                     onPress={this.props.onPress}
                     onLongPress={this.props.onLongPress}
-                    onLayout={this.props.onLayout}
                 >
-                    { content }
-                </TouchableView>
+                    <View style={styles.card} onLayout={this.props.onLayout}>
+                        {this.props.children}
+                    </View>
+                </TouchableOpacity>
         );
     }
 };
