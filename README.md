@@ -1,6 +1,6 @@
 # React Native ZBase
 
-Módulo que reune componentes nativos customizados. O objetivo é facilitar a organização e manutenção dos componentes.
+Módulo que reúne componentes nativos customizados. O objetivo é facilitar a organização e manutenção dos componentes.
 
 ## Os componentes
 
@@ -15,7 +15,7 @@ Cria um componente em forma de *card*, utilizando recursos nativos, funcionando 
 
 ## DatePicker
 
-reune os componentes [DatePickerIOS](https://facebook.github.io/react-native/docs/datepickerios.html#datepickerios) e [DatePickerAndroid](https://facebook.github.io/react-native/docs/datepickerandroid.html#datepickerandroid). Para IOS utiliza o componente [Modal](https://facebook.github.io/react-native/docs/modal.html#modal) para demonstrar o DatePickerIOS.
+Reúne os componentes [DatePickerIOS](https://facebook.github.io/react-native/docs/datepickerios.html#datepickerios) e [DatePickerAndroid](https://facebook.github.io/react-native/docs/datepickerandroid.html#datepickerandroid). Para IOS utiliza o componente [Modal](https://facebook.github.io/react-native/docs/modal.html#modal) para demonstrar o DatePickerIOS.
 
 ## Navbar
 
@@ -23,7 +23,7 @@ Cria a barra de navegação no topo. Layout projetado para IOS e para Material D
 
 ## TouchableView
 
-reune os componentes nativos [TouchableHighlight](https://facebook.github.io/react-native/docs/touchablehighlight.html#touchablehighlight) e [TouchableNativeFeedback](https://facebook.github.io/react-native/docs/touchablenativefeedback.html#touchablenativefeedback).
+Reúne os componentes nativos [TouchableHighlight](https://facebook.github.io/react-native/docs/touchablehighlight.html#touchablehighlight) e [TouchableNativeFeedback](https://facebook.github.io/react-native/docs/touchablenativefeedback.html#touchablenativefeedback).
 
 ## Para fazer
 

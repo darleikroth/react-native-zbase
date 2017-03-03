@@ -10,7 +10,7 @@
     "react": "15.4.2",
     "react-native": "0.41.2",
     "react-native-vector-icons": "^4.0.0",
-    "react-native-zbase": "https://github.com/darleikroth/react-native-zbase/tarball/master",
+    "react-native-zbase": "github:darleikroth/react-native-zbase",
     "react-timer-mixin": "^0.13.3"
   },
   "devDependencies": {
