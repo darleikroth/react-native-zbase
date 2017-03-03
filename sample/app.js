@@ -9,19 +9,32 @@ import {
     Platform,
     StyleSheet,
     Text,
-    View
+    View,
+    TextInput
 } from 'react-native';
 import {
     CardView,
     TouchableView,
     Navbar,
-    DatePicker
+    DatePicker,
+    ModalPicker
 } from 'react-native-zbase';
 
 const ios = Platform.OS === 'ios';
 
 class sample extends Component
 {
+    state = { textInputValue: '' };
+
+    pickerData()
+    {
+        return [
+            { key: 0, section: true, label: 'Select' },
+            { key: 1, label: 'Option one' },
+            { key: 2, label: 'Option two' }
+        ];
+    }
+
     render()
     {
         return (
@@ -52,6 +65,7 @@ class sample extends Component
                     <CardView
                         width={280}
                         padding={16}
+                        marginTop={20}
                         elevation={4}
                         onPress={()=>console.log('CardView onPress')}
                         onLongPress={()=>console.log('CardView onLongPress')}
@@ -67,6 +81,27 @@ class sample extends Component
                             </Text>
                         </View>
                     </CardView>
+
+                    <ModalPicker
+                        style={{marginVertical: 20}}
+                        data={this.pickerData()}
+                        initValue="Select a value!"
+                        onChange={option => this.setState({textInputValue:option.label})}>
+
+                        <TextInput
+                            style={{
+                                borderWidth:1,
+                                borderColor:'#ccc',
+                                padding:10,
+                                width:280,
+                                height:54,
+                            }}
+                            editable={false}
+                            placeholder="Select a value!"
+                            value={this.state.textInputValue}
+                        />
+
+                    </ModalPicker>
                 </View>
             </View>
         );

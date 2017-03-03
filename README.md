@@ -8,6 +8,7 @@ Módulo que reúne componentes nativos customizados. O objetivo é facilitar a o
 - [DatePicker](#datepicker)
 - [Navbar](#navbar)
 - [TouchableView](#touchableview)
+- [ModalPicker](#modalpicker)
 
 ## CardView
 
@@ -24,6 +25,10 @@ Cria a barra de navegação no topo. Layout projetado para IOS e para Material D
 ## TouchableView
 
 Reúne os componentes nativos [TouchableHighlight](https://facebook.github.io/react-native/docs/touchablehighlight.html#touchablehighlight) e [TouchableNativeFeedback](https://facebook.github.io/react-native/docs/touchablenativefeedback.html#touchablenativefeedback).
+
+## ModalPicker
+
+Implementado com base neste projeto [react-native-modal-picker](https://github.com/d-a-n/react-native-modal-picker), criado por [d-a-n](https://github.com/d-a-n).
 
 ## Para fazer
 
