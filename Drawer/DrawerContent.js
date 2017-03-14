@@ -7,7 +7,6 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
-import TimerMixin from 'react-timer-mixin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconMD from 'react-native-vector-icons/MaterialCommunityIcons';
 import DrawerHeader from './DrawerHeader';
@@ -30,10 +29,8 @@ class DrawerContent extends React.Component
     {
         let selected = [false, false, false, false];
         selected[i] = true;
-        TimerMixin.requestAnimationFrame(() => {
-            this.setState({ selected });
-            this.props.onItemPress(i, identifier)
-        });
+        this.setState({ selected });
+        this.props.onItemPress(i, identifier);
     }
 
     renderHeader()
