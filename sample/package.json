@@ -9,11 +9,7 @@
   "dependencies": {
     "react": "15.4.2",
     "react-native": "^0.42.0",
-    "react-native-drawer": "^2.3.0",
-    "react-native-orientation": "github:yamill/react-native-orientation",
-    "react-native-vector-icons": "^4.0.0",
-    "react-native-zbase": "github:darleikroth/react-native-zbase",
-    "react-timer-mixin": "^0.13.3"
+    "react-native-zbase": "github:darleikroth/react-native-zbase"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",

@@ -2,6 +2,13 @@
 
 Módulo que reúne componentes nativos customizados. O objetivo é facilitar a organização e manutenção dos componentes.
 
+## Install
+
+```
+npm install --save github:darleikroth/react-native-zbase
+react-native link
+```
+
 ## Os componentes
 
 - [CardView](#cardview)
