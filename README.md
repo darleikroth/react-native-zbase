@@ -9,6 +9,7 @@ Módulo que reúne componentes nativos customizados. O objetivo é facilitar a o
 - [Navbar](#navbar)
 - [TouchableView](#touchableview)
 - [ModalPicker](#modalpicker)
+- [Drawer](#drawer)
 
 ## CardView
 
@@ -29,6 +30,10 @@ Reúne os componentes nativos [TouchableHighlight](https://facebook.github.io/re
 ## ModalPicker
 
 Implementado com base neste projeto [react-native-modal-picker](https://github.com/d-a-n/react-native-modal-picker), criado por [d-a-n](https://github.com/d-a-n).
+
+## Drawer
+
+Implementação que trabalha com o projeto [react-native-drawer](https://github.com/root-two/react-native-drawer), mantido por [Zack Story](https://github.com/rt2zz) e outros contribuidores.
 
 ## Para fazer
 

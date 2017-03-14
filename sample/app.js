@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import {
     Platform,
     StyleSheet,
+    ScrollView,
     Text,
     View,
     TextInput
@@ -17,14 +18,21 @@ import {
     TouchableView,
     Navbar,
     DatePicker,
-    ModalPicker
+    ModalPicker,
+    Drawer
 } from 'react-native-zbase';
+import TimerMixin from 'react-timer-mixin'
 
 const ios = Platform.OS === 'ios';
 
 class sample extends Component
 {
-    state = { textInputValue: '' };
+    constructor(props)
+    {
+        super(props);
+        this.onDrawerItemPress = this.onDrawerItemPress.bind(this);
+        this.state = { textInputValue: '' };
+    }
 
     pickerData()
     {
@@ -35,16 +43,78 @@ class sample extends Component
         ];
     }
 
-    render()
+    onDrawerItemPress(i, id)
+    {
+        console.log('onItemPress', `index: ${i} identifier: ${id}`);
+        TimerMixin.requestAnimationFrame(() => this.drawer.closeDrawer());
+    }
+
+    withDrawerItems()
+    {
+        return [
+            {
+                identifier: 'one',
+                name: 'Home',
+                textColor: undefined,
+                colorSelected: 'deepskyblue',
+                iconFamily: 'cmd',
+                iconName: 'view-dashboard',
+                iconColor: undefined,
+                selected: true,
+            },
+            {
+                identifier: 'two',
+                name: 'Music',
+                textColor: undefined,
+                colorSelected: 'deepskyblue',
+                iconFamily: undefined,
+                iconName: ios ? 'ios-musical-notes' : 'md-musical-notes',
+                iconColor: undefined,
+            },
+            {
+                identifier: 'three',
+                name: 'Settings',
+                textColor: undefined,
+                colorSelected: 'deepskyblue',
+                iconFamily: 'md',
+                iconName: 'settings',
+                iconColor: undefined,
+            },
+            {
+                identifier: 'four',
+                name: 'News',
+                colorSelected: 'deepskyblue',
+                iconName: ios ? 'ios-notifications' : 'md-notifications',
+                withDivider: {subtitle: 'Subheader'},
+            },
+        ];
+    }
+
+    withDrawerContent()
+    {
+        return(
+            <Text
+                style={{color: 'white',
+                    fontSize: 14,
+                    fontFamily: ios ? 'HelveticaNeue' : 'Roboto',
+                    fontWeight: '500'
+                }}
+            >
+                Sample Header
+            </Text>
+        );
+    }
+
+    renderContent()
     {
         return (
-            <View style={styles.header}>
+            <View style={styles.container}>
                 <Navbar
                     color='goldenrod'
                     title='Navbar'
                     iconLeft={ios ? 'ios-menu' : 'md-menu'}
                     iconRight={ios ? 'ios-calendar' : 'md-calendar'}
-                    onButtonLeftPress={()=>alert('onButtonLeftPressed')}
+                    onButtonLeftPress={() => this.drawer.openDrawer()}
                     onButtonRightPress={()=>this.datepicker.showModal(new Date(), 0)}
                 />
 
@@ -54,68 +124,83 @@ class sample extends Component
                     onDateChange={date => console.log('Date selected', date)}
                 />
 
-                <View style={styles.container}>
-                    <TouchableView onPress={()=>console.log('pressed')}>
-                        <View style={{height: 50, alignItems: 'center', justifyContent: 'center'}}>
-                            <Text style={styles.welcome}>
-                                Welcome to React Native and zBase!
-                            </Text>
-                        </View>
-                    </TouchableView>
-                    <CardView
-                        width={280}
-                        padding={16}
-                        marginTop={20}
-                        elevation={4}
-                        onPress={()=>console.log('CardView onPress')}
-                        onLongPress={()=>console.log('CardView onLongPress')}
-                        onLayout={evt=>console.log('onLayout', evt.nativeEvent.layout)}
-                    >
-                        <View>
-                            <Text style={styles.instructions}>
-                                To get started, edit index.ios.js
-                            </Text>
-                            <Text style={styles.instructions}>
-                                Press Cmd+R to reload,{'\n'}
-                                Cmd+D or shake for dev menu
-                            </Text>
-                        </View>
-                    </CardView>
+                <ScrollView>
+                    <View style={styles.content}>
+                        <TouchableView onPress={()=>console.log('pressed')}>
+                            <View style={{height: 50, alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={styles.welcome}>
+                                    Welcome to React Native and zBase!
+                                </Text>
+                            </View>
+                        </TouchableView>
+                        <CardView
+                            width={280}
+                            padding={16}
+                            marginTop={20}
+                            elevation={4}
+                            onPress={()=>console.log('CardView onPress')}
+                            onLongPress={()=>console.log('CardView onLongPress')}
+                            onLayout={evt=>console.log('onLayout', evt.nativeEvent.layout)}
+                        >
+                            <View>
+                                <Text style={styles.instructions}>
+                                    Custom card
+                                </Text>
+                            </View>
+                        </CardView>
 
-                    <ModalPicker
-                        style={{marginVertical: 20}}
-                        data={this.pickerData()}
-                        initValue="Select a value!"
-                        onChange={option => this.setState({textInputValue:option.label})}>
+                        <ModalPicker
+                            style={{marginVertical: 20}}
+                            data={this.pickerData()}
+                            initValue="Select a value!"
+                            onChange={option => this.setState({textInputValue:option.label})}>
 
-                        <TextInput
-                            style={{
-                                borderWidth:1,
-                                borderColor:'#ccc',
-                                padding:10,
-                                width:280,
-                                height:54,
-                            }}
-                            editable={false}
-                            placeholder="Select a value!"
-                            value={this.state.textInputValue}
-                        />
+                            <TextInput
+                                style={{
+                                    borderWidth:1,
+                                    borderColor:'#ccc',
+                                    padding:10,
+                                    width:280,
+                                    height:54,
+                                }}
+                                editable={false}
+                                placeholder="Select a value!"
+                                value={this.state.textInputValue}
+                            />
 
-                    </ModalPicker>
-                </View>
+                        </ModalPicker>
+                    </View>
+                </ScrollView>
             </View>
+        );
+    }
+
+    render()
+    {
+        return (
+            <Drawer
+                ref={c => { this.drawer = c }}
+                color='#303030'
+                headerColor='royalblue'
+                headerContent={this.withDrawerContent()}
+                items={this.withDrawerItems()}
+                onItemPress={this.onDrawerItemPress}
+                dark={true}
+            >
+                {this.renderContent()}
+            </Drawer>
         );
     }
 };
 
 const styles = StyleSheet.create({
-    header: {
+    container: {
         flex: 1,
         backgroundColor: 'white'
     },
-    container: {
+    content: {
         flex: 1,
-        justifyContent: 'center',
+        paddingVertical: 16,
         alignItems: 'center',
     },
     welcome: {
