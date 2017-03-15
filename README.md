@@ -2,13 +2,15 @@
 
 Módulo que reúne componentes nativos customizados. O objetivo é facilitar a organização e manutenção dos componentes.
 
-## Install
+## Instalar
 
 ```
 npm install --save github:darleikroth/react-native-zbase
+
+npm install --save github:yamill/react-native-orientation
 ```
 
-Setup [react-native-orientation](https://github.com/yamill/react-native-orientation/blob/master/README.md)
+Configurar [react-native-orientation](https://github.com/yamill/react-native-orientation/blob/master/README.md), versão mais recente somente no Github.
 
 ## Os componentes
 
