@@ -65,6 +65,7 @@ class DrawerContent extends React.Component
                             colorSelected={item.colorSelected}
                             iconFamily={item.iconFamily}
                             iconName={item.iconName}
+                            iconColor{item.iconColor}
                             selected={this.state.selected[i]}
                             dark={this.props.dark}
                         />
