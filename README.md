@@ -6,8 +6,9 @@ Módulo que reúne componentes nativos customizados. O objetivo é facilitar a o
 
 ```
 npm install --save github:darleikroth/react-native-zbase
-react-native link
 ```
+
+Setup [react-native-orientation](https://github.com/yamill/react-native-orientation/blob/master/README.md)
 
 ## Os componentes
 
