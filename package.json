@@ -24,7 +24,7 @@
   "homepage": "https://github.com/darleikroth/react-native-zbase#readme",
   "dependencies": {
       "react-timer-mixin": ">=0.13.3",
-      "react-native-drawer": ">=2.3.0",
+      "react-native-drawer": ">=2.3.0"
   },
   "peerDependencies": {
     "react-native": ">=0.40.0",
