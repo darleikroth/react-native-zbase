@@ -11,7 +11,8 @@ import {
     ScrollView,
     Text,
     View,
-    TextInput
+    TextInput,
+    Button,
 } from 'react-native';
 import {
     CardView,
@@ -19,9 +20,9 @@ import {
     Navbar,
     DatePicker,
     ModalPicker,
-    Drawer
+    Drawer,
 } from 'react-native-zbase';
-import TimerMixin from 'react-timer-mixin'
+import TimerMixin from 'react-timer-mixin';
 
 const ios = Platform.OS === 'ios';
 
@@ -31,7 +32,7 @@ class sample extends Component
     {
         super(props);
         this.onDrawerItemPress = this.onDrawerItemPress.bind(this);
-        this.state = { textInputValue: '' };
+        this.state = { textInputValue: '', drawerDisable: false };
     }
 
     pickerData()
@@ -46,7 +47,7 @@ class sample extends Component
     onDrawerItemPress(i, id)
     {
         console.log('onItemPress', `index: ${i} identifier: ${id}`);
-        TimerMixin.requestAnimationFrame(() => this.drawer.closeDrawer());
+        TimerMixin.requestAnimationFrame(() => this.drawer.close());
     }
 
     withDrawerItems()
@@ -114,7 +115,7 @@ class sample extends Component
                     title='Navbar'
                     iconLeft={ios ? 'ios-menu' : 'md-menu'}
                     iconRight={ios ? 'ios-calendar' : 'md-calendar'}
-                    onButtonLeftPress={() => this.drawer.openDrawer()}
+                    onButtonLeftPress={() => this.drawer.toggle()}
                     onButtonRightPress={()=>this.datepicker.showModal(new Date(), 0)}
                 />
 
@@ -169,6 +170,25 @@ class sample extends Component
                             />
 
                         </ModalPicker>
+
+                        <Button
+                            onPress={() => {
+                                this.drawer.setDisable(true);
+                                this.setState({ drawerDisable: true });
+                            }}
+                            title="Disable drawer"
+                            color={!this.state.drawerDisable ? "grey" : "deepskyblue"}
+                            accessibilityLabel="Disable the menu drawer"
+                        />
+                        <Button
+                            onPress={() => {
+                                this.drawer.setDisable(false);
+                                this.setState({ drawerDisable: false });
+                            }}
+                            title="Enable drawer"
+                            color={this.state.drawerDisable ? "grey" : "deepskyblue"}
+                            accessibilityLabel="Enable the menu drawer"
+                        />
                     </View>
                 </ScrollView>
             </View>

@@ -41,18 +41,30 @@ class Drawer extends React.Component
     _updateOrientation(orientation) {
         this.setState({ landscape: orientation === 'LANDSCAPE' });
         TimerMixin.setTimeout(() => {
-            this.state.drawerOpen && this.closeDrawer();
+            this.state.drawerOpen && this._drawer.close();
         }, 400);
     }
 
-    openDrawer()
+    setDisable(disabled)
     {
-        this._drawer.open();
+        this.setState({ disabled });
     }
 
-    closeDrawer()
+    open()
     {
-        this._drawer.close();
+        !this.state.disabled && this._drawer.open();
+    }
+
+    close()
+    {
+        !this.state.disabled && this._drawer.close();
+    }
+
+    toggle()
+    {
+        !this.state.disabled && (
+            this.state.drawerOpen ? this._drawer.close() : this._drawer.open()
+        );
     }
 
     render() {
