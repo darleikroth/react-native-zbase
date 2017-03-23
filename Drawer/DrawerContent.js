@@ -78,7 +78,12 @@ class DrawerContent extends React.Component
     render()
     {
         return(
-            <ScrollView style={{ backgroundColor:  this.props.color || 'white' }}>
+            <ScrollView
+                style={{
+                    backgroundColor: this.props.color || 'white',
+                    paddingVertical: this.props.paddingVertical || undefined,
+                }}
+            >
                 <View>
 
                     {this.renderHeader()}
