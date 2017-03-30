@@ -8,7 +8,7 @@ class TouchableView extends React.Component
 
         return (
             <TouchableHighlight
-                style={{ borderRadius: this.props.borderRadius || undefined }}
+                style={{ borderRadius: this.props.borderRadius }}
                 underlayColor={this.props.underlayColor || ripple}
                 onPress={this.props.onPress}
                 onLongPress={this.props.onLongPress}

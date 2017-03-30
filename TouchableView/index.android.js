@@ -8,7 +8,7 @@ class TouchableView extends React.Component
 
         return (
             <TouchableNativeFeedback
-                style={{ borderRadius: this.props.borderRadius || undefined }}
+                style={{ borderRadius: this.props.borderRadius }}
                 onPress={this.props.onPress}
                 onLongPress={this.props.onLongPress}
                 background={TouchableNativeFeedback.Ripple(
