@@ -44,11 +44,11 @@ class CardView extends React.Component
                 marginVertical: marginVertical || undefined,
                 marginHorizontal: marginHorizontal || undefined,
                 backgroundColor: backgroundColor || '#FFF',
-                borderRadius: 2,
-                shadowColor: 'rgba(0, 0, 0, 0.3)',
-                shadowOffset: { width: 0.5, height: (elevation || 2) * .65 },
-                shadowOpacity: 1,
-                shadowRadius: (elevation || 2) * .65,
+                borderRadius: borderRadius || 2,
+                shadowColor: 'black',
+                shadowOpacity: 0.2,
+                shadowRadius: (elevation || 2) * 0.5,
+                shadowOffset: {height: (elevation || 2) * 0.67},
             }
         });
     }
