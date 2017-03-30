@@ -46,7 +46,7 @@ class CardView extends React.Component
                 marginHorizontal: marginHorizontal || undefined,
                 backgroundColor: backgroundColor || '#FFF',
                 borderRadius: borderRadius || 2,
-                elevation: 2,
+                elevation: elevation || 2,
             }
         });
     }
