@@ -1,4 +1,4 @@
-# React Native ZBase
+# react-native-zbase
 
 Módulo que reúne componentes nativos customizados. O objetivo é facilitar a organização e manutenção dos componentes.
 
