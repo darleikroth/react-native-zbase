@@ -9,7 +9,6 @@
   "dependencies": {
     "react": "15.4.2",
     "react-native": "^0.42.0",
-    "react-native-orientation": "github:yamill/react-native-orientation",
     "react-native-vector-icons": "^4.0.0",
     "react-native-zbase": "github:darleikroth/react-native-zbase"
   },
