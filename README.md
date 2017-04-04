@@ -4,13 +4,13 @@ Módulo que reúne componentes nativos customizados. O objetivo é facilitar a o
 
 ## Instalar
 
+1. Antes de instalar este componente, [instalar react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation).
+
+2. Finalmente:
+
 ```
 npm install --save github:darleikroth/react-native-zbase
-
-npm install --save github:yamill/react-native-orientation
 ```
-
-Configurar [react-native-orientation](https://github.com/yamill/react-native-orientation/blob/master/README.md), versão mais recente somente no Github.
 
 ## Os componentes
 
@@ -44,9 +44,3 @@ Implementado com base neste projeto [react-native-modal-picker](https://github.c
 ## Drawer
 
 Implementação que trabalha com o projeto [react-native-drawer](https://github.com/root-two/react-native-drawer), mantido por [Zack Story](https://github.com/rt2zz) e outros contribuidores.
-
-## Para fazer
-
-- Melhorar e detalhar a documentação de cada componente.
-- Melhorar os atuais componentes.
-- Adicionar novos componentes.
