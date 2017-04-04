@@ -4,7 +4,7 @@ Módulo que reúne componentes nativos customizados. O objetivo é facilitar a o
 
 ## Instalar
 
-1. Antes de instalar este componente, [instalar react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation).
+1. Antes de instalar este componente, instalar e configurar [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation).
 
 2. Finalmente:
 
