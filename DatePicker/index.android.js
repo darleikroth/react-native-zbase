@@ -4,6 +4,7 @@ import {
   View,
   Text,
   DatePickerAndroid,
+  TimePickerAndroid,
 } from 'react-native';
 
 class DatePicker extends React.Component
@@ -22,7 +23,17 @@ class DatePicker extends React.Component
   showModal(date, index)
   {
     this.setState({ date, index });
-    this.showPicker({date: date, mode: 'calendar'});
+    this.showPicker({date: date, mode: 'calendar'}, true);
+  }
+
+  showModalTime(date, index?)
+  {
+    this.setState({ date, index });
+    this.showPicker({
+      hour: date.getHours(),
+      minute: date.getMinutes(),
+      is24Hour: true,
+    }, false);
   }
 
   onDateChange(date)
@@ -30,15 +41,34 @@ class DatePicker extends React.Component
     this.setState({date: date});
   };
 
-  showPicker = async (options) => {
+  showPicker = async (options, isDate) => {
     try {
-      const {action, year, month, day} = await DatePickerAndroid.open(options);
+      if (isDate) {
+        const {action, year, month, day} = await DatePickerAndroid.open(options);
 
-      if (action === DatePickerAndroid.dateSetAction) {
-        this.onDateChange(new Date(year, month, day));
-        requestAnimationFrame(() => {
-          this.props.onDateChange({ value: this.state.date, index: this.state.index });
-        });
+        if (action === DatePickerAndroid.dateSetAction) {
+          this.onDateChange(new Date(year, month, day));
+          requestAnimationFrame(() => {
+            this.props.onDateChange({ value: this.state.date, index: this.state.index });
+          });
+        }
+      }
+      else {
+        const {action, hour, minute} = await TimePickerAndroid.open(options);
+
+        if (action === TimePickerAndroid.timeSetAction) {
+          const date = this.state.date;
+          this.onDateChange(new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDay(),
+            hour,
+            minute
+          ));
+          requestAnimationFrame(() => {
+            this.props.onDateChange({ value: this.state.date, index: this.state.index });
+          });
+        }
       }
     }
     catch ({code, message}) {

@@ -21,6 +21,7 @@ class DatePicker extends React.Component
     this.state = {
       orientation: ['portrait'],
       date: props.date,
+      mode: 'date',
       index: -1,
       modalVisible: false,
       width,
@@ -40,6 +41,21 @@ class DatePicker extends React.Component
     this.setState({
       orientation,
       date,
+      mode: 'date',
+      index,
+      modalVisible: true,
+    });
+  }
+
+  showModalTime(date, index?)
+  {
+    let {width, height} = Dimensions.get('window');
+    let orientation = width > height ? ['landscape'] : ['portrait'];
+
+    this.setState({
+      orientation,
+      date,
+      mode: 'time',
       index,
       modalVisible: true,
     });
@@ -94,7 +110,8 @@ class DatePicker extends React.Component
                 marginTop: 16,
               }}
               date={this.state.date}
-              mode='date'
+              mode={this.state.mode}
+              minuteInterval={5}
               onDateChange={this.onDateChange}
             />
             <View
