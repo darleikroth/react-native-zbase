@@ -9,6 +9,8 @@ import {
 
 class DatePicker extends React.Component
 {
+  dateTime: ?Object = null;
+
   constructor(props)
   {
     super(props);
@@ -22,12 +24,14 @@ class DatePicker extends React.Component
 
   showModal(date, index)
   {
+    this.dateTime = date;
     this.setState({ date, index });
     this.showPicker({date: date, mode: 'calendar'}, true);
   }
 
   showModalTime(date, index?)
   {
+    this.dateTime = date;
     this.setState({ date, index });
     this.showPicker({
       hour: date.getHours(),
@@ -39,17 +43,27 @@ class DatePicker extends React.Component
   onDateChange(date)
   {
     this.setState({date: date});
-  };
+  }
 
-  showPicker = async (options, isDate) => {
+  async showPicker(options, isDate)
+  {
     try {
+      const dateTime = this.dateTime;
+
       if (isDate) {
         const {action, year, month, day} = await DatePickerAndroid.open(options);
 
         if (action === DatePickerAndroid.dateSetAction) {
-          this.onDateChange(new Date(year, month, day));
+          const date = new Date(
+            year,
+            month,
+            day,
+            dateTime.getHours(),
+            dateTime.getMinutes()
+          );
+          this.onDateChange(date);
           requestAnimationFrame(() => {
-            this.props.onDateChange({ value: this.state.date, index: this.state.index });
+            this.props.onDateChange({ value: date, index: this.state.index });
           });
         }
       }
@@ -57,16 +71,16 @@ class DatePicker extends React.Component
         const {action, hour, minute} = await TimePickerAndroid.open(options);
 
         if (action === TimePickerAndroid.timeSetAction) {
-          const date = this.state.date;
-          this.onDateChange(new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDay(),
+          const date = new Date(
+            dateTime.getFullYear(),
+            dateTime.getMonth(),
+            dateTime.getDate(),
             hour,
             minute
-          ));
+          );
+          this.onDateChange(date);
           requestAnimationFrame(() => {
-            this.props.onDateChange({ value: this.state.date, index: this.state.index });
+            this.props.onDateChange({ value: date, index: this.state.index });
           });
         }
       }
@@ -74,7 +88,7 @@ class DatePicker extends React.Component
     catch ({code, message}) {
       alert(message);
     }
-  };
+  }
 
   render()
   {
