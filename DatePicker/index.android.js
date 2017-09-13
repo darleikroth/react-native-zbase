@@ -1,15 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
+  DatePickerAndroid,
+  TimePickerAndroid,
   StyleSheet,
   View,
   Text,
-  DatePickerAndroid,
-  TimePickerAndroid,
 } from 'react-native';
 
 class DatePicker extends React.Component
 {
-  dateTime: ?Object = null;
+  static propTypes = {
+    /**
+     * Date object to initialise the component
+     */
+    date: PropTypes.object,
+  };
+
+  static defaultProps = {
+    date: new Date(),
+  };
+
+  dateTime: Object;
+  callback: Function;
 
   constructor(props)
   {
@@ -18,21 +31,22 @@ class DatePicker extends React.Component
 
     this.state = {
       date: props.date,
-      index: -1,
     };
   }
 
-  showModal(date, index)
+  showDate(date, callback)
   {
     this.dateTime = date;
-    this.setState({ date, index });
+    this.callback = callback;
+    this.setState({ date });
     this.showPicker({date: date, mode: 'calendar'}, true);
   }
 
-  showModalTime(date, index?)
+  showTime(date, callback)
   {
     this.dateTime = date;
-    this.setState({ date, index });
+    this.callback = callback;
+    this.setState({ date });
     this.showPicker({
       hour: date.getHours(),
       minute: date.getMinutes(),
@@ -42,7 +56,7 @@ class DatePicker extends React.Component
 
   onDateChange(date)
   {
-    this.setState({date: date});
+    this.setState({ date });
   }
 
   async showPicker(options, isDate)
@@ -62,9 +76,7 @@ class DatePicker extends React.Component
             dateTime.getMinutes()
           );
           this.onDateChange(date);
-          requestAnimationFrame(() => {
-            this.props.onDateChange({ value: date, index: this.state.index });
-          });
+          requestAnimationFrame(() => this.callback(date));
         }
       }
       else {
@@ -79,23 +91,21 @@ class DatePicker extends React.Component
             minute
           );
           this.onDateChange(date);
-          requestAnimationFrame(() => {
-            this.props.onDateChange({ value: date, index: this.state.index });
-          });
+          requestAnimationFrame(() => this.callback(date));
         }
       }
     }
     catch ({code, message}) {
-      alert(message);
+      console.warn(message);
     }
   }
 
   render()
   {
     return(
-      <View/>
+      <View />
     );
   }
-};
+}
 
-module.exports = DatePicker;
+export default DatePicker;

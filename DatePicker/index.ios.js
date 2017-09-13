@@ -1,69 +1,78 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
+  TouchableHighlight,
+  DatePickerIOS,
   StyleSheet,
   Dimensions,
+  Modal,
   View,
   Text,
-  TouchableHighlight,
-  Modal,
-  DatePickerIOS,
 } from 'react-native';
+
+const screen = Dimensions.get('window');
 
 class DatePicker extends React.Component
 {
+  static propTypes = {
+    /**
+     * Date object to initialise the component
+     */
+    date: PropTypes.object,
+  };
+
+  static defaultProps = {
+    date: new Date(),
+  };
+
+  callback: Function;
+
   constructor(props)
   {
     super(props);
     this.onDateChange = this.onDateChange.bind(this);
 
-    let {width} = Dimensions.get('window');
-
     this.state = {
       orientation: ['portrait'],
       date: props.date,
       mode: 'date',
-      index: -1,
       modalVisible: false,
-      width,
+      width: screen.width,
     };
   }
 
-  setModalVisible(visible)
+  setModalVisible(modalVisible)
   {
-    this.setState({modalVisible: visible});
+    this.setState({ modalVisible });
   }
 
-  showModal(date, index)
+  showDate(date, callback)
   {
-    let {width, height} = Dimensions.get('window');
-    let orientation = width > height ? ['landscape'] : ['portrait'];
-
+    const orientation = screen.width > screen.height ? ['landscape'] : ['portrait'];
+    this.callback = callback;
     this.setState({
       orientation,
       date,
       mode: 'date',
-      index,
       modalVisible: true,
     });
   }
 
-  showModalTime(date, index?)
+  showTime(date, callback)
   {
-    let {width, height} = Dimensions.get('window');
-    let orientation = width > height ? ['landscape'] : ['portrait'];
-
+    const orientation = screen.width > screen.height ? ['landscape'] : ['portrait'];
+    this.callback = callback;
     this.setState({
       orientation,
       date,
       mode: 'time',
-      index,
       modalVisible: true,
     });
   }
 
   onDateChange(date)
   {
-    this.setState({date: date});
+    this.setState({ date });
   };
 
   cancelar()
@@ -75,9 +84,7 @@ class DatePicker extends React.Component
   {
     requestAnimationFrame(() => {
       this.setModalVisible(false);
-      requestAnimationFrame(() => {
-        this.props.onDateChange({ value: this.state.date, index: this.state.index });
-      });
+      requestAnimationFrame(() => this.callback(this.state.date));
     });
   }
 
@@ -163,6 +170,6 @@ class DatePicker extends React.Component
       </Modal>
     );
   }
-};
+}
 
-module.exports = DatePicker;
+export default DatePicker;
