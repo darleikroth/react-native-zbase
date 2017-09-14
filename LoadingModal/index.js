@@ -39,9 +39,14 @@ class LoadingModal extends Component
   _cancel()
   {
     if (this.props.cancelable) {
-      this.setState({ visible: false });
-      !ios && StatusBar.setBackgroundColor(this.props.statusBarColor, true);
+      this.dismiss();
     }
+  }
+
+  dismiss()
+  {
+    this.setState({ visible: false });
+    !ios && StatusBar.setBackgroundColor(this.props.statusBarColor, true);
   }
 
   render()
