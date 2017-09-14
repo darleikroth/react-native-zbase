@@ -16,8 +16,8 @@ npm install --save github:darleikroth/react-native-zbase#next
 
 - [DatePicker](#datepicker)
 - [TouchableView](#touchableview)
-- [FloatButton](floatbutton)
-- [SelectItems](selectitems)
+- [FloatButton](#floatbutton)
+- [SelectItems](#selectitems)
 
 ## DatePicker
 
@@ -33,4 +33,4 @@ Inspired on [Floating Action Button](https://material.io/guidelines/components/b
 
 ## SelectItems
 
-Show a dialog with a list of items single choise. It uses [Modal](https://facebook.github.io/react-native/docs/modal.html#modal)
+Shows a dialog with a list of items single choice. It uses [Modal](https://facebook.github.io/react-native/docs/modal.html#modal)
