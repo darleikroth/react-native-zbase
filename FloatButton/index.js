@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Platform } from 'react-native';
-import TouchableView from './TouchableView';
+import TouchableView from '../TouchableView';
 
 class FloatButton extends React.Component
 {
