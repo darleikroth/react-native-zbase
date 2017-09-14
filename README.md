@@ -9,13 +9,15 @@ This project brings together custom native components. The goal is to facilitate
 2. Installation:
 
 ```
-npm install --save git+https://github.com/darleikroth/react-native-zbase.git#next
+npm install --save github:darleikroth/react-native-zbase#next
 ```
 
 ## The components
 
 - [DatePicker](#datepicker)
 - [TouchableView](#touchableview)
+- [FloatButton](floatbutton)
+- [SelectItems](selectitems)
 
 ## DatePicker
 
@@ -24,3 +26,11 @@ Brings together the components [DatePickerIOS](https://facebook.github.io/react-
 ## TouchableView
 
 Brings together the native components [TouchableHighlight](https://facebook.github.io/react-native/docs/touchablehighlight.html#touchablehighlight) and [TouchableNativeFeedback](https://facebook.github.io/react-native/docs/touchablenativefeedback.html#touchablenativefeedback).
+
+## FloatButton
+
+Inspired on [Floating Action Button](https://material.io/guidelines/components/buttons-floating-action-button.html) from Material Design, using react-native components.
+
+## SelectItems
+
+Show a dialog with a list of items single choise. It uses [Modal](https://facebook.github.io/react-native/docs/modal.html#modal)
