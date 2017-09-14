@@ -15,25 +15,18 @@ import {
 const screen = Dimensions.get('window');
 const ios = Platform.OS === 'ios';
 
-type ValueItem = {
+type ValueObject = {
   id: number,
   name: string
 };
 
-type SelectOptions = {
-  values: Array<ValueItem>,
+type OptionsParam = {
+  values: Array<ValueObject>,
   title?: string
 };
 
 class SelectItems extends React.Component
 {
-  static propTypes = {
-    /**
-     * Color default for Android StatusBar
-     */
-    statusBarColor: PropTypes.string.isRequired,
-  }
-
   callback: Function;
   
   state = {
@@ -44,7 +37,7 @@ class SelectItems extends React.Component
 
   /**
    * Show a modal with list items
-   * @param {SelectOptions} options
+   * @param {OptionsParam} options
    * @param {Function} callback 
    */
   _show(options, callback: Function)
@@ -61,15 +54,15 @@ class SelectItems extends React.Component
   _cancel()
   {
     this.setState({ visible: false });
-    this.callback(null);
     !ios && StatusBar.setBackgroundColor(this.props.statusBarColor, true);
+    requestAnimationFrame(() => this.callback(null));
   }
 
   handlePress(item)
   {
     this.setState({ visible: false });
-    this.callback(item);
     !ios && StatusBar.setBackgroundColor(this.props.statusBarColor, true);
+    requestAnimationFrame(() => this.callback(item));
   }
 
   render()
@@ -132,7 +125,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, .2)',
+    backgroundColor: 'rgba(0, 0, 0, .6)',
   },
   dialog: {
     width: screen.width - 64,
@@ -173,4 +166,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectItems;
+SelectItems.propTypes = {
+  statusBarColor: PropTypes.string.isRequired,
+};
+
+module.exports = SelectItems;

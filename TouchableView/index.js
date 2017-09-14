@@ -29,4 +29,4 @@ const TouchableView = props =>
   );
 }
 
-export default TouchableView;
+module.exports = TouchableView;

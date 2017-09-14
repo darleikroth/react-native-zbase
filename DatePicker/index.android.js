@@ -10,17 +10,6 @@ import {
 
 class DatePicker extends React.Component
 {
-  static propTypes = {
-    /**
-     * Date object to initialise the component
-     */
-    date: PropTypes.object,
-  };
-
-  static defaultProps = {
-    date: new Date(),
-  };
-
   dateTime: Object;
   callback: Function;
 
@@ -108,4 +97,12 @@ class DatePicker extends React.Component
   }
 }
 
-export default DatePicker;
+DatePicker.propTypes = {
+  date: PropTypes.object,
+};
+
+DatePicker.defaultProps = {
+  date: new Date(),
+};
+
+module.exports = DatePicker;

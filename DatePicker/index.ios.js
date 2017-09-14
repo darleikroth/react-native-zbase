@@ -14,17 +14,6 @@ const screen = Dimensions.get('window');
 
 class DatePicker extends React.Component
 {
-  static propTypes = {
-    /**
-     * Date object to initialise the component
-     */
-    date: PropTypes.object,
-  };
-
-  static defaultProps = {
-    date: new Date(),
-  };
-
   callback: Function;
 
   constructor(props)
@@ -172,4 +161,12 @@ class DatePicker extends React.Component
   }
 }
 
-export default DatePicker;
+DatePicker.propTypes = {
+  date: PropTypes.object,
+};
+
+DatePicker.defaultProps = {
+  date: new Date(),
+};
+
+module.exports = DatePicker;
