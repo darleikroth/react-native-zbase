@@ -72,7 +72,7 @@ class LoadingModal extends Component
               animating={this.state.visible}
               style={[styles.centering, {height: 100}]}
               size="large"
-              color={colors.primary_dark}
+              color={this.props.indicatorColor}
             />
           </View>
 
@@ -80,7 +80,7 @@ class LoadingModal extends Component
               alignSelf: 'center',
               marginTop: 8,
               fontSize: ios ? 17 : 18,
-              color: colors.primary_text,
+              color: this.props.labelColor,
             }} >
               Carregando
             </Text>
@@ -129,11 +129,15 @@ const styles = StyleSheet.create({
 
 LoadingModal.propTypes = {
   statusBarColor: PropTypes.string.isRequired,
+  indicatorColor: PropTypes.string,
+  labelColor: PropTypes.string,
   cancelable: PropTypes.bool,
 };
 
 LoadingModal.defaultProps = {
   cancelable: true,
+  indicatorColor: '#00bfff',
+  labelColor: '#757575',
 };
 
 export default LoadingModal;
