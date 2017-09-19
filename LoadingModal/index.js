@@ -87,7 +87,7 @@ class LoadingModal extends Component
               fontSize: ios ? 17 : 18,
               color: this.props.labelColor,
             }} >
-              Carregando
+              {this.state.label}
             </Text>
           </View>
         </TouchableWithoutFeedback>
