@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   StyleSheet,
+  StatusBar,
   FlatList,
   Platform,
   Modal,
@@ -22,12 +23,14 @@ type ValueObject = {
 
 type OptionsParam = {
   values: Array<ValueObject>,
-  title?: string
+  title?: string,
+  itemFunc?: Function,
 };
 
 class SelectItems extends React.Component
 {
   callback: Function;
+  itemFunc: Function;
   
   state = {
     visible: false,
@@ -47,6 +50,7 @@ class SelectItems extends React.Component
       values: options.values,
       title: options.title || this.state.title,
     });
+    this.itemFunc = options.itemFunc || (item => item.name);
     this.callback = callback;
     !ios && StatusBar.setBackgroundColor('black', true);
   }
@@ -56,6 +60,14 @@ class SelectItems extends React.Component
     this.setState({ visible: false });
     !ios && StatusBar.setBackgroundColor(this.props.statusBarColor, true);
     requestAnimationFrame(() => this.callback(null));
+  }
+
+  updateValues(values: OptionsParam)
+  {
+    this.setState({
+      values: options.values,
+      title: options.title || this.state.title,
+    });
   }
 
   handlePress(item)
@@ -108,11 +120,13 @@ class SelectItems extends React.Component
 
   renderItem(item)
   {
+    const title = this.itemFunc(item);
+
     return (
       <TouchableOpacity onPress={() => this.handlePress(item)} >
         <View style={styles.itemContent} >
           <Text style={styles.itemText} >
-            {item.name}
+            {title}
           </Text>
         </View>
       </TouchableOpacity>
