@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsType from 'props-type';
+import PropTypes from 'prop-types';
 import {
   TouchableNativeFeedback,
   TouchableOpacity,
@@ -36,8 +36,8 @@ class TouchableView extends React.Component
 }
 
 TouchableView.propsType = {
-  onPress: PropsType.func,
-  background: PropsType.string,
+  onPress: PropTypes.func,
+  background: PropTypes.string,
 };
 
 module.exports = TouchableView;
