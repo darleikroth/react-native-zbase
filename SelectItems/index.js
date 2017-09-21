@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   TouchableWithoutFeedback,
+  ActivityIndicator,
   TouchableOpacity,
   Dimensions,
   StyleSheet,
@@ -30,12 +31,12 @@ type OptionsParam = {
 class SelectItems extends React.Component
 {
   callback: Function;
-  itemFunc: Function;
   
   state = {
     visible: false,
     values: [],
     title: 'Selecione',
+    itemFunc: item => item.name,
   }
 
   /**
@@ -49,8 +50,8 @@ class SelectItems extends React.Component
       visible: true,
       values: options.values,
       title: options.title || this.state.title,
+      itemFunc: options.itemFunc || (item => item.name),
     });
-    this.itemFunc = options.itemFunc || (item => item.name);
     this.callback = callback;
     !ios && StatusBar.setBackgroundColor('black', true);
   }
@@ -62,7 +63,7 @@ class SelectItems extends React.Component
     requestAnimationFrame(() => this.callback(null));
   }
 
-  updateValues(values: OptionsParam)
+  updateValues(options: OptionsParam)
   {
     this.setState({
       values: options.values,
@@ -95,32 +96,53 @@ class SelectItems extends React.Component
 
   renderContent()
   {
+    const loading = this.state.visible && (this.state.values.length === 0);
     const size = this.state.values.length;
     const dialogHeight = size < 10 ? (size * 48) + 72 : (9 * 48) + 72;
 
     return (
       <View style={styles.container} >
         <TouchableWithoutFeedback onPress={() => {}} >
-          <View style={[styles.dialog, {height: dialogHeight}]} >
+          <View style={[styles.dialog, {height: loading ? 128 : dialogHeight}]} >
             <View style={styles.titleContent} >
               <Text style={styles.title} >
                 {this.state.title}
               </Text>
             </View>
-            <FlatList
-              data={this.state.values}
-              keyExtractor={(val, key) => key}
-              renderItem={({item}) => this.renderItem(item)}
-            />
+            {this.renderList()}
           </View>
         </TouchableWithoutFeedback>
       </View>
     );
   }
 
+  renderList()
+  {
+    const loading = this.state.visible && (this.state.values.length === 0);
+
+    if (loading) {
+      return (
+        <View style={styles.loading} >
+          <ActivityIndicator
+            animating={loading}
+            size="large"
+          />
+        </View>
+      );
+    }
+
+    return (
+      <FlatList
+        data={this.state.values}
+        keyExtractor={(val, key) => key}
+        renderItem={({item}) => this.renderItem(item)}
+      />
+    );
+  }
+
   renderItem(item)
   {
-    const title = this.itemFunc(item);
+    const title = this.state.itemFunc(item);
 
     return (
       <TouchableOpacity onPress={() => this.handlePress(item)} >
@@ -177,6 +199,11 @@ const styles = StyleSheet.create({
   itemText: {
     color: '#212121',
     fontSize: ios ? 16 : 17,
+  },
+  loading: {
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
