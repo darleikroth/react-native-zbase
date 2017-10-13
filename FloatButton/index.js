@@ -23,7 +23,7 @@ type Props = {
   /**
    * Function for the onPress event
    */
-  onPress: function,
+  onPress: Function,
   /**
    * Custom styles for the component
    */
