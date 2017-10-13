@@ -28,10 +28,15 @@ type OptionsParam = {
   itemFunc?: Function,
 };
 
+type Props = {
+  statusBarColor: string,
+};
+
 class SelectItems extends React.Component
 {
+  props: Props;
   callback: Function;
-  
+
   state = {
     visible: false,
     values: [],
@@ -42,7 +47,7 @@ class SelectItems extends React.Component
   /**
    * Show a modal with list items
    * @param {OptionsParam} options
-   * @param {Function} callback 
+   * @param {Function} callback
    */
   _show(options, callback: Function)
   {
@@ -170,7 +175,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     backgroundColor: 'white',
     ...Platform.select({
-      ios: {    
+      ios: {
         shadowColor: 'black',
         shadowOpacity: 0.25,
         shadowRadius: 8 * .75,

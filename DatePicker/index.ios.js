@@ -12,8 +12,14 @@ import {
 
 const screen = Dimensions.get('window');
 
+type Props = {
+  date: Date,
+};
+
 class DatePicker extends React.Component
 {
+  props: Props;
+
   callback: Function;
 
   constructor(props)

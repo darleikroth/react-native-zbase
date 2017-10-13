@@ -20,8 +20,17 @@ type OptionsParam = {
   label: string
 };
 
+type Props = {
+  statusBarColor: string,
+  indicatorColor: string,
+  labelColor: string,
+  cancelable: boolean,
+};
+
 class LoadingModal extends Component
 {
+  props: Props;
+
   state = {
     visible: false,
     label: 'Carregando',

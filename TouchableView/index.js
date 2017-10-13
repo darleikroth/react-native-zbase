@@ -6,8 +6,16 @@ import {
   Platform,
 } from 'react-native';
 
+type Props = {
+  ...TouchableNativeFeedback.propTypes,
+  ...TouchableOpacity.propTypes,
+  background: string;
+};
+
 class TouchableView extends React.Component
 {
+  props: Props;
+
   render()
   {
     const props = this.props;
@@ -22,7 +30,7 @@ class TouchableView extends React.Component
         </TouchableOpacity>
       );
     }
-  
+
     return (
       <TouchableNativeFeedback
         {...props}

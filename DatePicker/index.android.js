@@ -8,8 +8,14 @@ import {
   Text,
 } from 'react-native';
 
+type Props = {
+  date: Date,
+};
+
 class DatePicker extends React.Component
 {
+  props: Props;
+
   dateTime: Object;
   callback: Function;
 

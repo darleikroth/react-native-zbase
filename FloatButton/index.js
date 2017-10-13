@@ -1,10 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Platform } from 'react-native';
+import { View, Platform, ViewStyle } from 'react-native';
 import TouchableView from '../TouchableView';
+
+type Props = {
+  /**
+   * Background color of component
+   */
+  color: string,
+  /**
+   * Background color of ripple effect (Android)
+   */
+  background: string,
+  /**
+   * Number for the elevation effect (iOS and Android)
+   */
+  elevation: number,
+  /**
+   * Mini size: Only used to create visual continuity with other screen elements
+   */
+  small: boolean,
+  /**
+   * Function for the onPress event
+   */
+  onPress: function,
+  /**
+   * Custom styles for the component
+   */
+  containerStyle:  ViewStyle,
+};
 
 class FloatButton extends React.Component
 {
+  props: Props;
+
   render()
   {
     const {
