@@ -9,7 +9,7 @@ This project brings together custom native components. The goal is to facilitate
 2. Installation:
 
 ```
-npm install --save github:darleikroth/react-native-zbase#next
+npm install --save react-native-zbase
 ```
 
 ## The components
