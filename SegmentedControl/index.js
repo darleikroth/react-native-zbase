@@ -94,7 +94,7 @@ class SegmentedControlAndroid extends React.PureComponent
             <View key={`key-${i}`} style={{flex: 1}} >
               <TouchableHighlight
                 onPress={() => {
-                  onChange && onChange(i);
+                  (enabled && onChange) && onChange(i);
                   onValueChange && onValueChange(val);
                 }}
                 underlayColor={tintColor}
