@@ -5,6 +5,7 @@ import SelectItems from './SelectItems';
 import LoadingModal from './LoadingModal';
 import SegmentedControl from './SegmentedControl';
 import * as ListItem from './ListItem';
+import * as Toolbar from './Toolbar';
 
 export {
   DatePicker,
@@ -14,4 +15,5 @@ export {
   LoadingModal,
   SegmentedControl,
   ListItem,
+  Toolbar,
 };
