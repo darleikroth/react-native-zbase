@@ -4,6 +4,7 @@ import FloatButton from './FloatButton';
 import SelectItems from './SelectItems';
 import LoadingModal from './LoadingModal';
 import SegmentedControl from './SegmentedControl';
+import * as ListItem from './ListItem';
 
 export {
   DatePicker,
@@ -12,4 +13,5 @@ export {
   SelectItems,
   LoadingModal,
   SegmentedControl,
+  ListItem,
 };
