@@ -18,6 +18,7 @@ type Props = {
   titleStyle?: TextStyle;
   subtitleStyle?: TextStyle;
   onPress(fn: () => void): void;
+  onLongPress(fn: () => void): void;
 };
 
 const ios = Platform.OS === 'ios';
@@ -30,7 +31,7 @@ class SimpleItem extends React.PureComponent
   {
     return (
       <View style={[styles.container, this.props.containerStyle]} >
-        <TouchableView onPress={this.props.onPress} >
+        <TouchableView onPress={this.props.onPress} onLongPress={this.props.onLongPress} >
           <View style={[styles.content, this.props.contentStyle]} >
             <Text numberOfLines={1} style={[styles.title, this.props.titleStyle]} >
               {this.props.title}

@@ -69,6 +69,10 @@ type Props = {
    * Called when the touch is released.
    */
   onPress(fn: () => void): void;
+  /**
+   * Called when the long press is released.
+   */
+  onLongPress(fn: () => void): void;
 };
 
 const ios = Platform.OS === 'ios';
@@ -92,13 +96,14 @@ class Item extends React.PureComponent
       dividerStyle,
       divider,
       selectableBackground,
-      onPress
+      onPress,
+      onLongPress,
     } = this.props;
 
     return (
       <View>
       <View style={[styles.container, containerStyle]} >
-        <TouchableView onPress={onPress} background={selectableBackground} >
+        <TouchableView onPress={onPress} background={selectableBackground} onLongPress={onLongPress} >
           <View style={[styles.content, contentStyle]} >
 
             <View style={styles.icon} >
