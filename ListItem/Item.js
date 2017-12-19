@@ -22,7 +22,11 @@ type Props = {
   /**
    * Expects a React Element. Rendered at the item's start/left. It is `isRequired`.
    */
-  iconElement: Element;
+  iconLeft: Element;
+  /**
+   * Expects a React Element. Rendered at the item's start/right.
+   */
+  iconRight: Element;
   /**
    * Used to truncate the text with an ellipsis after computing the text layout,
    * including line wrapping, such that the total number of lines does not exceed this number.
@@ -86,7 +90,8 @@ class Item extends React.PureComponent
     const {
       title,
       subtitle,
-      iconElement,
+      iconLeft,
+      iconRight,
       titleNumberOfLines,
       subtitleNumberOfLines,
       containerStyle,
@@ -102,28 +107,33 @@ class Item extends React.PureComponent
 
     return (
       <View>
-      <View style={[styles.container, containerStyle]} >
-        <TouchableView onPress={onPress} background={selectableBackground} onLongPress={onLongPress} >
-          <View style={[styles.content, contentStyle]} >
+        <View style={[styles.container, containerStyle]} >
+          <TouchableView onPress={onPress} background={selectableBackground} onLongPress={onLongPress} >
+            <View style={[styles.content, contentStyle]} >
 
-            <View style={styles.icon} >
-              {iconElement}
-            </View>
-            
-            <View style={styles.titleContainer} >
-              <Text style={[styles.title, titleStyle]} numberOfLines={titleNumberOfLines} >
-                {title}
-              </Text>
-              {subtitle && (
-                <Text style={[styles.subtitle, subtitleStyle]} numberOfLines={subtitleNumberOfLines} >
-                  {subtitle}
-                </Text>
+              <View style={[styles.icon, {left: 0}]} >
+                {iconLeft}
+              </View>
+              {iconRight && (
+                <View style={[styles.icon, {right: 0, width: 48}]} >
+                  {iconRight}
+                </View>
               )}
+              
+              <View style={styles.titleContainer} >
+                <Text style={[styles.title, titleStyle]} numberOfLines={titleNumberOfLines} >
+                  {title}
+                </Text>
+                {subtitle && (
+                  <Text style={[styles.subtitle, subtitleStyle]} numberOfLines={subtitleNumberOfLines} >
+                    {subtitle}
+                  </Text>
+                )}
+              </View>
             </View>
-          </View>
-        </TouchableView>
-      </View>
-      {divider && (<View style={[styles.divider, dividerStyle]} />)}
+          </TouchableView>
+        </View>
+        {divider && (<View style={[styles.divider, dividerStyle]} />)}
       </View>
     );
   }
@@ -159,7 +169,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    left: 0,
   },
   divider: {
     height: 1,
@@ -169,7 +178,7 @@ const styles = StyleSheet.create({
 
 Item.propTypes = {
   title: PropTypes.string.isRequired,
-  iconElement: PropTypes.any.isRequired,
+  iconLeft: PropTypes.any.isRequired,
 };
 
 Item.defaultProps = {
