@@ -34,3 +34,10 @@ Inspired on [Floating Action Button](https://material.io/guidelines/components/b
 ## SelectItems
 
 Shows a dialog with a list of items single choice. It uses [Modal](https://facebook.github.io/react-native/docs/modal.html#modal)
+
+### TODO
+
+- [ ] Update documentation to support de new components
+- [ ] Document the props, events and methods of the components
+
+[Back top](#react-native-zbase)
