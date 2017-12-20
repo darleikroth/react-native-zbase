@@ -70,6 +70,10 @@ type Props = {
    */
   divider?: boolean;
   /**
+   * Set `true` to disable the touchable feedback and change the color to disabled styles.
+   */
+  disabled?: boolean;
+  /**
    * Called when the touch is released.
    */
   onPress(fn: () => void): void;
@@ -100,6 +104,7 @@ class Item extends React.PureComponent
       subtitleStyle,
       dividerStyle,
       divider,
+      disabled,
       selectableBackground,
       onPress,
       onLongPress,
@@ -108,7 +113,10 @@ class Item extends React.PureComponent
     return (
       <View>
         <View style={[styles.container, containerStyle]} >
-          <TouchableView onPress={onPress} background={selectableBackground} onLongPress={onLongPress} >
+          <TouchableView
+            onPress={disabled ? undefined : onPress}
+            background={selectableBackground}
+            onLongPress={disabled ? undefined : onLongPress} >
             <View style={[styles.content, contentStyle]} >
 
               <View style={[styles.icon, {left: 0}]} >
@@ -121,11 +129,23 @@ class Item extends React.PureComponent
               )}
               
               <View style={styles.titleContainer} >
-                <Text style={[styles.title, titleStyle]} numberOfLines={titleNumberOfLines} >
+                <Text
+                  style={[
+                    styles.title,
+                    titleStyle,
+                    disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+                  ]}
+                  numberOfLines={titleNumberOfLines} >
                   {title}
                 </Text>
                 {subtitle && (
-                  <Text style={[styles.subtitle, subtitleStyle]} numberOfLines={subtitleNumberOfLines} >
+                  <Text
+                    style={[
+                      styles.subtitle,
+                      subtitleStyle,
+                      disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+                    ]}
+                    numberOfLines={subtitleNumberOfLines} >
                     {subtitle}
                   </Text>
                 )}
