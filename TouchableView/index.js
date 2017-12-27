@@ -16,6 +16,10 @@ type Props = {
    * Called when the touch is released
    */
   onPress(fn: () => void): void;
+  /**
+   * Called when long touch is released
+   */
+  onLongPress(fn: () => void): void;
 };
 
 class TouchableView extends React.Component
@@ -31,6 +35,7 @@ class TouchableView extends React.Component
         <TouchableOpacity
           {...props}
           onPress={props.onPress}
+          onLongPress={props.onLongPress}
         >
           {props.children}
         </TouchableOpacity>
@@ -42,6 +47,7 @@ class TouchableView extends React.Component
         {...props}
         background={TouchableNativeFeedback.Ripple(props.background, true)}
         onPress={props.onPress}
+        onLongPress={props.onLongPress}
       >
         {props.children}
       </TouchableNativeFeedback>
