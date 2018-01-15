@@ -25,6 +25,11 @@ type Props = {
    */
   underlayColor?: string;
   /**
+   * If there is no `headerRight` on toolbar, set this property to `false`.
+   * Used to calculate dimensions. Default value is `true`.
+   */
+  hasHeaderRight?: boolean;
+  /**
    * Callback that is called when the text input's text changes.
    * Changed text is passed as an argument to the callback handler.
    */
@@ -75,8 +80,10 @@ class Search extends React.Component
 
   render()
   {
+    const hasHeaderRight = this.props.hasHeaderRight,
+    searchWid = hasHeaderRight ? searchWidth : searchWidth + 56;
     return (
-      <View style={[styles.container]} >
+      <View style={[styles.container, {width: searchWid}]} >
         {this.renderTitle()}
         {this.renderSearchButton()}
       </View>
@@ -85,19 +92,23 @@ class Search extends React.Component
 
   renderTitle()
   {
+    const {title, tintColor, hasHeaderRight} = this.props;
+
     if (!this.state.isSearchable) {
       return (
-        <Text style={[styles.title, {color: this.props.tintColor}]} >
-          {this.props.title}
+        <Text style={[styles.title, {color: tintColor}]} >
+          {title}
         </Text>
       );
     }
 
+    const inputWid = hasHeaderRight ? screen.width - 110 : screen.width - 80;
+
     return (
       <TextInput
         value={this.state.text}
-        placeholder={`Buscar ${this.props.title}`}
-        placeholderTextColor={`${Color(this.props.tintColor).fade(0.46)}`}
+        placeholder={`Buscar ${title}`}
+        placeholderTextColor={`${Color(tintColor).fade(0.46)}`}
         returnKeyType='done'
         autoCapitalize='none'
         onChangeText={this.onChangeText}
@@ -105,7 +116,7 @@ class Search extends React.Component
         selectTextOnFocus
         autoCorrect={false}
         autoFocus
-        style={[styles.input, {color: this.props.tintColor}]}
+        style={[styles.input, {color: tintColor, width: inputWid}]}
       />
     );
   }
@@ -128,12 +139,12 @@ class Search extends React.Component
 Search.defaultProps = {
   title: 'Título',
   tintColor: 'white',
+  hasHeaderRight: true,
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    width: searchWidth,
     height: 48,
     borderRadius: 5,
     alignItems: 'center',
@@ -145,7 +156,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   input: {
-    width: screen.width - 110,
     height: 48,
     fontSize: 16,
     marginLeft: 16,
