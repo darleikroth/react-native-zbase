@@ -1,26 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
+  TouchableNativeFeedbackProperties,
+  TouchableOpacityProperties,
   TouchableNativeFeedback,
   TouchableOpacity,
   Platform,
 } from 'react-native';
 
-type Props = {
+interface TouchableProps extends TouchableNativeFeedbackProperties, TouchableOpacityProperties {
   /**
    * Background color ripple for Android.
    * If api version is less than 21, it uses `TouchableOpacity`.
    */
-  background: string;
-  /**
-   * Called when the touch is released
-   */
-  onPress(fn: () => void): void;
-  /**
-   * Called when long touch is released
-   */
-  onLongPress(fn: () => void): void;
-};
+  background?: string;
+  children?: any;
+}
+
+type Props = TouchableProps;
 
 class TouchableView extends React.Component
 {
@@ -32,11 +28,7 @@ class TouchableView extends React.Component
 
     if (Platform.OS === 'ios' || Platform.Version < 21) {
       return (
-        <TouchableOpacity
-          {...props}
-          onPress={props.onPress}
-          onLongPress={props.onLongPress}
-        >
+        <TouchableOpacity {...props} >
           {props.children}
         </TouchableOpacity>
       );
@@ -46,8 +38,6 @@ class TouchableView extends React.Component
       <TouchableNativeFeedback
         {...props}
         background={TouchableNativeFeedback.Ripple(props.background, true)}
-        onPress={props.onPress}
-        onLongPress={props.onLongPress}
       >
         {props.children}
       </TouchableNativeFeedback>
