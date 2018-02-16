@@ -138,7 +138,7 @@ class Item extends React.PureComponent
                   numberOfLines={titleNumberOfLines} >
                   {title}
                 </Text>
-                {subtitle && (
+                {!!subtitle && (
                   <Text
                     style={[
                       styles.subtitle,
@@ -153,7 +153,7 @@ class Item extends React.PureComponent
             </View>
           </TouchableView>
         </View>
-        {divider && (<View style={[styles.divider, dividerStyle]} />)}
+        {!!divider && (<View style={[styles.divider, dividerStyle]} />)}
       </View>
     );
   }

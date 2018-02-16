@@ -36,7 +36,7 @@ class SimpleItem extends React.PureComponent
             <Text numberOfLines={1} style={[styles.title, this.props.titleStyle]} >
               {this.props.title}
             </Text>
-            {this.props.subtitle && (
+            {!!this.props.subtitle && (
               <Text numberOfLines={2} style={[styles.subtitle, this.props.subtitleStyle]} >
                 {this.props.subtitle}
               </Text>
