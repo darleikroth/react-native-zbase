@@ -122,13 +122,13 @@ class Item extends React.PureComponent
               <View style={[styles.icon, {left: 0}]} >
                 {iconLeft}
               </View>
-              {iconRight && (
+              {!!iconRight && (
                 <View style={[styles.icon, {right: 0, width: 48}]} >
                   {iconRight}
                 </View>
               )}
               
-              <View style={styles.titleContainer} >
+              <View style={[styles.titleContainer, {marginRight: !iconRight ? 16 : 54}]} >
                 <Text
                   style={[
                     styles.title,
@@ -170,7 +170,6 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     height: 72,
-    paddingRight: 16,
     marginLeft: 72,
     justifyContent: 'center',
   },
