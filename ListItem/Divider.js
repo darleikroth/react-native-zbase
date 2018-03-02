@@ -20,4 +20,4 @@ Divider.defaultProps = {
   color: 'rgba(0, 0, 0, .12)',
 };
 
-module.exports = Divider;
+export default Divider;

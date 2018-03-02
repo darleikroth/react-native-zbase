@@ -49,4 +49,4 @@ TouchableView.defaultProps = {
   background: '#E0E0E0',
 };
 
-module.exports = TouchableView;
+export default TouchableView;

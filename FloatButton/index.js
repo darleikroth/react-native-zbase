@@ -48,7 +48,7 @@ class FloatButton extends React.Component
     const size = small ? 40 : 56;
 
     return (
-      <View 
+      <View
         style={[{
           height: size,
           width: size,
@@ -73,33 +73,6 @@ class FloatButton extends React.Component
   }
 }
 
-FloatButton.propTypes = {
-  /**
-   * Background color of component
-   */
-  color: PropTypes.string,
-  /**
-   * Background color of ripple effect (Android)
-   */
-  background: PropTypes.string,
-  /**
-   * Number for the elevation effect (iOS and Android)
-   */
-  elevation: PropTypes.number,
-  /**
-   * Mini size: Only used to create visual continuity with other screen elements
-   */
-  small: PropTypes.bool,
-  /**
-   * Function for the onPress event
-   */
-  onPress: PropTypes.func,
-  /**
-   * Custom styles for the component
-   */
-  containerStyle:  View.propTypes.style,
-};
-
 FloatButton.defaultProps = {
   color: '#2196F3',
   elevation: 6,
@@ -107,4 +80,4 @@ FloatButton.defaultProps = {
   small: false,
 };
 
-module.exports = FloatButton;
+export default FloatButton;

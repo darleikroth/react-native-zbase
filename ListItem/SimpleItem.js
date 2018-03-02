@@ -41,7 +41,7 @@ class SimpleItem extends React.PureComponent
                 {this.props.subtitle}
               </Text>
             )}
-    
+
           </View>
         </TouchableView>
       </View>
@@ -70,4 +70,4 @@ SimpleItem.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-module.exports = SimpleItem;
+export default SimpleItem;

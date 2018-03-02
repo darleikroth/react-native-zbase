@@ -175,4 +175,4 @@ DatePicker.defaultProps = {
   date: new Date(),
 };
 
-module.exports = DatePicker;
+export default DatePicker;

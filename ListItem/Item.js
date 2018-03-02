@@ -127,7 +127,7 @@ class Item extends React.PureComponent
                   {iconRight}
                 </View>
               )}
-              
+
               <View style={[styles.titleContainer, {marginRight: !iconRight ? 16 : 54}]} >
                 <Text
                   style={[
@@ -206,4 +206,4 @@ Item.defaultProps = {
   divider: false,
 };
 
-module.exports = Item;
+export default Item;

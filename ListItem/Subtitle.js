@@ -49,4 +49,4 @@ Subtitle.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-module.exports = Subtitle;
+export default Subtitle;

@@ -26,12 +26,12 @@ type Props = {
    */
   tintColor?: string;
   /**
-   * Callback that is called when the user taps a segment. 
+   * Callback that is called when the user taps a segment.
    * Passes the selected index as an argument.
    */
   onChange(fn: (selectedIndex: number) => void): void;
   /**
-   * Callback that is called when the user taps a segment. 
+   * Callback that is called when the user taps a segment.
    * Passes the segment's value as an argument.
    */
   onValueChange(fn: (value: string) => void): void;
@@ -172,4 +172,4 @@ SegmentedControl.defaultProps = {
   selectedIndex: 0,
 };
 
-module.exports = SegmentedControl;
+export default SegmentedControl;

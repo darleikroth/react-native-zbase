@@ -216,4 +216,4 @@ SelectItems.propTypes = {
   statusBarColor: PropTypes.string.isRequired,
 };
 
-module.exports = SelectItems;
+export default SelectItems;
