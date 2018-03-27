@@ -7,6 +7,7 @@ import {
   View,
   Text,
 } from 'react-native';
+import Color from 'color';
 
 type Props = {
   /**
@@ -93,7 +94,7 @@ class SegmentedControlAndroid extends React.PureComponent {
                   (enabled && onChange) && onChange(i);
                   onValueChange && onValueChange(val);
                 }}
-                underlayColor={tintColor}
+                underlayColor={`${Color(tintColor).fade(.87)}`}
                 activeOpacity={0.85}
                 style={custom.touchable} >
                 <View style={custom.container} >
@@ -122,7 +123,7 @@ class SegmentedControlAndroid extends React.PureComponent {
     }
     return {
       touchable: borderRadius,
-      container: [styles.base, borderRadius, {backgroundColor: 'white', borderColor: tint}],
+      container: [styles.base, borderRadius, {backgroundColor: 'transparent', borderColor: tint}],
       title: [styles.title, {color: tint}],
     };
   }
