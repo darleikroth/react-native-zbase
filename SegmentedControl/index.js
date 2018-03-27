@@ -29,20 +29,18 @@ type Props = {
    * Callback that is called when the user taps a segment.
    * Passes the selected index as an argument.
    */
-  onChange(fn: (selectedIndex: number) => void): void;
+  onChange: (selectedIndex: number) => void;
   /**
    * Callback that is called when the user taps a segment.
    * Passes the segment's value as an argument.
    */
-  onValueChange(fn: (value: string) => void): void;
+  onValueChange: (value: string) => void;
 };
 
-class SegmentedControl extends React.Component
-{
+class SegmentedControl extends React.Component {
   props: Props;
 
-  render()
-  {
+  render() {
     const {
       enabled,
       selectedIndex,
@@ -70,12 +68,10 @@ class SegmentedControl extends React.Component
   }
 }
 
-class SegmentedControlAndroid extends React.PureComponent
-{
+class SegmentedControlAndroid extends React.PureComponent {
   props: Props;
 
-  render()
-  {
+  render() {
     const {
       enabled,
       selectedIndex,
@@ -113,8 +109,7 @@ class SegmentedControlAndroid extends React.PureComponent
     );
   }
 
-  getStyles(i, arr, selectedIndex, tint)
-  {
+  getStyles(i, arr, selectedIndex, tint) {
     const start = (i === 0), end = (i === (arr.length-1)), selected = (i === selectedIndex),
     borderRadius = start ? styles.start : end ? styles.end : styles.middle;
 
@@ -132,8 +127,7 @@ class SegmentedControlAndroid extends React.PureComponent
     };
   }
 
-  getTitleStyle(selected, color)
-  {
+  getTitleStyle(selected, color) {
     return [styles.title, {color: selected ? 'white' : color}];
   }
 }
