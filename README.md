@@ -1,5 +1,7 @@
 # react-native-zbase
 
+[![npm version](https://badge.fury.io/js/react-native-zbase.svg)](https://badge.fury.io/js/react-native-zbase)
+
 This project brings together custom native components. The goal is to facilitate the organization and maintenance of them.
 
 ## Install
