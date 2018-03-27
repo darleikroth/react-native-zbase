@@ -72,15 +72,25 @@ class SegmentedControl extends React.Component {
 class SegmentedControlAndroid extends React.PureComponent {
   props: Props;
 
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      selectedIndex: props.selectedIndex,
+    };
+  }
+
+  _handleOnPress(val, i) {
+    if (i === this.state.selectedIndex) {
+      return;
+    }
+    this.setState({selectedIndex: i});
+    (this.props.enabled && !!this.props.onChange) && this.props.onChange(i);
+    !!this.props.onValueChange && this.props.onValueChange(val);
+  }
+
   render() {
-    const {
-      enabled,
-      selectedIndex,
-      values,
-      tintColor,
-      onChange,
-      onValueChange
-    } = this.props;
+    const { values, tintColor } = this.props,
+    selectedIndex = this.state.selectedIndex;
 
     return (
       <View style={{flexDirection: 'row'}} >
@@ -90,10 +100,7 @@ class SegmentedControlAndroid extends React.PureComponent {
           return (
             <View key={`key-${i}`} style={{flex: 1}} >
               <TouchableHighlight
-                onPress={() => {
-                  (enabled && onChange) && onChange(i);
-                  onValueChange && onValueChange(val);
-                }}
+                onPress={() => this._handleOnPress(val, i)}
                 underlayColor={`${Color(tintColor).fade(.87)}`}
                 activeOpacity={0.85}
                 style={custom.touchable} >
