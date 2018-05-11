@@ -1,6 +1,6 @@
 {
   "name": "react-native-zbase",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "description": "React Native zBase Components",
   "main": "index.js",
   "scripts": {
