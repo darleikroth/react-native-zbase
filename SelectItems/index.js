@@ -17,25 +17,25 @@ import {
 const screen = Dimensions.get('window');
 const ios = Platform.OS === 'ios';
 
-type ValueObject = {
-  id: number,
-  name: string
+interface ValueObject {
+  id: number;
+  name: string;
 };
 
-type OptionsParam = {
-  values: Array<ValueObject>,
-  title?: string,
-  itemFunc?: Function,
+interface OptionsParam {
+  values: ValueObject[];
+  title?: string;
+  itemFunc?: (item: any) => string;
 };
 
-type Props = {
-  statusBarColor: string,
+interface Props {
+  statusBarColor: string;
 };
 
-class SelectItems extends React.Component
-{
-  props: Props;
-  callback: Function;
+type Callback = (item: any) => void;
+
+class SelectItems extends React.Component<Props> {
+  callback: Callback;
 
   state = {
     visible: false,
@@ -44,13 +44,7 @@ class SelectItems extends React.Component
     itemFunc: item => item.name,
   }
 
-  /**
-   * Show a modal with list items
-   * @param {OptionsParam} options
-   * @param {Function} callback
-   */
-  _show(options, callback: Function)
-  {
+  _show(options: OptionsParam, callback: Callback) {
     this.setState({
       visible: true,
       values: options.values,
@@ -61,30 +55,26 @@ class SelectItems extends React.Component
     !ios && StatusBar.setBackgroundColor('black', true);
   }
 
-  _cancel()
-  {
+  _cancel() {
     this.setState({ visible: false });
     !ios && StatusBar.setBackgroundColor(this.props.statusBarColor, true);
     requestAnimationFrame(() => this.callback(null));
   }
 
-  updateValues(options: OptionsParam)
-  {
+  updateValues(options: OptionsParam) {
     this.setState({
       values: options.values,
       title: options.title || this.state.title,
     });
   }
 
-  handlePress(item)
-  {
+  handlePress(item) {
     this.setState({ visible: false });
     !ios && StatusBar.setBackgroundColor(this.props.statusBarColor, true);
     requestAnimationFrame(() => this.callback(item));
   }
 
-  render()
-  {
+  render() {
     return (
       <Modal
         animationType='fade'
@@ -99,8 +89,7 @@ class SelectItems extends React.Component
     );
   }
 
-  renderContent()
-  {
+  renderContent() {
     const loading = this.state.visible && (this.state.values.length === 0);
     const size = this.state.values.length;
     const dialogHeight = size < 10 ? (size * 48) + 72 : (9 * 48) + 72;
@@ -121,8 +110,7 @@ class SelectItems extends React.Component
     );
   }
 
-  renderList()
-  {
+  renderList() {
     const loading = this.state.visible && (this.state.values.length === 0);
 
     if (loading) {
@@ -139,14 +127,13 @@ class SelectItems extends React.Component
     return (
       <FlatList
         data={this.state.values}
-        keyExtractor={(val, key) => key}
-        renderItem={({item}) => this.renderItem(item)}
+        keyExtractor={(val, key) => `select-${key}`}
+        renderItem={this.renderItem.bind(this)}
       />
     );
   }
 
-  renderItem(item)
-  {
+  renderItem({item}) {
     const title = this.state.itemFunc(item);
 
     return (
