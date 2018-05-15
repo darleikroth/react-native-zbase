@@ -1,5 +1,4 @@
 import React from 'react';
-const ReactN = require('react-native');
 import {
   ViewPagerAndroid,
   StyleSheet,
@@ -147,7 +146,7 @@ class ViewPager extends React.Component<Props, State> {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
