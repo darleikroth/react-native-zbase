@@ -4,6 +4,7 @@ import FloatButton from './FloatButton';
 import SelectItems from './SelectItems';
 import LoadingModal from './LoadingModal';
 import SegmentedControl from './SegmentedControl';
+import ViewPager from './ViewPager';
 import * as ListItem from './ListItem';
 import * as Toolbar from './Toolbar';
 
@@ -14,6 +15,7 @@ export {
   SelectItems,
   LoadingModal,
   SegmentedControl,
+  ViewPager,
   ListItem,
   Toolbar,
 };
