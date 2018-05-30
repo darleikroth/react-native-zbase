@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   TouchableWithoutFeedback,
   ActivityIndicator,
@@ -198,9 +197,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-SelectItems.propTypes = {
-  statusBarColor: PropTypes.string.isRequired,
-};
 
 export default SelectItems;
