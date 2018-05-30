@@ -51,12 +51,12 @@ class SelectItems extends React.Component<Props> {
       itemFunc: options.itemFunc || (item => item.name),
     });
     this.callback = callback;
-    !ios && StatusBar.setBackgroundColor('black', true);
+    this.toggleStatusBar();
   }
 
   _cancel() {
     this.setState({ visible: false });
-    !ios && StatusBar.setBackgroundColor(this.props.statusBarColor, true);
+    this.toggleStatusBar(true);
     requestAnimationFrame(() => this.callback(null));
   }
 
@@ -69,8 +69,19 @@ class SelectItems extends React.Component<Props> {
 
   handlePress(item) {
     this.setState({ visible: false });
-    !ios && StatusBar.setBackgroundColor(this.props.statusBarColor, true);
+    this.toggleStatusBar(true);
     requestAnimationFrame(() => this.callback(item));
+  }
+
+  toggleStatusBar(close?: boolean) {
+    if (ios || !this.props.statusBarColor) {
+      return;
+    }
+    if (close) {
+      StatusBar.setBackgroundColor(this.props.statusBarColor, true);
+    } else {
+      StatusBar.setBackgroundColor('black', true);
+    }
   }
 
   render() {
