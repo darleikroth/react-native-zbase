@@ -20,6 +20,10 @@ type Props = {
    */
   subtitle?: string;
   /**
+   * Item's 3 lines text.
+   */
+  text?: string;
+  /**
    * Expects a React Element. Rendered at the item's start/left. It is `isRequired`.
    */
   iconLeft: Element;
@@ -94,6 +98,7 @@ class Item extends React.PureComponent
     const {
       title,
       subtitle,
+      text,
       iconLeft,
       iconRight,
       titleNumberOfLines,
@@ -147,6 +152,17 @@ class Item extends React.PureComponent
                     ]}
                     numberOfLines={subtitleNumberOfLines} >
                     {subtitle}
+                  </Text>
+                )}
+                {!!text && (
+                  <Text
+                    style={[
+                      styles.subtitle,
+                      subtitleStyle,
+                      disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+                    ]}
+                    numberOfLines={1} >
+                    {text}
                   </Text>
                 )}
               </View>
