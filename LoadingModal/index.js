@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   TouchableWithoutFeedback,
@@ -27,7 +27,7 @@ type Props = {
   cancelable: boolean,
 };
 
-class LoadingModal extends Component
+class LoadingModal extends React.Component
 {
   props: Props;
 
