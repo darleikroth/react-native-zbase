@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   TouchableWithoutFeedback,
   ActivityIndicator,
@@ -11,30 +11,32 @@ import {
   Modal,
   View,
   Text,
-} from 'react-native';
+} from 'react-native'
+import Color from 'color'
 
-const screen = Dimensions.get('window');
-const ios = Platform.OS === 'ios';
+const screen = Dimensions.get('window')
+const ios = Platform.OS === 'ios'
 
 interface ValueObject {
   id: number;
   name: string;
-};
+}
 
 interface OptionsParam {
   values: ValueObject[];
   title?: string;
   itemFunc?: (item: any) => string;
-};
+}
 
 interface Props {
   statusBarColor: string;
-};
+  statusBarColorOpened: string;
+}
 
 type Callback = (item: any) => void;
 
 class SelectItems extends React.Component<Props> {
-  callback: Callback;
+  callback: Callback
 
   state = {
     visible: false,
@@ -49,38 +51,42 @@ class SelectItems extends React.Component<Props> {
       values: options.values,
       title: options.title || this.state.title,
       itemFunc: options.itemFunc || (item => item.name),
-    });
-    this.callback = callback;
-    this.toggleStatusBar();
+    })
+    this.callback = callback
+    this.toggleStatusBar()
   }
 
   _cancel() {
-    this.setState({ visible: false });
-    this.toggleStatusBar(true);
-    requestAnimationFrame(() => this.callback(null));
+    this.setState({ visible: false })
+    this.toggleStatusBar(true)
+    requestAnimationFrame(() => this.callback(null))
   }
 
   updateValues(options: OptionsParam) {
     this.setState({
       values: options.values,
       title: options.title || this.state.title,
-    });
+    })
   }
 
   handlePress(item) {
-    this.setState({ visible: false });
-    this.toggleStatusBar(true);
-    requestAnimationFrame(() => this.callback(item));
+    this.setState({ visible: false })
+    this.toggleStatusBar(true)
+    requestAnimationFrame(() => this.callback(item))
   }
 
   toggleStatusBar(close?: boolean) {
     if (ios || !this.props.statusBarColor) {
-      return;
+      return
     }
     if (close) {
-      StatusBar.setBackgroundColor(this.props.statusBarColor, true);
+      requestAnimationFrame(() => {
+        StatusBar.setBackgroundColor(this.props.statusBarColor, true)
+      })
     } else {
-      StatusBar.setBackgroundColor('black', true);
+      requestAnimationFrame(() => {
+        StatusBar.setBackgroundColor(this.props.statusBarColorOpened || 'black', true)
+      })
     }
   }
 
@@ -96,13 +102,13 @@ class SelectItems extends React.Component<Props> {
           {this.renderContent()}
         </TouchableWithoutFeedback>
       </Modal>
-    );
+    )
   }
 
   renderContent() {
-    const loading = this.state.visible && (this.state.values.length === 0);
-    const size = this.state.values.length;
-    const dialogHeight = size < 10 ? (size * 48) + 72 : (9 * 48) + 72;
+    const loading = this.state.visible && (this.state.values.length === 0)
+    const size = this.state.values.length
+    const dialogHeight = size < 10 ? (size * 48) + 72 : (9 * 48) + 72
 
     return (
       <View style={styles.container} >
@@ -117,11 +123,11 @@ class SelectItems extends React.Component<Props> {
           </View>
         </TouchableWithoutFeedback>
       </View>
-    );
+    )
   }
 
   renderList() {
-    const loading = this.state.visible && (this.state.values.length === 0);
+    const loading = this.state.visible && (this.state.values.length === 0)
 
     if (loading) {
       return (
@@ -131,7 +137,7 @@ class SelectItems extends React.Component<Props> {
             size="large"
           />
         </View>
-      );
+      )
     }
 
     return (
@@ -140,11 +146,11 @@ class SelectItems extends React.Component<Props> {
         keyExtractor={(val, key) => `select-${key}`}
         renderItem={this.renderItem.bind(this)}
       />
-    );
+    )
   }
 
   renderItem({item}) {
-    const title = this.state.itemFunc(item);
+    const title = this.state.itemFunc(item)
 
     return (
       <TouchableOpacity onPress={() => this.handlePress(item)} >
@@ -154,7 +160,7 @@ class SelectItems extends React.Component<Props> {
           </Text>
         </View>
       </TouchableOpacity>
-    );
+    )
   }
 }
 
@@ -207,6 +213,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
 
-export default SelectItems;
+export default SelectItems
