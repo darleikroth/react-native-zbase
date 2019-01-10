@@ -65,6 +65,7 @@ class LoadingModal extends React.Component
         animationType='fade'
         visible={this.state.visible}
         transparent={true}
+        supportedOrientations={['portrait','landscape']}
         onRequestClose={this._cancel.bind(this)}
       >
         <TouchableWithoutFeedback onPress={this._cancel.bind(this)} >
