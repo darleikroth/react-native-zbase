@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
 import {
   TouchableHighlight,
   DatePickerIOS,
@@ -8,154 +7,117 @@ import {
   Modal,
   View,
   Text,
-} from 'react-native';
-
-const screen = Dimensions.get('window');
+} from 'react-native'
 
 type Props = {
-  date: Date,
-};
+  date: Date;
+}
 
-class DatePicker extends React.Component
-{
-  props: Props;
+export default class DatePicker extends React.Component<Props> {
+  static defaultProps = {
+    date: new Date()
+  }
 
-  callback: Function;
+  callback: Function
 
-  constructor(props)
-  {
-    super(props);
-    this.onDateChange = this.onDateChange.bind(this);
-
+  constructor(props) {
+    super(props)
     this.state = {
-      orientation: ['portrait'],
       date: props.date,
       mode: 'date',
       modalVisible: false,
-      width: screen.width,
-    };
+      window: Dimensions.get('window')
+    }
   }
 
-  setModalVisible(modalVisible)
-  {
-    this.setState({ modalVisible });
+  componentDidMount() {
+    Dimensions.addEventListener('change', this.handleOrientationChange)
   }
 
-  showDate(date, callback)
-  {
-    const orientation = screen.width > screen.height ? ['landscape'] : ['portrait'];
-    this.callback = callback;
+  componentWillUnmount() {
+    Dimensions.removeEventListener('change', this.handleOrientationChange)
+  }
+
+  handleOrientationChange = ({ window }) => {
+    this.setState({ window })
+  }
+
+  setModalVisible = modalVisible => {
+    this.setState({ modalVisible })
+  }
+
+  showDate(date, callback) {
+    this.callback = callback
     this.setState({
-      orientation,
       date,
       mode: 'date',
       modalVisible: true,
-    });
+    })
   }
 
-  showTime(date, callback)
-  {
-    const orientation = screen.width > screen.height ? ['landscape'] : ['portrait'];
-    this.callback = callback;
+  showTime(date, callback) {
+    this.callback = callback
     this.setState({
-      orientation,
       date,
       mode: 'time',
       modalVisible: true,
-    });
+    })
   }
 
-  onDateChange(date)
-  {
-    this.setState({ date });
-  };
-
-  cancelar()
-  {
-    requestAnimationFrame(() => this.setModalVisible(false));
+  onDateChange = date => {
+    this.setState({ date })
   }
 
-  salvar()
-  {
+  cancelar = () => {
+    requestAnimationFrame(() => this.setModalVisible(false))
+  }
+
+  salvar = () => {
     requestAnimationFrame(() => {
-      this.setModalVisible(false);
-      requestAnimationFrame(() => this.callback(this.state.date));
-    });
+      this.setModalVisible(false)
+      requestAnimationFrame(() => this.callback(this.state.date))
+    })
   }
 
-  render()
-  {
+  render() {
+    const {width, height} = this.state.window
+    const wid = width > height ? height - 32 : width - 32
+
     return(
       <Modal
         animationType={'slide'}
         transparent={true}
         visible={this.state.modalVisible}
-        supportedOrientations={this.state.orientation}
+        supportedOrientations={['portrait','landscape']}
       >
         <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'rgba(0,0,0,0.4)',
-          }}
+          style={styles.container}
         >
-          <View
-            style={{
-              width: (this.state.width - 32),
-              borderRadius: 15,
-              backgroundColor: 'white',
-            }}
-          >
+          <View style={[styles.content, {width: wid}]} >
             <DatePickerIOS
-              style={{
-                marginTop: 16,
-              }}
+              style={styles.picker}
               date={this.state.date}
               mode={this.state.mode}
               minuteInterval={5}
               onDateChange={this.onDateChange}
             />
-            <View
-              style={{
-                flexGrow: 1,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
+            <View style={styles.pickerBottom} >
               <TouchableHighlight
-                style={{
-                  flex: 1,
-                  height: 56,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderColor: '#E0E0E0',
-                  borderWidth: 0.5,
-                  borderBottomLeftRadius: 15,
-                }}
+                style={[styles.button, {borderBottomLeftRadius: 15}]}
                 underlayColor='#E0E0E0'
-                onPress={() => this.cancelar()}
+                onPress={this.cancelar}
               >
-                <Text style={{ fontSize: 18, color: 'dodgerblue' }}>
+                <Text style={styles.buttonTitle} >
                   Cancelar
                 </Text>
               </TouchableHighlight>
 
               <TouchableHighlight
-                style={{
-                  flex: 1,
-                  height: 56,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderColor: '#E0E0E0',
-                  borderWidth: 0.5,
-                  borderBottomRightRadius: 15,
-                }}
+                style={[styles.button, {borderBottomRightRadius: 15}]}
                 underlayColor='#E0E0E0'
-                onPress={() => this.salvar()}
+                onPress={this.salvar}
               >
-                <Text style={{ fontSize: 18, color: 'dodgerblue'}}>
+                <Text style={styles.buttonTitle} >
                   Salvar
                 </Text>
               </TouchableHighlight>
@@ -163,16 +125,40 @@ class DatePicker extends React.Component
           </View>
         </View>
       </Modal>
-    );
+    )
   }
 }
 
-DatePicker.propTypes = {
-  date: PropTypes.object,
-};
-
-DatePicker.defaultProps = {
-  date: new Date(),
-};
-
-export default DatePicker;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.4)',
+  },
+  content: {
+    borderRadius: 15,
+    backgroundColor: 'white',
+  },
+  picker: {
+    marginTop: 16
+  },
+  pickerBottom: {
+    flexGrow: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    flex: 1,
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: '#E0E0E0',
+    borderWidth: 0.5
+  },
+  buttonTitle: {
+    fontSize: 18,
+    color: 'dodgerblue'
+  }
+})

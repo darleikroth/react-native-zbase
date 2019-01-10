@@ -1,66 +1,59 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
 import {
   DatePickerAndroid,
   TimePickerAndroid,
   StyleSheet,
   View,
   Text,
-} from 'react-native';
+} from 'react-native'
 
 type Props = {
-  date: Date,
-};
+  date: Date;
+}
 
-class DatePicker extends React.Component
-{
-  props: Props;
+export default class DatePicker extends React.Component<Props> {
+  static defaultProps = {
+    date: new Date()
+  }
 
-  dateTime: Object;
-  callback: Function;
+  dateTime: Object
+  callback: Function
 
-  constructor(props)
-  {
-    super(props);
-    this.onDateChange = this.onDateChange.bind(this);
-
+  constructor(props) {
+    super(props)
     this.state = {
-      date: props.date,
-    };
+      date: props.date
+    }
   }
 
-  showDate(date, callback)
-  {
-    this.dateTime = date;
-    this.callback = callback;
-    this.setState({ date });
-    this.showPicker({date: date, mode: 'calendar'}, true);
+  showDate(date, callback) {
+    this.dateTime = date
+    this.callback = callback
+    this.setState({ date })
+    this.showPicker({date: date, mode: 'calendar'}, true)
   }
 
-  showTime(date, callback)
-  {
-    this.dateTime = date;
-    this.callback = callback;
-    this.setState({ date });
+  showTime(date, callback) {
+    this.dateTime = date
+    this.callback = callback
+    this.setState({ date })
     this.showPicker({
       hour: date.getHours(),
       minute: date.getMinutes(),
       is24Hour: true,
-    }, false);
+    }, false)
   }
 
-  onDateChange(date)
-  {
-    this.setState({ date });
+  onDateChange = date => {
+    this.setState({ date })
   }
 
-  async showPicker(options, isDate)
-  {
+  async showPicker(options, isDate) {
     try {
-      const dateTime = this.dateTime;
+      const dateTime = this.dateTime
 
       if (isDate) {
-        const {action, year, month, day} = await DatePickerAndroid.open(options);
+        const {action, year, month, day} = await DatePickerAndroid.open(options)
 
         if (action === DatePickerAndroid.dateSetAction) {
           const date = new Date(
@@ -69,13 +62,13 @@ class DatePicker extends React.Component
             day,
             dateTime.getHours(),
             dateTime.getMinutes()
-          );
-          this.onDateChange(date);
-          requestAnimationFrame(() => this.callback(date));
+          )
+          this.onDateChange(date)
+          requestAnimationFrame(() => this.callback(date))
         }
       }
       else {
-        const {action, hour, minute} = await TimePickerAndroid.open(options);
+        const {action, hour, minute} = await TimePickerAndroid.open(options)
 
         if (action === TimePickerAndroid.timeSetAction) {
           const date = new Date(
@@ -84,31 +77,16 @@ class DatePicker extends React.Component
             dateTime.getDate(),
             hour,
             minute
-          );
-          this.onDateChange(date);
-          requestAnimationFrame(() => this.callback(date));
+          )
+          this.onDateChange(date)
+          requestAnimationFrame(() => this.callback(date))
         }
       }
     }
-    catch ({code, message}) {
-      console.warn(message);
-    }
+    catch ({code, message}) {}
   }
 
-  render()
-  {
-    return(
-      <View />
-    );
+  render() {
+    return <View/>
   }
 }
-
-DatePicker.propTypes = {
-  date: PropTypes.object,
-};
-
-DatePicker.defaultProps = {
-  date: new Date(),
-};
-
-export default DatePicker;
