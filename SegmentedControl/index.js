@@ -89,11 +89,11 @@ class SegmentedControlAndroid extends React.PureComponent {
   }
 
   render() {
-    const { values, tintColor } = this.props,
-    selectedIndex = this.state.selectedIndex;
+    const { values, tintColor, enabled } = this.props,
+          selectedIndex = this.state.selectedIndex;
 
     return (
-      <View style={{flexDirection: 'row'}} >
+      <View style={{flexDirection: 'row', opacity: enabled ? 1 : 0.5}} >
         {values.map((val, i, arr) => {
           const custom = this.getStyles(i, arr, selectedIndex, tintColor);
 
@@ -103,6 +103,7 @@ class SegmentedControlAndroid extends React.PureComponent {
                 onPress={() => this._handleOnPress(val, i)}
                 underlayColor={`${Color(tintColor).fade(.87)}`}
                 activeOpacity={0.85}
+                disabled={!enabled}
                 style={custom.touchable} >
                 <View style={custom.container} >
                   <Text style={custom.title} >
