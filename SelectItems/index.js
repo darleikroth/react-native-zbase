@@ -85,7 +85,10 @@ class SelectItems extends React.Component<Props> {
       })
     } else {
       requestAnimationFrame(() => {
-        StatusBar.setBackgroundColor(this.props.statusBarColorOpened || 'black', true)
+        StatusBar.setBackgroundColor(
+          this.props.statusBarColorOpened || `${Color(this.props.statusBarColor).darken(0.6)}`,
+          true
+        )
       })
     }
   }
