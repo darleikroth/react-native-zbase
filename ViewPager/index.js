@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  ViewPagerAndroid,
   StyleSheet,
   ScrollView,
   ViewStyle,
   Platform,
   View,
 } from 'react-native';
+import ViewPagerAndroid from "@react-native-community/viewpager";
 
 interface Props {
   count: number;
