@@ -65,7 +65,7 @@ class ViewPager extends React.Component<Props, State> {
         onScroll={this.handleHorizontalScroll}
         scrollEventThrottle={100}
         scrollEnabled={this.props.scrollEnabled}
-        removeClippedSubviews={true}
+        removeClippedSubviews={false}
         automaticallyAdjustContentInsets={false}
         directionalLockEnabled={true}
         showsHorizontalScrollIndicator={false}
