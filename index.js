@@ -1,21 +1,23 @@
 import DatePicker from './DatePicker';
-import TouchableView from './TouchableView';
 import FloatButton from './FloatButton';
-import SelectItems from './SelectItems';
+import * as ListItem from './ListItem';
 import LoadingModal from './LoadingModal';
 import SegmentedControl from './SegmentedControl';
-import ViewPager from './ViewPager';
-import * as ListItem from './ListItem';
+import SelectItems from './SelectItems';
 import * as Toolbar from './Toolbar';
+import Touchable from './Touchable';
+import TouchableView from './TouchableView';
+import ViewPager from './ViewPager';
 
 export {
   DatePicker,
-  TouchableView,
   FloatButton,
-  SelectItems,
+  ListItem,
   LoadingModal,
   SegmentedControl,
-  ViewPager,
-  ListItem,
+  SelectItems,
   Toolbar,
+  Touchable,
+  TouchableView,
+  ViewPager,
 };

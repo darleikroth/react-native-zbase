@@ -29,6 +29,10 @@ class Button extends React.PureComponent
 {
   props: Props;
 
+  componentDidMount() {
+    console.warn('Deprecated. This component will be removed in the future')
+  }
+
   render()
   {
     return (

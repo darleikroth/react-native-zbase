@@ -25,6 +25,10 @@ class Search extends React.Component
 {
   props: Props;
 
+  componentDidMount() {
+    console.warn('Deprecated. This component will be removed in the future')
+  }
+
   render()
   {
     return <SearchView {...this.props} />

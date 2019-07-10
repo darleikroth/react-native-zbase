@@ -22,6 +22,10 @@ class TouchableView extends React.Component
 {
   props: Props;
 
+  componentDidMount() {
+    console.warn('Deprecated. Use "Touchable" from this library instead')
+  }
+
   render()
   {
     const props = this.props;
