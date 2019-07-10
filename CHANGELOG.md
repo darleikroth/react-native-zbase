@@ -1,6 +1,13 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+## [0.11.0](https://github.com/darleikroth/react-native-zbase/compare/v0.10.1...v0.11.0) (2019-07-10)
+
+
+### Features
+
+* **touchable:** upgrade this element to use `react-native-gesture-handler` as native touchable ([e9bcd8f](https://github.com/darleikroth/react-native-zbase/commit/e9bcd8f))
+
+
 
 ### [0.10.1](https://github.com/darleikroth/react-native-zbase/compare/v0.10.0...v0.10.1) (2019-06-19)
 
