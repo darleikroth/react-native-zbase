@@ -1,56 +1,43 @@
-import React from 'react';
+import React from 'react'
 import {
   TouchableNativeFeedbackProperties,
   TouchableOpacityProperties,
   TouchableNativeFeedback,
   TouchableOpacity,
-  Platform,
-} from 'react-native';
+  Platform
+} from 'react-native'
 
 interface TouchableProps extends TouchableNativeFeedbackProperties, TouchableOpacityProperties {
   /**
    * Background color ripple for Android.
    * If api version is less than 21, it uses `TouchableOpacity`.
    */
-  background?: string;
-  children?: any;
+  background?: String;
+  borderless: Boolean;
+  children?: JSX.Element;
 }
 
-type Props = TouchableProps;
-
-class TouchableView extends React.Component
-{
-  props: Props;
-
-  componentDidMount() {
-    console.warn('Deprecated. Use "Touchable" from this library instead')
-  }
-
-  render()
-  {
-    const props = this.props;
-
-    if (Platform.OS === 'ios' || Platform.Version < 21) {
-      return (
-        <TouchableOpacity {...props} >
-          {props.children}
-        </TouchableOpacity>
-      );
-    }
-
+const TouchableView = (props: TouchableProps) => {
+  if (Platform.OS === 'ios' || Platform.Version < 21) {
     return (
-      <TouchableNativeFeedback
-        {...props}
-        background={TouchableNativeFeedback.Ripple(props.background, true)}
-      >
+      <TouchableOpacity {...props} >
         {props.children}
-      </TouchableNativeFeedback>
-    );
+      </TouchableOpacity>
+    )
   }
+
+  return (
+    <TouchableNativeFeedback
+      {...props}
+      background={TouchableNativeFeedback.Ripple(props.background, props.borderless)} >
+      {props.children}
+    </TouchableNativeFeedback>
+  )
 }
 
 TouchableView.defaultProps = {
   background: '#E0E0E0',
-};
+  borderless: true
+}
 
-export default TouchableView;
+export default TouchableView

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import SearchView from './SearchView'
 
-type Props = {
+interface Props {
   /**
    * Title of header and hint for placeholder
    */
@@ -19,20 +19,8 @@ type Props = {
    * Changed text is passed as an argument to the callback handler.
    */
   onChangeText(fn: (text: string) => void): void;
-};
-
-class Search extends React.Component
-{
-  props: Props;
-
-  componentDidMount() {
-    console.warn('Deprecated. This component will be removed in the future')
-  }
-
-  render()
-  {
-    return <SearchView {...this.props} />
-  }
 }
 
-export default Search;
+const Search = (props: Props) => <SearchView {...props} />
+
+export default Search
