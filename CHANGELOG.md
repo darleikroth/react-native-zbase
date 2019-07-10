@@ -1,5 +1,14 @@
 # Changelog
 
+### [0.11.1](https://github.com/darleikroth/react-native-zbase/compare/v0.11.0...v0.11.1) (2019-07-10)
+
+
+### Bug Fixes
+
+* improve some code and removed console.log ([d4d9995](https://github.com/darleikroth/react-native-zbase/commit/d4d9995))
+
+
+
 ## [0.11.0](https://github.com/darleikroth/react-native-zbase/compare/v0.10.1...v0.11.0) (2019-07-10)
 
 
