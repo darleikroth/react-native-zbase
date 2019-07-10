@@ -6,7 +6,9 @@ This project brings together custom native components. The goal is to facilitate
 
 ## Install
 
-1. Before install this, please install and configure [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation).
+1. Before install this, please install and configure:
+- [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation).
+- [react-native-gesture-handler](https://kmagiera.github.io/react-native-gesture-handler/docs/getting-started.html).
 
 2. Installation:
 
@@ -29,5 +31,6 @@ react-native link @react-native-community/viewpager
 - SegmentedControl
 - SelectItems
 - Toolbar (`deprecated`)
-- TouchaleView (`deprecated`)
+- Touchable
+- TouchableView (`deprecated`)
 - ViewPager
