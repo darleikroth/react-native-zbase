@@ -11,9 +11,17 @@ interface Props {
    */
   tintColor?: string;
   /**
+   * Icon color.
+   */
+  iconColor?: string;
+  /**
    * The color of the underlay that will show through when the touch is active.
    */
   underlayColor?: string;
+  /**
+   * Style for title.
+   */
+  titleStyle?: ViewStyle;
   /**
    * Callback that is called when the text input's text changes.
    * Changed text is passed as an argument to the callback handler.

@@ -21,6 +21,14 @@ type Props = {
    */
   tintColor?: string;
   /**
+   * Icon color.
+   */
+  iconColor?: string;
+  /**
+   * Style for title.
+   */
+  titleStyle?: ViewStyle;
+  /**
    * Callback that is called when the text input's text changes.
    * Changed text is passed as an argument to the callback handler.
    */
@@ -65,7 +73,7 @@ class Search extends React.Component
     this.setState({ text })
     clearTimeout(this.timeoutID);
     this.timeoutID = setTimeout(() => {
-      this.props.onChangeText && this.props.onChangeText(text);
+      this.props.onChangeText && this.props.onChangeText(text.toUpperCase());
     }, 650);
   }
 
@@ -78,7 +86,7 @@ class Search extends React.Component
         <TouchableWithoutFeedback onPress={() => this.toggleSearchable()} >
           <View style={[styles.container, {backgroundColor}]} >
             <Icon name='ios-search' color={this.props.tintColor} size={19} />
-            <Text style={[styles.title, {color: this.props.tintColor}]} >
+            <Text style={[styles.title, {color: this.props.tintColor}, this.props.titleStyle]} >
               {`Buscar ${this.props.title}`}
             </Text>
           </View>
@@ -117,7 +125,7 @@ class Search extends React.Component
       <View style={[styles.iconButtonHeader]} >
         <TouchableWithoutFeedback onPress={() => this.toggleSearchable()} >
           <View style={styles.iconHeader} >
-            <Icon name='ios-close' color={this.props.tintColor} size={24} />
+            <Icon name='ios-close' color={this.props.iconColor} size={24} />
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -128,6 +136,7 @@ class Search extends React.Component
 Search.defaultProps = {
   title: 'Título',
   tintColor: 'white',
+  iconColor: 'white',
 };
 
 const styles = StyleSheet.create({

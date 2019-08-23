@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import {
   Dimensions,
   StyleSheet,
+  Text,
   TextInput,
   View,
-  Text,
+  ViewStyle,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Color from 'color';
@@ -21,6 +22,10 @@ type Props = {
    */
   tintColor?: string;
   /**
+   * Icon color.
+   */
+  iconColor?: string;
+  /**
    * The color of the underlay that will show through when the touch is active.
    */
   underlayColor?: string;
@@ -29,6 +34,10 @@ type Props = {
    * Used to calculate dimensions. Default value is `true`.
    */
   hasHeaderRight?: boolean;
+  /**
+   * Style for title.
+   */
+  titleStyle?: ViewStyle;
   /**
    * Callback that is called when the text input's text changes.
    * Changed text is passed as an argument to the callback handler.
@@ -74,7 +83,7 @@ class Search extends React.Component
     this.setState({ text })
     clearTimeout(this.timeoutID);
     this.timeoutID = setTimeout(() => {
-      this.props.onChangeText && this.props.onChangeText(text);
+      this.props.onChangeText && this.props.onChangeText(text.toUpperCase());
     }, 650);
   }
 
@@ -92,11 +101,11 @@ class Search extends React.Component
 
   renderTitle()
   {
-    const {title, tintColor, hasHeaderRight} = this.props;
+    const {title, tintColor, titleStyle, hasHeaderRight} = this.props;
 
     if (!this.state.isSearchable) {
       return (
-        <Text style={[styles.title, {color: tintColor}]} >
+        <Text style={[styles.title, {color: tintColor}, titleStyle]} >
           {title}
         </Text>
       );
@@ -123,14 +132,15 @@ class Search extends React.Component
 
   renderSearchButton()
   {
-    const search = this.state.isSearchable;
+    const search = this.state.isSearchable,
+    iconColor = this.props.iconColor;
 
     return (
       <ActionButton
         background={this.props.underlayColor}
         onPress={() => this.toggleSearchable()}
         style={{position: 'absolute', right: 0}} >
-        <Icon name={search ? 'close' : 'magnify'} color='white' size={24} />
+        <Icon name={search ? 'close' : 'magnify'} color={iconColor} size={24} />
       </ActionButton>
     );
   }
@@ -139,6 +149,7 @@ class Search extends React.Component
 Search.defaultProps = {
   title: 'Título',
   tintColor: 'white',
+  iconColor: 'white',
   hasHeaderRight: true,
 };
 
