@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.12.0](https://github.com/darleikroth/react-native-zbase/compare/v0.11.1...v0.12.0) (2019-08-23)
+
+
+### Features
+
+* **search-view:** improvements to set more style options to the component ([c306232](https://github.com/darleikroth/react-native-zbase/commit/c306232))
+
+
+
 ### [0.11.1](https://github.com/darleikroth/react-native-zbase/compare/v0.11.0...v0.11.1) (2019-07-10)
 
 
