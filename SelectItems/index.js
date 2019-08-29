@@ -59,7 +59,7 @@ class SelectItems extends React.Component<Props> {
   _cancel() {
     this.setState({ visible: false })
     this.toggleStatusBar(true)
-    requestAnimationFrame(() => this.callback(null))
+    this.callback && this.callback(null)
   }
 
   updateValues(options: OptionsParam) {
@@ -72,7 +72,7 @@ class SelectItems extends React.Component<Props> {
   handlePress(item) {
     this.setState({ visible: false })
     this.toggleStatusBar(true)
-    requestAnimationFrame(() => this.callback(item))
+    this.callback && this.callback(item)
   }
 
   toggleStatusBar(close?: boolean) {
@@ -80,16 +80,12 @@ class SelectItems extends React.Component<Props> {
       return
     }
     if (close) {
-      requestAnimationFrame(() => {
-        StatusBar.setBackgroundColor(this.props.statusBarColor, true)
-      })
+      StatusBar.setBackgroundColor(this.props.statusBarColor, true)
     } else {
-      requestAnimationFrame(() => {
-        StatusBar.setBackgroundColor(
-          this.props.statusBarColorOpened || `${Color(this.props.statusBarColor).darken(0.6)}`,
-          true
-        )
-      })
+      StatusBar.setBackgroundColor(
+        this.props.statusBarColorOpened || `${Color(this.props.statusBarColor).darken(0.6)}`,
+        true
+      )
     }
   }
 
