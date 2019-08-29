@@ -1,5 +1,14 @@
 # Changelog
 
+### [0.12.1](https://github.com/darleikroth/react-native-zbase/compare/v0.12.0...v0.12.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **select-items:** removed requestAnimationFrame on callback ([007f1db](https://github.com/darleikroth/react-native-zbase/commit/007f1db))
+
+
+
 ## [0.12.0](https://github.com/darleikroth/react-native-zbase/compare/v0.11.1...v0.12.0) (2019-08-23)
 
 
