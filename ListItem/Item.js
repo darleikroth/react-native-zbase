@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import {
   StyleSheet,
-  ViewStyle,
-  TextStyle,
-  Platform,
-  View,
   Text,
+  TextStyle,
+  View,
+  ViewStyle,
 } from 'react-native';
 import { TouchableView } from 'react-native-zbase';
 
-type Props = {
+interface Props {
   /**
    * Item's primary text. It is `isRequired`.
    */
@@ -80,105 +79,98 @@ type Props = {
   /**
    * Called when the touch is released.
    */
-  onPress(fn: () => void): void;
+  onPress(): void;
   /**
    * Called when the long press is released.
    */
-  onLongPress(fn: () => void): void;
+  onLongPress(): void;
 };
 
-const ios = Platform.OS === 'ios';
+const Item = memo((props: Props) => {
+  const {
+    containerStyle,
+    contentStyle,
+    disabled,
+    divider,
+    dividerStyle,
+    iconLeft,
+    iconRight,
+    selectableBackground,
+    subtitle,
+    subtitleNumberOfLines,
+    subtitleStyle,
+    text,
+    title,
+    titleNumberOfLines,
+    titleStyle,
+    onPress,
+    onLongPress,
+  } = props;
 
-class Item extends React.PureComponent
-{
-  props: Props;
+  return (
+    <View>
+      <View style={[styles.container, containerStyle]} >
+        <TouchableView
+          onPress={disabled ? undefined : onPress}
+          background={selectableBackground}
+          onLongPress={disabled ? undefined : onLongPress} >
+          <View style={[styles.content, contentStyle]} >
 
-  render()
-  {
-    const {
-      title,
-      subtitle,
-      text,
-      iconLeft,
-      iconRight,
-      titleNumberOfLines,
-      subtitleNumberOfLines,
-      containerStyle,
-      contentStyle,
-      titleStyle,
-      subtitleStyle,
-      dividerStyle,
-      divider,
-      disabled,
-      selectableBackground,
-      onPress,
-      onLongPress,
-    } = this.props;
-
-    return (
-      <View>
-        <View style={[styles.container, containerStyle]} >
-          <TouchableView
-            onPress={disabled ? undefined : onPress}
-            background={selectableBackground}
-            onLongPress={disabled ? undefined : onLongPress} >
-            <View style={[styles.content, contentStyle]} >
-
-              <View style={[styles.icon, {left: 0}]} >
-                {iconLeft}
+            <View style={[styles.icon, {left: 0}]} >
+              {iconLeft}
+            </View>
+            {!!iconRight && (
+              <View style={[styles.icon, {right: 0, width: 48}]} >
+                {iconRight}
               </View>
-              {!!iconRight && (
-                <View style={[styles.icon, {right: 0, width: 48}]} >
-                  {iconRight}
-                </View>
-              )}
+            )}
 
-              <View style={[styles.titleContainer, {marginRight: !iconRight ? 16 : 54}]} >
+            <View style={[styles.titleContainer, {marginRight: !iconRight ? 16 : 54}]} >
+              <Text
+                style={[
+                  styles.title,
+                  titleStyle,
+                  disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+                ]}
+                numberOfLines={titleNumberOfLines} >
+                {title}
+              </Text>
+              {!!subtitle && (
                 <Text
                   style={[
-                    styles.title,
-                    titleStyle,
+                    styles.subtitle,
+                    subtitleStyle,
                     disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
                   ]}
-                  numberOfLines={titleNumberOfLines} >
-                  {title}
+                  numberOfLines={subtitleNumberOfLines} >
+                  {subtitle}
                 </Text>
-                {!!subtitle && (
-                  <Text
-                    style={[
-                      styles.subtitle,
-                      subtitleStyle,
-                      disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
-                    ]}
-                    numberOfLines={subtitleNumberOfLines} >
-                    {subtitle}
-                  </Text>
-                )}
-                {!!text && (
-                  <Text
-                    style={[
-                      styles.subtitle,
-                      subtitleStyle,
-                      disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
-                    ]}
-                    numberOfLines={1} >
-                    {text}
-                  </Text>
-                )}
-              </View>
+              )}
+              {!!text && (
+                <Text
+                  style={[
+                    styles.subtitle,
+                    subtitleStyle,
+                    disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+                  ]}
+                  numberOfLines={1} >
+                  {text}
+                </Text>
+              )}
             </View>
-          </TouchableView>
-        </View>
-        {!!divider && (<View style={[styles.divider, dividerStyle]} />)}
+          </View>
+        </TouchableView>
       </View>
-    );
-  }
-}
+      {!!divider && (<View style={[styles.divider, dividerStyle]} />)}
+    </View>
+  );
+});
 
 const styles = StyleSheet.create({
   container: {
-    height: 72,
     backgroundColor: 'white',
+    justifyContent: 'center',
+    height: 72,
   },
   content: {
     flexDirection: 'row',
