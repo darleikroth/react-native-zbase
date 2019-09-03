@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.13.0](https://github.com/darleikroth/react-native-zbase/compare/v0.12.1...v0.13.0) (2019-09-03)
+
+
+### refactor
+
+* **list-item:** improves styles, code syntax and use `memo` from react hooks ([246c767](https://github.com/darleikroth/react-native-zbase/commit/246c767))
+
+
+### BREAKING CHANGES
+
+* **list-item:** Using React Hooks for the element, which requires react-native >= 0.59.0
+
+
+
 ### [0.12.1](https://github.com/darleikroth/react-native-zbase/compare/v0.12.0...v0.12.1) (2019-08-29)
 
 
