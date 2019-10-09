@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   StyleSheet,
@@ -43,6 +43,10 @@ interface Props {
    */
   subtitleNumberOfLines?: number;
   /**
+   * If true, disable all interactions for this component.
+   */
+  touchDisabled?: Boolean;
+  /**
    * Item parent's styles.
    */
   containerStyle?: ViewStyle;
@@ -86,7 +90,7 @@ interface Props {
   onLongPress(): void;
 };
 
-const Item = memo((props: Props) => {
+const Item = React.memo((props: Props) => {
   const {
     containerStyle,
     contentStyle,
@@ -113,6 +117,7 @@ const Item = memo((props: Props) => {
         <TouchableView
           onPress={disabled ? undefined : onPress}
           background={selectableBackground}
+          disabled={props.touchDisabled}
           onLongPress={disabled ? undefined : onLongPress} >
           <View style={[styles.content, contentStyle]} >
 
@@ -165,6 +170,10 @@ const Item = memo((props: Props) => {
     </View>
   );
 });
+
+Item.defaultProps = {
+  touchDisabled: false,
+}
 
 const styles = StyleSheet.create({
   container: {

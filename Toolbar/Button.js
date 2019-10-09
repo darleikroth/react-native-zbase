@@ -12,6 +12,10 @@ interface Props {
    */
   background?: string;
   /**
+   * If true, disable all interactions for this component.
+   */
+  touchDisabled?: Boolean;
+  /**
    * Define de container style
    */
   style: ViewStyle;
@@ -25,18 +29,23 @@ interface Props {
   onPress(): void;
 }
 
-const Button = (props: Props) => (
+const Button = React.memo((props: Props) => (
   <View style={[styles.iconButtonHeader, props.style]} >
     <TouchableView
       activeOpacity={0.5}
       background={props.background}
+      disabled={props.touchDisabled}
       onPress={props.onPress} >
       <View style={styles.iconHeader} >
         {props.children}
       </View>
     </TouchableView>
   </View>
-)
+));
+
+Button.defaultProps = {
+  touchDisabled: false,
+}
 
 const styles = StyleSheet.create({
   iconButtonHeader: {

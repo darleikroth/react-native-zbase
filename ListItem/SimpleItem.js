@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   StyleSheet,
   ViewStyle,
@@ -17,36 +16,39 @@ type Props = {
   contentStyle?: ViewStyle;
   titleStyle?: TextStyle;
   subtitleStyle?: TextStyle;
-  onPress(fn: () => void): void;
-  onLongPress(fn: () => void): void;
+  /**
+   * If true, disable all interactions for this component.
+   */
+  touchDisabled?: Boolean;
+  onPress(): void;
+  onLongPress(): void;
 };
 
 const ios = Platform.OS === 'ios';
 
-class SimpleItem extends React.PureComponent
-{
-  props: Props;
+const SimpleItem = React.memo((props: Props) => (
+  <View style={[styles.container, props.containerStyle]} >
+    <TouchableView
+      disabled={props.touchDisabled}
+      onPress={props.onPress}
+      onLongPress={props.onLongPress} >
+      <View style={[styles.content, props.contentStyle]} >
+        <Text numberOfLines={1} style={[styles.title, props.titleStyle]} >
+          {props.title}
+        </Text>
+        {!!props.subtitle && (
+          <Text numberOfLines={2} style={[styles.subtitle, props.subtitleStyle]} >
+            {props.subtitle}
+          </Text>
+        )}
 
-  render()
-  {
-    return (
-      <View style={[styles.container, this.props.containerStyle]} >
-        <TouchableView onPress={this.props.onPress} onLongPress={this.props.onLongPress} >
-          <View style={[styles.content, this.props.contentStyle]} >
-            <Text numberOfLines={1} style={[styles.title, this.props.titleStyle]} >
-              {this.props.title}
-            </Text>
-            {!!this.props.subtitle && (
-              <Text numberOfLines={2} style={[styles.subtitle, this.props.subtitleStyle]} >
-                {this.props.subtitle}
-              </Text>
-            )}
-
-          </View>
-        </TouchableView>
       </View>
-    );
-  }
+    </TouchableView>
+  </View>
+));
+
+SimpleItem.defaultProps = {
+  touchDisabled: false,
 }
 
 const styles = StyleSheet.create({
@@ -65,9 +67,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
-
-SimpleItem.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 export default SimpleItem;
