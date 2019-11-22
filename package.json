@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/darleikroth/react-native-zbase#readme",
   "peerDependencies": {
+    "@react-native-community/viewpager": ">=1.1.7",
     "react-native": ">=0.40.0",
     "react-native-vector-icons": ">=4.0.0",
     "react-native-gesture-handler": ">=1.3.0",
@@ -46,8 +47,5 @@
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^2.3.0",
     "standard-version": "^6.0.1"
-  },
-  "dependencies": {
-    "@react-native-community/viewpager": "^1.1.7"
   }
 }
