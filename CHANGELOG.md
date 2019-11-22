@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.13.2](https://github.com/darleikroth/react-native-zbase/compare/v0.13.1...v0.13.2) (2019-11-22)
+
+
+### Bug Fixes
+
+* **package:** remove viewpager dependence, change to peerDependencies ([144f4c3](https://github.com/darleikroth/react-native-zbase/commit/144f4c3))
+
+
+
 ### [0.13.1](https://github.com/darleikroth/react-native-zbase/compare/v0.13.0...v0.13.1) (2019-10-09)
 
 
