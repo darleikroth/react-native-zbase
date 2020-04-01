@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#212121',
     fontSize: ios ? 16 : 17,
-    fontWeight: ios ? '600' : '500',
+    fontWeight: 'bold',
   },
   itemContent: {
     height: 48,
