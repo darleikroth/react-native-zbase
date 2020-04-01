@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.13.4](https://github.com/darleikroth/react-native-zbase/compare/v0.13.3...v0.13.4) (2020-04-01)
+
+
+### Bug Fixes
+
+* fontWeight for android ([e789501](https://github.com/darleikroth/react-native-zbase/commit/e789501))
+
+
+
 ### [0.13.3](https://github.com/darleikroth/react-native-zbase/compare/v0.13.2...v0.13.3) (2019-11-22)
 
 
