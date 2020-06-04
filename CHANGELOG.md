@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.13.5](https://github.com/darleikroth/react-native-zbase/compare/v0.13.4...v0.13.5) (2020-06-04)
+
+
+### Features
+
+* **options:** add `onPress` & `onLongPress` options, `callback` param is deprecated ([3924750](https://github.com/darleikroth/react-native-zbase/commit/3924750779dc9874feb24515fe45b788d51d1707))
+
 ### [0.13.4](https://github.com/darleikroth/react-native-zbase/compare/v0.13.3...v0.13.4) (2020-04-01)
 
 
