@@ -1,31 +1,33 @@
 import React from 'react'
 import {
-  TouchableWithoutFeedback,
   ActivityIndicator,
-  TouchableOpacity,
   Dimensions,
-  StyleSheet,
-  StatusBar,
   FlatList,
-  Platform,
   Modal,
-  View,
+  Platform,
+  StatusBar,
+  StyleSheet,
   Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native'
 import Color from 'color'
 
 const screen = Dimensions.get('window')
 const ios = Platform.OS === 'ios'
 
-interface ValueObject {
+type ValueObject = {
   id: number;
   name: string;
 }
 
-interface OptionsParam {
+export type OptionsParam = {
+  itemFunc(item): string;
+  onLongPress(item): void;
+  onPress(item): void;
+  title: string;
   values: ValueObject[];
-  title?: string;
-  itemFunc?: (item: any) => string;
 }
 
 interface Props {
@@ -36,7 +38,8 @@ interface Props {
 type Callback = (item: any) => void;
 
 class SelectItems extends React.Component<Props> {
-  callback: Callback
+  onLongPressCallback: Callback
+  onPressCallback: Callback
 
   state = {
     visible: false,
@@ -52,14 +55,19 @@ class SelectItems extends React.Component<Props> {
       title: options.title || this.state.title,
       itemFunc: options.itemFunc || (item => item.name),
     })
-    this.callback = callback
+    // DEPRECATED: remove callback options in a future version
+    if (callback) {
+      warnDeprecation('callback', 'onPress or onLongPress')
+    }
+    this.onPressCallback = callback || options.onPress
+    this.onLongPressCallback = options.onLongPress
     this.toggleStatusBar()
   }
 
   _cancel() {
     this.setState({ visible: false })
     this.toggleStatusBar(true)
-    this.callback && this.callback(null)
+    this.onPressCallback && this.onPressCallback(null)
   }
 
   updateValues(options: OptionsParam) {
@@ -72,7 +80,13 @@ class SelectItems extends React.Component<Props> {
   handlePress(item) {
     this.setState({ visible: false })
     this.toggleStatusBar(true)
-    this.callback && this.callback(item)
+    this.onPressCallback && this.onPressCallback(item)
+  }
+
+  handleLongPress(item) {
+    this.setState({ visible: false })
+    this.toggleStatusBar(true)
+    this.onLongPressCallback && this.onLongPressCallback(item)
   }
 
   toggleStatusBar(close?: boolean) {
@@ -152,7 +166,9 @@ class SelectItems extends React.Component<Props> {
     const title = this.state.itemFunc(item)
 
     return (
-      <TouchableOpacity onPress={() => this.handlePress(item)} >
+      <TouchableOpacity
+        onPress={() => this.handlePress(item)}
+        onLongPress={() => this.handleLongPress(item)} >
         <View style={styles.itemContent} >
           <Text style={styles.itemText} >
             {title}
@@ -161,6 +177,10 @@ class SelectItems extends React.Component<Props> {
       </TouchableOpacity>
     )
   }
+}
+
+function warnDeprecation(deprecatedKey, newKey) {
+  console.warn(`The SelectItems '${deprecatedKey}' option has been deprecated. Please switch to '${newKey}' instead.`);
 }
 
 const styles = StyleSheet.create({
