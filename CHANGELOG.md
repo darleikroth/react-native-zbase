@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.13.7](https://github.com/darleikroth/react-native-zbase/compare/v0.13.6...v0.13.7) (2020-08-11)
+
+
+### Features
+
+* **android:** improvemts at searchbar component (react-navigation v5 major compatibility) ([6e1c63c](https://github.com/darleikroth/react-native-zbase/commit/6e1c63cd74f3e94d6022279ec92f40895e9779d0))
+
 ### [0.13.6](https://github.com/darleikroth/react-native-zbase/compare/v0.13.5...v0.13.6) (2020-08-11)
 
 ### [0.13.5](https://github.com/darleikroth/react-native-zbase/compare/v0.13.4...v0.13.5) (2020-06-04)
