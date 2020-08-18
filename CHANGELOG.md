@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.13.8](https://github.com/darleikroth/react-native-zbase/compare/v0.13.7...v0.13.8) (2020-08-18)
+
+
+### Features
+
+* **divider:** improve to use default hairlineWidth style ([2f6e251](https://github.com/darleikroth/react-native-zbase/commit/2f6e25177d1c9429a7e9ab5a5e60ed08b6870a43))
+
 ### [0.13.7](https://github.com/darleikroth/react-native-zbase/compare/v0.13.6...v0.13.7) (2020-08-11)
 
 
