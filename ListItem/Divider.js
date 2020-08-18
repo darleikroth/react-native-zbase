@@ -1,23 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import RN from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 type Props = {
-  color?: string;
+  color: String;
+  height: Number;
 };
 
-class Divider extends React.PureComponent
-{
-  props: Props;
-
-  render()
-  {
-    return <RN.View style={{ height: 1, backgroundColor: this.props.color }} />
-  }
-}
+const Divider = (props: Props) => {
+  const style = {
+    backgroundColor: props.color,
+    height: props.height,
+  };
+  return (
+    <View style={style} />
+  );
+};
 
 Divider.defaultProps = {
-  color: 'rgba(0, 0, 0, .12)',
+  color: '#bbb',
+  height: StyleSheet.hairlineWidth,
 };
 
 export default Divider;
