@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.13.9](https://github.com/darleikroth/react-native-zbase/compare/v0.13.8...v0.13.9) (2020-10-02)
+
+
+### Features
+
+* **list-item:** add `right` prop at SimpleItem ([a8a41b7](https://github.com/darleikroth/react-native-zbase/commit/a8a41b7116b879a231dac57f117f99503fef83a8))
+
 ### [0.13.8](https://github.com/darleikroth/react-native-zbase/compare/v0.13.7...v0.13.8) (2020-08-18)
 
 
