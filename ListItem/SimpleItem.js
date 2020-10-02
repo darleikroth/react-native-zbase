@@ -16,23 +16,22 @@ type Props = {
   contentStyle?: ViewStyle;
   titleStyle?: TextStyle;
   subtitleStyle?: TextStyle;
+  rightStyle?: ViewStyle;
   /**
    * If true, disable all interactions for this component.
    */
   touchDisabled?: Boolean;
   onPress(): void;
   onLongPress(): void;
+  right(): JSX.Element;
 };
 
 const ios = Platform.OS === 'ios';
 
-const SimpleItem = React.memo((props: Props) => (
-  <View style={[styles.container, props.containerStyle]} >
-    <TouchableView
-      disabled={props.touchDisabled}
-      onPress={props.onPress}
-      onLongPress={props.onLongPress} >
-      <View style={[styles.content, props.contentStyle]} >
+const SimpleItem = React.memo((props: Props) => {
+  const renderContent = () => (
+    <>
+      <View style={styles.flexContent} >
         <Text numberOfLines={1} style={[styles.title, props.titleStyle]} >
           {props.title}
         </Text>
@@ -41,11 +40,28 @@ const SimpleItem = React.memo((props: Props) => (
             {props.subtitle}
           </Text>
         )}
-
       </View>
-    </TouchableView>
-  </View>
-));
+      {!!props.right && (
+        <View style={[styles.right, props.rightStyle]} >
+          {props.right()}
+        </View>
+      )}
+    </>
+  );
+
+  return (
+    <View style={[styles.container, props.containerStyle]} >
+      <TouchableView
+        disabled={props.touchDisabled}
+        onPress={props.onPress}
+        onLongPress={props.onLongPress} >
+        <View style={[styles.content, props.contentStyle]} >
+          {renderContent()}
+        </View>
+      </TouchableView>
+    </View>
+  );
+});
 
 SimpleItem.defaultProps = {
   touchDisabled: false,
@@ -56,6 +72,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   content: {
+    flexDirection: 'row',
+  },
+  flexContent: {
+    flex: 1,
     padding: 16,
   },
   title: {
@@ -65,6 +85,11 @@ const styles = StyleSheet.create({
   subtitle: {
     color: 'rgba(0, 0, 0, .54)',
     fontSize: 14,
+  },
+  right: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 48,
   },
 });
 
