@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.13.10](https://github.com/darleikroth/react-native-zbase/compare/v0.13.9...v0.13.10) (2020-10-21)
+
+
+### Features
+
+* **simple-item:** add titleNumberOfLines prop ([2d4cf86](https://github.com/darleikroth/react-native-zbase/commit/2d4cf862492eba3b5bf1b154d915dfff78207782))
+
 ### [0.13.9](https://github.com/darleikroth/react-native-zbase/compare/v0.13.8...v0.13.9) (2020-10-02)
 
 
