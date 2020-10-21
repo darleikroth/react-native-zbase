@@ -12,6 +12,7 @@ import { TouchableView } from 'react-native-zbase';
 type Props = {
   title: string;
   subtitle?: string;
+  titleNumberOfLines?: Number;
   containerStyle?: ViewStyle;
   contentStyle?: ViewStyle;
   titleStyle?: TextStyle;
@@ -32,7 +33,7 @@ const SimpleItem = React.memo((props: Props) => {
   const renderContent = () => (
     <>
       <View style={styles.flexContent} >
-        <Text numberOfLines={1} style={[styles.title, props.titleStyle]} >
+        <Text numberOfLines={props.titleNumberOfLines} style={[styles.title, props.titleStyle]} >
           {props.title}
         </Text>
         {!!props.subtitle && (
@@ -65,6 +66,7 @@ const SimpleItem = React.memo((props: Props) => {
 
 SimpleItem.defaultProps = {
   touchDisabled: false,
+  titleNumberOfLines: 1,
 }
 
 const styles = StyleSheet.create({
