@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Pressable,
   StyleSheet,
   ViewStyle,
   TextStyle,
@@ -7,9 +8,12 @@ import {
   View,
   Text,
 } from 'react-native';
-import { TouchableView } from 'react-native-zbase';
 
 type Props = {
+  /**
+   * Determines what the opacity of the wrapped view should be when touch is active. Defaults to `0.3`.
+   */
+  activeOpacity: Number;
   title: string;
   subtitle?: string;
   titleNumberOfLines?: Number;
@@ -52,21 +56,27 @@ const SimpleItem = React.memo((props: Props) => {
 
   return (
     <View style={[styles.container, props.containerStyle]} >
-      <TouchableView
+      <Pressable
+        android_disableSound
         disabled={props.touchDisabled}
         onPress={props.onPress}
-        onLongPress={props.onLongPress} >
-        <View style={[styles.content, props.contentStyle]} >
-          {renderContent()}
-        </View>
-      </TouchableView>
+        onLongPress={props.onLongPress}
+        style={({ pressed }) => [
+          styles.content,
+          props.contentStyle,
+          { opacity: pressed ? props.activeOpacity : 1 }
+        ]}
+      >
+        {renderContent()}
+      </Pressable>
     </View>
   );
 });
 
 SimpleItem.defaultProps = {
-  touchDisabled: false,
+  activeOpacity: 0.4,
   titleNumberOfLines: 1,
+  touchDisabled: false,
 }
 
 const styles = StyleSheet.create({

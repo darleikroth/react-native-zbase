@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
+  Pressable,
   StyleSheet,
   Text,
   TextStyle,
@@ -9,7 +9,11 @@ import {
 } from 'react-native';
 import { TouchableView } from 'react-native-zbase';
 
-interface Props {
+type Props = {
+  /**
+   * Determines what the opacity of the wrapped view should be when touch is active. Defaults to `0.3`.
+   */
+  activeOpacity: Number;
   /**
    * Item's primary text. It is `isRequired`.
    */
@@ -67,11 +71,6 @@ interface Props {
    */
   dividerStyle?: ViewStyle;
   /**
-   * Expects a color. Determines the color of background that's going to be used to display feedback.
-   * It works just on Android devices. For iOS devices the `TouchableOpacity` feedback is used.
-   */
-  selectableBackground?: string;
-  /**
    * If `true` a line element (divider) will be rendered at the bottom of the item.
    * The default is `false`.
    */
@@ -92,6 +91,7 @@ interface Props {
 
 const Item = React.memo((props: Props) => {
   const {
+    activeOpacity,
     containerStyle,
     contentStyle,
     disabled,
@@ -99,7 +99,6 @@ const Item = React.memo((props: Props) => {
     dividerStyle,
     iconLeft,
     iconRight,
-    selectableBackground,
     subtitle,
     subtitleNumberOfLines,
     subtitleStyle,
@@ -112,68 +111,75 @@ const Item = React.memo((props: Props) => {
   } = props;
 
   return (
-    <View>
+    <>
       <View style={[styles.container, containerStyle]} >
-        <TouchableView
-          onPress={disabled ? undefined : onPress}
-          background={selectableBackground}
+        <Pressable
+          android_disableSound
+          onPress={onPress}
           disabled={props.touchDisabled}
-          onLongPress={disabled ? undefined : onLongPress} >
-          <View style={[styles.content, contentStyle]} >
-
-            <View style={[styles.icon, {left: 0}]} >
-              {iconLeft}
+          onLongPress={onLongPress}
+          style={({ pressed }) => [
+            styles.content,
+            contentStyle,
+            { opacity: pressed ? activeOpacity : 1 }
+          ]}
+        >
+          <View style={[styles.icon, {left: 0}]} >
+            {iconLeft}
+          </View>
+          {!!iconRight && (
+            <View style={[styles.icon, {right: 0, width: 48}]} >
+              {iconRight}
             </View>
-            {!!iconRight && (
-              <View style={[styles.icon, {right: 0, width: 48}]} >
-                {iconRight}
-              </View>
-            )}
+          )}
 
-            <View style={[styles.titleContainer, {marginRight: !iconRight ? 16 : 54}]} >
+          <View style={[styles.titleContainer, {marginRight: !iconRight ? 16 : 54}]} >
+            <Text
+              style={[
+                styles.title,
+                titleStyle,
+                disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+              ]}
+              numberOfLines={titleNumberOfLines} >
+              {title}
+            </Text>
+            {!!subtitle && (
               <Text
                 style={[
-                  styles.title,
-                  titleStyle,
+                  styles.subtitle,
+                  subtitleStyle,
                   disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
                 ]}
-                numberOfLines={titleNumberOfLines} >
-                {title}
+                numberOfLines={subtitleNumberOfLines} >
+                {subtitle}
               </Text>
-              {!!subtitle && (
-                <Text
-                  style={[
-                    styles.subtitle,
-                    subtitleStyle,
-                    disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
-                  ]}
-                  numberOfLines={subtitleNumberOfLines} >
-                  {subtitle}
-                </Text>
-              )}
-              {!!text && (
-                <Text
-                  style={[
-                    styles.subtitle,
-                    subtitleStyle,
-                    disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
-                  ]}
-                  numberOfLines={1} >
-                  {text}
-                </Text>
-              )}
-            </View>
+            )}
+            {!!text && (
+              <Text
+                style={[
+                  styles.subtitle,
+                  subtitleStyle,
+                  disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+                ]}
+                numberOfLines={1} >
+                {text}
+              </Text>
+            )}
           </View>
-        </TouchableView>
+        </Pressable>
       </View>
       {!!divider && (<View style={[styles.divider, dividerStyle]} />)}
-    </View>
+    </>
   );
 });
 
 Item.defaultProps = {
+  activeOpacity: 0.4,
+  divider: false,
+  subtitleNumberOfLines: 1,
+  titleNumberOfLines: 1,
   touchDisabled: false,
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -211,16 +217,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, .12)',
   },
 });
-
-Item.propTypes = {
-  title: PropTypes.string.isRequired,
-  iconLeft: PropTypes.any.isRequired,
-};
-
-Item.defaultProps = {
-  titleNumberOfLines: 1,
-  subtitleNumberOfLines: 1,
-  divider: false,
-};
 
 export default Item;
