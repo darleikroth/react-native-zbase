@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/darleikroth/react-native-zbase/compare/v0.13.10...v1.0.0) (2020-10-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **list-item:** In order to use de new component `Pressable` of React Native, is mandatory to
+update de React Native version to 0.63.0.
+
+### Features
+
+* **list-item:** started to use `Pressable` component for press interactions ([ea8358b](https://github.com/darleikroth/react-native-zbase/commit/ea8358bc2baa82659bc4b62b7a6327d01c6a9d5f))
+
 ### [0.13.10](https://github.com/darleikroth/react-native-zbase/compare/v0.13.9...v0.13.10) (2020-10-21)
 
 
