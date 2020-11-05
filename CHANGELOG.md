@@ -7,8 +7,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* **list-item:** In order to use de new component `Pressable` of React Native, is mandatory to
-update de React Native version to 0.63.0.
+* **list-item:** In order to use the new component `Pressable` of React Native, is mandatory to
+update the React Native version to 0.63.0.
 
 ### Features
 
