@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/darleikroth/react-native-zbase/compare/v1.0.0...v1.0.1) (2020-11-11)
+
+
+### Features
+
+* **list-item:** if not iconLeft provided do not render left element ([4495e5d](https://github.com/darleikroth/react-native-zbase/commit/4495e5d82b7ac362544f4b0bb138dbdb7abead95))
+
 ## [1.0.0](https://github.com/darleikroth/react-native-zbase/compare/v0.13.10...v1.0.0) (2020-10-23)
 
 
