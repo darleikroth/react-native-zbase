@@ -124,16 +124,21 @@ const Item = React.memo((props: Props) => {
             { opacity: pressed ? activeOpacity : 1 }
           ]}
         >
-          <View style={[styles.icon, {left: 0}]} >
-            {iconLeft}
-          </View>
+          {!!iconLeft && (
+            <View style={[styles.icon, {left: 0}]} >
+              {iconLeft}
+            </View>
+          )}
           {!!iconRight && (
             <View style={[styles.icon, {right: 0, width: 48}]} >
               {iconRight}
             </View>
           )}
 
-          <View style={[styles.titleContainer, {marginRight: !iconRight ? 16 : 54}]} >
+          <View style={[styles.titleContainer, {
+            marginRight: !iconRight ? 16 : 54,
+            marginLeft: !iconLeft ? 16 : 72,
+          }]} >
             <Text
               style={[
                 styles.title,
