@@ -82,13 +82,15 @@ SimpleItem.defaultProps = {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
+    justifyContent: 'center',
+    height: 56,
   },
   content: {
     flexDirection: 'row',
   },
   flexContent: {
     flex: 1,
-    padding: 16,
+    paddingHorizontal: 16,
   },
   title: {
     color: 'rgba(0, 0, 0, .87)',
