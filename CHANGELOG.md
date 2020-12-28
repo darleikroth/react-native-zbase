@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/darleikroth/react-native-zbase/compare/v1.0.1...v1.0.2) (2020-12-28)
+
+
+### Bug Fixes
+
+* **list-item:** improve simple item ([02a6148](https://github.com/darleikroth/react-native-zbase/commit/02a6148f9de58b822fedc8f6faab7ae920534e9e))
+
 ### [1.0.1](https://github.com/darleikroth/react-native-zbase/compare/v1.0.0...v1.0.1) (2020-11-11)
 
 
