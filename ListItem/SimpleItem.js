@@ -55,21 +55,21 @@ const SimpleItem = React.memo((props: Props) => {
   );
 
   return (
-    <View style={[styles.container, props.containerStyle]} >
-      <Pressable
-        android_disableSound
-        disabled={props.touchDisabled}
-        onPress={props.onPress}
-        onLongPress={props.onLongPress}
-        style={({ pressed }) => [
-          styles.content,
-          props.contentStyle,
-          { opacity: pressed ? props.activeOpacity : 1 }
-        ]}
-      >
+    <Pressable
+      android_disableSound
+      disabled={props.touchDisabled}
+      onPress={props.onPress}
+      onLongPress={props.onLongPress}
+      style={({ pressed }) => [
+        styles.container,
+        props.containerStyle,
+        { opacity: pressed ? props.activeOpacity : 1 },
+      ]}
+    >
+      <View style={[styles.content, props.contentStyle]} >
         {renderContent()}
-      </Pressable>
-    </View>
+      </View>
+    </Pressable>
   );
 });
 
