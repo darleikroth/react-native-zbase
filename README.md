@@ -8,7 +8,6 @@ This project brings together custom native components. The goal is to facilitate
 
 1. Before install this, please install and configure:
 - [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation).
-- [react-native-gesture-handler](https://kmagiera.github.io/react-native-gesture-handler/docs/getting-started.html).
 
 2. Installation:
 
@@ -16,21 +15,9 @@ This project brings together custom native components. The goal is to facilitate
 npm install --save react-native-zbase
 ```
 
-3. For `ViewPager` component
-
-```
-react-native link @react-native-community/viewpager
-```
-
 ## Components
 
-- DatePicker
-- FloatButton
-- ListItem
-- LoadingModal
-- SegmentedControl
-- SelectItems
-- Toolbar (`deprecated`)
-- Touchable
-- TouchableView (`deprecated`)
-- ViewPager
+- FloatButton (`updated`)
+- ListItem (`updated`)
+- SelectItems (`updated`)
+- Toolbar (`updated`)
