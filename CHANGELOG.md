@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/darleikroth/react-native-zbase/compare/v2.0.0...v2.0.1) (2021-05-05)
+
+
+### Bug Fixes
+
+* **husky:** downgrade husky version ([e8af254](https://github.com/darleikroth/react-native-zbase/commit/e8af254ccab114c439a204baca72eb0e0ece0207))
+
 ## [2.0.0](https://github.com/darleikroth/react-native-zbase/compare/v1.0.3...v2.0.0) (2021-05-05)
 
 
