@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/darleikroth/react-native-zbase/compare/v1.0.3...v2.0.0) (2021-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **typescript:** Components removed: DatePicker, LoadingModal, SegmentedControl, Touchable,
+TouchableView and ViewPager. All files was rewrited to typescript (ts, tsx).
+
+* **typescript:** migration to typescript & removed obsolete components ([de4b858](https://github.com/darleikroth/react-native-zbase/commit/de4b8589a9c92496142bdf30e20bba30ab18a7fa))
+
 ### [1.0.3](https://github.com/darleikroth/react-native-zbase/compare/v1.0.2...v1.0.3) (2020-12-29)
 
 
