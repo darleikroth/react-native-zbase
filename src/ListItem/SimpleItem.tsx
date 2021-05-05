@@ -1,22 +1,18 @@
-import React from 'react';
+import React from "react";
 import {
   Pressable,
   StyleSheet,
-  ViewStyle,
-  TextStyle,
-  Platform,
-  View,
   Text,
-} from 'react-native';
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native";
 
 type Props = {
-  /**
-   * Determines what the opacity of the wrapped view should be when touch is active. Defaults to `0.3`.
-   */
-  activeOpacity: Number;
-  title: string;
+  activeOpacity?: number;
+  title?: string;
   subtitle?: string;
-  titleNumberOfLines?: Number;
+  titleNumberOfLines?: number;
   containerStyle?: ViewStyle;
   contentStyle?: ViewStyle;
   titleStyle?: TextStyle;
@@ -25,29 +21,33 @@ type Props = {
   /**
    * If true, disable all interactions for this component.
    */
-  touchDisabled?: Boolean;
-  onPress(): void;
-  onLongPress(): void;
-  right(): JSX.Element;
+  touchDisabled?: boolean;
+  onPress?(): void;
+  onLongPress?(): void;
+  right?(): JSX.Element;
 };
 
-const ios = Platform.OS === 'ios';
-
-const SimpleItem = React.memo((props: Props) => {
+export const SimpleItem: React.FC<Props> = (props) => {
   const renderContent = () => (
     <>
-      <View style={styles.flexContent} >
-        <Text numberOfLines={props.titleNumberOfLines} style={[styles.title, props.titleStyle]} >
+      <View style={styles.flexContent}>
+        <Text
+          numberOfLines={props.titleNumberOfLines}
+          style={[styles.title, props.titleStyle]}
+        >
           {props.title}
         </Text>
         {!!props.subtitle && (
-          <Text numberOfLines={2} style={[styles.subtitle, props.subtitleStyle]} >
+          <Text
+            numberOfLines={2}
+            style={[styles.subtitle, props.subtitleStyle]}
+          >
             {props.subtitle}
           </Text>
         )}
       </View>
       {!!props.right && (
-        <View style={[styles.right, props.rightStyle]} >
+        <View style={[styles.right, props.rightStyle]}>
           {props.right()}
         </View>
       )}
@@ -66,43 +66,43 @@ const SimpleItem = React.memo((props: Props) => {
         { opacity: pressed ? props.activeOpacity : 1 },
       ]}
     >
-      <View style={[styles.content, props.contentStyle]} >
+      <View style={[styles.content, props.contentStyle]}>
         {renderContent()}
       </View>
     </Pressable>
   );
-});
+};
 
 SimpleItem.defaultProps = {
   activeOpacity: 0.4,
   titleNumberOfLines: 1,
   touchDisabled: false,
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    justifyContent: 'center',
+    backgroundColor: "white",
+    justifyContent: "center",
     height: 56,
   },
   content: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   flexContent: {
     flex: 1,
     paddingHorizontal: 16,
   },
   title: {
-    color: 'rgba(0, 0, 0, .87)',
+    color: "rgba(0, 0, 0, .87)",
     fontSize: 16,
   },
   subtitle: {
-    color: 'rgba(0, 0, 0, .54)',
+    color: "rgba(0, 0, 0, .54)",
     fontSize: 14,
   },
   right: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     width: 48,
   },
 });

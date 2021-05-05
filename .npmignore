@@ -1,1 +1,4 @@
-sample/
+sample
+
+# Husky
+.husky

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Pressable,
   StyleSheet,
@@ -6,18 +6,17 @@ import {
   TextStyle,
   View,
   ViewStyle,
-} from 'react-native';
-import { TouchableView } from 'react-native-zbase';
+} from "react-native";
 
 type Props = {
   /**
    * Determines what the opacity of the wrapped view should be when touch is active. Defaults to `0.3`.
    */
-  activeOpacity: Number;
+  activeOpacity?: number;
   /**
    * Item's primary text. It is `isRequired`.
    */
-  title: string;
+  title?: string;
   /**
    * Item's secondary text.
    */
@@ -29,11 +28,11 @@ type Props = {
   /**
    * Expects a React Element. Rendered at the item's start/left. It is `isRequired`.
    */
-  iconLeft: Element;
+  iconLeft?: Element;
   /**
    * Expects a React Element. Rendered at the item's start/right.
    */
-  iconRight: Element;
+  iconRight?: Element;
   /**
    * Used to truncate the text with an ellipsis after computing the text layout,
    * including line wrapping, such that the total number of lines does not exceed this number.
@@ -49,7 +48,7 @@ type Props = {
   /**
    * If true, disable all interactions for this component.
    */
-  touchDisabled?: Boolean;
+  touchDisabled?: boolean | null;
   /**
    * Item parent's styles.
    */
@@ -78,18 +77,18 @@ type Props = {
   /**
    * Set `true` to disable the touchable feedback and change the color to disabled styles.
    */
-  disabled?: boolean;
+  disabled?: boolean | null;
   /**
    * Called when the touch is released.
    */
-  onPress(): void;
+  onPress?(): void;
   /**
    * Called when the long press is released.
    */
-  onLongPress(): void;
+  onLongPress?(): void;
 };
 
-const Item = React.memo((props: Props) => {
+export const Item: React.FC<Props> = (props) => {
   const {
     activeOpacity,
     containerStyle,
@@ -112,7 +111,7 @@ const Item = React.memo((props: Props) => {
 
   return (
     <>
-      <View style={[styles.container, containerStyle]} >
+      <View style={[styles.container, containerStyle]}>
         <Pressable
           android_disableSound
           onPress={onPress}
@@ -121,31 +120,34 @@ const Item = React.memo((props: Props) => {
           style={({ pressed }) => [
             styles.content,
             contentStyle,
-            { opacity: pressed ? activeOpacity : 1 }
+            { opacity: pressed ? activeOpacity : 1 },
           ]}
         >
           {!!iconLeft && (
-            <View style={[styles.icon, {left: 0}]} >
+            <View style={[styles.icon, { left: 0 }]}>
               {iconLeft}
             </View>
           )}
           {!!iconRight && (
-            <View style={[styles.icon, {right: 0, width: 48}]} >
+            <View style={[styles.icon, { right: 0, width: 48 }]}>
               {iconRight}
             </View>
           )}
 
-          <View style={[styles.titleContainer, {
-            marginRight: !iconRight ? 16 : 54,
-            marginLeft: !iconLeft ? 16 : 72,
-          }]} >
+          <View
+            style={[styles.titleContainer, {
+              marginRight: !iconRight ? 16 : 54,
+              marginLeft: !iconLeft ? 16 : 72,
+            }]}
+          >
             <Text
               style={[
                 styles.title,
                 titleStyle,
-                disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+                disabled ? { color: "rgba(0, 0, 0, .38)" } : undefined,
               ]}
-              numberOfLines={titleNumberOfLines} >
+              numberOfLines={titleNumberOfLines}
+            >
               {title}
             </Text>
             {!!subtitle && (
@@ -153,9 +155,10 @@ const Item = React.memo((props: Props) => {
                 style={[
                   styles.subtitle,
                   subtitleStyle,
-                  disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+                  disabled ? { color: "rgba(0, 0, 0, .38)" } : undefined,
                 ]}
-                numberOfLines={subtitleNumberOfLines} >
+                numberOfLines={subtitleNumberOfLines}
+              >
                 {subtitle}
               </Text>
             )}
@@ -164,9 +167,10 @@ const Item = React.memo((props: Props) => {
                 style={[
                   styles.subtitle,
                   subtitleStyle,
-                  disabled ? {color: 'rgba(0, 0, 0, .38)'} : undefined,
+                  disabled ? { color: "rgba(0, 0, 0, .38)" } : undefined,
                 ]}
-                numberOfLines={1} >
+                numberOfLines={1}
+              >
                 {text}
               </Text>
             )}
@@ -176,7 +180,7 @@ const Item = React.memo((props: Props) => {
       {!!divider && (<View style={[styles.divider, dividerStyle]} />)}
     </>
   );
-});
+};
 
 Item.defaultProps = {
   activeOpacity: 0.4,
@@ -188,38 +192,38 @@ Item.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    justifyContent: 'center',
+    backgroundColor: "white",
+    justifyContent: "center",
     height: 72,
   },
   content: {
-    flexDirection: 'row',
+    flexDirection: "row",
     height: 72,
   },
   titleContainer: {
     height: 72,
     marginLeft: 72,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   title: {
-    color: 'rgba(0, 0, 0, .87)',
+    color: "rgba(0, 0, 0, .87)",
     fontSize: 16,
   },
   subtitle: {
-    color: 'rgba(0, 0, 0, .54)',
+    color: "rgba(0, 0, 0, .54)",
     fontSize: 14,
     marginTop: 1,
   },
   icon: {
     width: 72,
     height: 72,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
   },
   divider: {
     height: 1,
-    backgroundColor: 'rgba(0, 0, 0, .12)',
+    backgroundColor: "rgba(0, 0, 0, .12)",
   },
 });
 
