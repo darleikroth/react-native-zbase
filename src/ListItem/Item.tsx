@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Pressable,
+  StyleProp,
   StyleSheet,
   Text,
   TextStyle,
@@ -52,23 +53,23 @@ type Props = {
   /**
    * Item parent's styles.
    */
-  containerStyle?: ViewStyle;
+  containerStyle?: StyleProp<ViewStyle>;
   /**
    * Item contents styles.
    */
-  contentStyle?: ViewStyle;
+  contentStyle?: StyleProp<ViewStyle>;
   /**
    * Styles of the `title` property.
    */
-  titleStyle?: TextStyle;
+  titleStyle?: StyleProp<TextStyle>;
   /**
    * Styles of the `subtitle` property.
    */
-  subtitleStyle?: TextStyle;
+  subtitleStyle?: StyleProp<TextStyle>;
   /**
    * Styles of the `divider` property.
    */
-  dividerStyle?: ViewStyle;
+  dividerStyle?: StyleProp<ViewStyle>;
   /**
    * If `true` a line element (divider) will be rendered at the bottom of the item.
    * The default is `false`.

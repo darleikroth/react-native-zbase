@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import {
+  StyleProp,
   StyleSheet,
   Text,
   TextInput,
@@ -41,7 +42,7 @@ export interface SearchAndroidProps {
   /**
    * Style for title.
    */
-  titleStyle?: ViewStyle;
+  titleStyle?: StyleProp<ViewStyle>;
   /**
    * Callback that is called when the text input's text changes.
    * Changed text is passed as an argument to the callback handler.

@@ -1,5 +1,11 @@
 import React from "react";
-import { Pressable, View, ViewStyle } from "react-native";
+import {
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
 
 type Props = {
   /**
@@ -25,7 +31,7 @@ type Props = {
   /**
    * Custom styles for the component
    */
-  containerStyle?: ViewStyle;
+  containerStyle?: StyleProp<ViewStyle>;
 };
 
 export const FloatButton: React.FC<Props> = (props) => {
@@ -55,6 +61,7 @@ export const FloatButton: React.FC<Props> = (props) => {
     elevation: elevation,
   };
 
+  // @ts-ignore
   const bg = containerStyle?.backgroundColor || currentStyle.backgroundColor;
 
   return (

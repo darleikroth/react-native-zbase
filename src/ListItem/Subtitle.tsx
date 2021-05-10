@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Platform,
+  StyleProp,
   StyleSheet,
   Text,
   TextStyle,
@@ -10,8 +11,8 @@ import {
 
 type Props = {
   title?: string;
-  containerStyle?: ViewStyle;
-  titleStyle?: TextStyle;
+  containerStyle?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
 };
 
 const ios = Platform.OS === "ios";

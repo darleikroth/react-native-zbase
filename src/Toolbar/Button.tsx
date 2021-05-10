@@ -1,5 +1,11 @@
 import React from "react";
-import { Pressable, StyleSheet, View, ViewStyle } from "react-native";
+import {
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
 
 interface Props {
   /**
@@ -13,7 +19,7 @@ interface Props {
   /**
    * Define de container style
    */
-  style: ViewStyle;
+  style?: StyleProp<ViewStyle>;
   /**
    * An image or icon element
    */
@@ -21,7 +27,7 @@ interface Props {
   /**
    * Called when the touch is released
    */
-  onPress(): void;
+  onPress?(): void;
 }
 
 export const Button: React.FC<Props> = (props) => (

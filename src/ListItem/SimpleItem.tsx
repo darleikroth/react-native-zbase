@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Pressable,
+  StyleProp,
   StyleSheet,
   Text,
   TextStyle,
@@ -13,11 +14,11 @@ type Props = {
   title?: string;
   subtitle?: string;
   titleNumberOfLines?: number;
-  containerStyle?: ViewStyle;
-  contentStyle?: ViewStyle;
-  titleStyle?: TextStyle;
-  subtitleStyle?: TextStyle;
-  rightStyle?: ViewStyle;
+  containerStyle?: StyleProp<ViewStyle>;
+  contentStyle?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
+  subtitleStyle?: StyleProp<TextStyle>;
+  rightStyle?: StyleProp<ViewStyle>;
   /**
    * If true, disable all interactions for this component.
    */

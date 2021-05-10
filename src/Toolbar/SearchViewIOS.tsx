@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Pressable,
+  StyleProp,
   StyleSheet,
   Text,
   TextInput,
@@ -27,12 +28,12 @@ export interface SearchIOSProps {
   /**
    * Style for title.
    */
-  titleStyle?: ViewStyle;
+  titleStyle?: StyleProp<ViewStyle>;
   /**
    * Callback that is called when the text input's text changes.
    * Changed text is passed as an argument to the callback handler.
    */
-  onChangeText(text: string): void;
+  onChangeText?(text: string): void;
 }
 
 interface Props extends SearchIOSProps {

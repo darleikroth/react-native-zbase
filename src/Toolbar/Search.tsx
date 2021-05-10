@@ -8,7 +8,7 @@ type Props = SearchAndroidProps & SearchIOSProps;
 export const Search: React.FC<Props> = (props) => {
   const [isSearchable, setSearchable] = useState(false);
   const [text, setText] = useState("");
-  const timeout = useRef(-1);
+  const timeout = useRef<NodeJS.Timeout | number>(-1);
 
   const toggleSearchable = () => {
     setSearchable((prev) => !prev);
@@ -18,7 +18,7 @@ export const Search: React.FC<Props> = (props) => {
 
   const onChangeText = (text: string) => {
     setText(text);
-    clearTimeout(timeout.current);
+    clearTimeout(timeout.current as number);
     timeout.current = setTimeout(() => {
       props.onChangeText?.(text.toUpperCase());
     }, 500);
