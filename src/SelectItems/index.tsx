@@ -31,7 +31,7 @@ export type SelectOptions = {
   onLongPress?(item: any): void;
   onPress?(item: any): void;
   title?: string;
-  values?: Payload[];
+  values?: Payload[] | any[];
 };
 
 interface Props {
