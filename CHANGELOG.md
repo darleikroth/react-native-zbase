@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.4](https://github.com/darleikroth/react-native-zbase/compare/v2.0.3...v2.0.4) (2021-05-12)
+
+
+### Bug Fixes
+
+* listitem props ([4cd8ae9](https://github.com/darleikroth/react-native-zbase/commit/4cd8ae9911863c2718a1513e2181f805708efbb5))
+
 ### [2.0.3](https://github.com/darleikroth/react-native-zbase/compare/v2.0.2...v2.0.3) (2021-05-10)
 
 
