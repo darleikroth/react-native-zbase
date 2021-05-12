@@ -11,8 +11,8 @@ import {
 
 type Props = {
   activeOpacity?: number;
-  title?: string;
-  subtitle?: string;
+  title?: string | Element;
+  subtitle?: string | Element;
   titleNumberOfLines?: number;
   containerStyle?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;

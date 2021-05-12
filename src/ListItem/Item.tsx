@@ -17,15 +17,15 @@ type Props = {
   /**
    * Item's primary text. It is `isRequired`.
    */
-  title?: string;
+  title?: string | Element;
   /**
    * Item's secondary text.
    */
-  subtitle?: string;
+  subtitle?: string | Element;
   /**
    * Item's 3 lines text.
    */
-  text?: string;
+  text?: string | Element;
   /**
    * Expects a React Element. Rendered at the item's start/left. It is `isRequired`.
    */
