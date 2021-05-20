@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.5](https://github.com/darleikroth/react-native-zbase/compare/v2.0.4...v2.0.5) (2021-05-20)
+
+
+### Bug Fixes
+
+* change type iconLeft & iconRight ([8de19c6](https://github.com/darleikroth/react-native-zbase/commit/8de19c60680ee0fbda8e172c95fe39f878760dd1))
+
 ### [2.0.4](https://github.com/darleikroth/react-native-zbase/compare/v2.0.3...v2.0.4) (2021-05-12)
 
 
