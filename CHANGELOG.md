@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.6](https://github.com/darleikroth/react-native-zbase/compare/v2.0.5...v2.0.6) (2021-05-20)
+
+
+### Bug Fixes
+
+* right prop to accept undefined ([1f6f037](https://github.com/darleikroth/react-native-zbase/commit/1f6f0374d8a2f46686ee086aa582dcc03ec5ed98))
+
 ### [2.0.5](https://github.com/darleikroth/react-native-zbase/compare/v2.0.4...v2.0.5) (2021-05-20)
 
 
