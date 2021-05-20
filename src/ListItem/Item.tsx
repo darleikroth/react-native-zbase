@@ -29,11 +29,11 @@ type Props = {
   /**
    * Expects a React Element. Rendered at the item's start/left. It is `isRequired`.
    */
-  iconLeft?: Element;
+  iconLeft?: any;
   /**
-   * Expects a React Element. Rendered at the item's start/right.
-   */
-  iconRight?: Element;
+    * Expects a React Element. Rendered at the item's start/right.
+    */
+  iconRight?: any;
   /**
    * Used to truncate the text with an ellipsis after computing the text layout,
    * including line wrapping, such that the total number of lines does not exceed this number.
