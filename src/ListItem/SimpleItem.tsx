@@ -25,7 +25,7 @@ type Props = {
   touchDisabled?: boolean;
   onPress?(): void;
   onLongPress?(): void;
-  right?(): JSX.Element;
+  right?(): JSX.Element | undefined;
 };
 
 export const SimpleItem: React.FC<Props> = (props) => {
