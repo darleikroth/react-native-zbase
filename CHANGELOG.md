@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.7](https://github.com/darleikroth/react-native-zbase/compare/v2.0.6...v2.0.7) (2021-06-04)
+
+
+### Bug Fixes
+
+* remove linebreak on type ([79479ac](https://github.com/darleikroth/react-native-zbase/commit/79479ac18c19028d7a953d1f3181ce7eb912fb24))
+
 ### [2.0.6](https://github.com/darleikroth/react-native-zbase/compare/v2.0.5...v2.0.6) (2021-05-20)
 
 
