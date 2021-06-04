@@ -83,17 +83,18 @@ export const SearchAndroid: React.FC<Props> = (props) => {
 
     return (
       <TextInput
-        value={props.text}
+        autoCapitalize="none"
+        autoCorrect={false}
+        autoFocus
+        maxLength={100}
+        onChangeText={props.onChangeText}
         placeholder={`Buscar ${title}`}
         placeholderTextColor={`${Color(tintColor).fade(0.46)}`}
         returnKeyType="done"
-        autoCapitalize="none"
-        onChangeText={props.onChangeText}
-        underlineColorAndroid="transparent"
         selectTextOnFocus
-        autoCorrect={false}
-        autoFocus
         style={[styles.input, { color: tintColor, width: inputWid }]}
+        underlineColorAndroid="transparent"
+        value={props.text}
       />
     );
   };

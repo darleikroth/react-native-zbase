@@ -20,7 +20,8 @@ export const Search: React.FC<Props> = (props) => {
     setText(text);
     clearTimeout(timeout.current as number);
     timeout.current = setTimeout(() => {
-      props.onChangeText?.(text.toUpperCase());
+      const s = text.replace(/\r?\n|\r/g, "");
+      props.onChangeText?.(s.toUpperCase());
     }, 500);
   };
 
