@@ -28,6 +28,7 @@ export const Search: React.FC<Props> = (props) => {
   return Platform.select({
     ios: (
       <SearchIOS
+        hasHeaderRight={props.hasHeaderRight}
         iconColor={props.iconColor}
         isSearchable={isSearchable}
         onChangeText={onChangeText}
