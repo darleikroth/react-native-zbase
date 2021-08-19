@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import {
   StyleProp,
   StyleSheet,
@@ -60,8 +60,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
   const screen = useWindowDimensions();
 
   const renderTitle = () => {
-    const { title, tintColor, titleStyle, hasHeaderRight, hasHeaderLeft } =
-      props;
+    const { title, tintColor, titleStyle } = props;
 
     if (!props.isSearchable) {
       return (
@@ -69,16 +68,6 @@ export const SearchAndroid: React.FC<Props> = (props) => {
           {title}
         </Text>
       );
-    }
-
-    let inputWid = screen.width - 80;
-
-    if (hasHeaderLeft && hasHeaderRight) {
-      inputWid = screen.width - (124 + 48);
-    } else if (hasHeaderLeft) {
-      inputWid = screen.width - 124;
-    } else if (hasHeaderRight) {
-      inputWid = screen.width - 110;
     }
 
     return (
@@ -92,7 +81,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
         placeholderTextColor={`${Color(tintColor).fade(0.46)}`}
         returnKeyType="done"
         selectTextOnFocus
-        style={[styles.input, { color: tintColor, width: inputWid }]}
+        style={[styles.input, { color: tintColor, width: "100%" }]}
         underlineColorAndroid="transparent"
         value={props.text}
       />
@@ -107,7 +96,11 @@ export const SearchAndroid: React.FC<Props> = (props) => {
       <ActionButton
         background={props.underlayColor}
         onPress={props.toggleSearchable}
-        style={{ position: "absolute", right: 0 }}
+        style={{
+          position: "absolute",
+          right: 0,
+          marginRight: props.hasHeaderRight ? -22 : -18,
+        }}
       >
         <Icon name={search ? "close" : "magnify"} color={iconColor} size={24} />
       </ActionButton>
@@ -139,11 +132,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     height: 48,
+    width: "100%",
   },
   title: {
     fontSize: 19,
     fontWeight: "500",
     textAlign: "left",
+    width: "100%",
   },
   input: {
     height: 48,

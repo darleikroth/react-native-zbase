@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/darleikroth/react-native-zbase/compare/v2.0.7...v2.1.0) (2021-08-19)
+
+
+### Bug Fixes
+
+* change to support header on react-navigation v6 ([2b823d6](https://github.com/darleikroth/react-native-zbase/commit/2b823d6a1b4610be93fd1fcc1b3b77504e2928d2))
+
 ### [2.0.7](https://github.com/darleikroth/react-native-zbase/compare/v2.0.6...v2.0.7) (2021-06-04)
 
 

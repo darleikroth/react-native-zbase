@@ -14,6 +14,11 @@ import Color from "color";
 
 export interface SearchIOSProps {
   /**
+   * If there is no `headerRight` on toolbar, set this property to `false`.
+   * Used to calculate dimensions. Default value is `true`.
+   */
+  hasHeaderRight?: boolean;
+  /**
    * Title of header and hint for placeholder
    */
   title: string;
@@ -45,6 +50,9 @@ interface Props extends SearchIOSProps {
 export const SearchIOS: React.FC<Props> = (props) => {
   const screen = useWindowDimensions();
   const searchWidth = screen.width - 90;
+  const translateX = [{
+    translateX: props.hasHeaderRight ? 0 : -35,
+  }];
 
   const renderCloseButton = () => {
     if (!props.isSearchable) {
@@ -70,7 +78,11 @@ export const SearchIOS: React.FC<Props> = (props) => {
         <View
           style={[
             styles.container,
-            { backgroundColor, width: searchWidth },
+            {
+              backgroundColor,
+              width: searchWidth,
+              transform: translateX,
+            },
           ]}
         >
           <Icon name="ios-search" color={props.tintColor} size={19} />
@@ -88,7 +100,11 @@ export const SearchIOS: React.FC<Props> = (props) => {
     <View
       style={[
         styles.container,
-        { backgroundColor, width: searchWidth },
+        {
+          backgroundColor,
+          width: searchWidth,
+          transform: translateX,
+        },
       ]}
     >
       <TextInput
@@ -127,6 +143,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",
+    width: "100%",
   },
   title: {
     marginLeft: 5,
