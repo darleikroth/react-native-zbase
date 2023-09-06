@@ -1,13 +1,13 @@
 import React from "react";
 import {
   Pressable,
-  StyleProp,
+  type StyleProp,
   StyleSheet,
   Text,
   TextInput,
   useWindowDimensions,
   View,
-  ViewStyle,
+  type ViewStyle,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import Color from "color";
@@ -63,7 +63,7 @@ export const SearchIOS: React.FC<Props> = (props) => {
       <View style={[styles.iconButtonHeader]}>
         <Pressable onPress={props.toggleSearchable}>
           <View style={styles.iconHeader}>
-            <Icon name="ios-close" color={props.iconColor} size={24} />
+            <Icon name="close-outline" color={props.iconColor} size={24} />
           </View>
         </Pressable>
       </View>
@@ -85,7 +85,7 @@ export const SearchIOS: React.FC<Props> = (props) => {
             },
           ]}
         >
-          <Icon name="ios-search" color={props.tintColor} size={19} />
+          <Icon name="search-outline" color={props.tintColor} size={19} />
           <Text
             style={[styles.title, { color: props.tintColor }, props.titleStyle]}
           >

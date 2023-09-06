@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { StyleSheet, View, type ViewStyle } from "react-native";
 
 type Props = {
   color?: string;
@@ -11,9 +11,7 @@ export const Divider: React.FC<Props> = (props) => {
     backgroundColor: props.color,
     height: props.height,
   };
-  return (
-    <View style={style} />
-  );
+  return <View style={style} />;
 };
 
 Divider.defaultProps = {

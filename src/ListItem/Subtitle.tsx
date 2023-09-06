@@ -1,12 +1,12 @@
 import React from "react";
 import {
   Platform,
-  StyleProp,
+  type StyleProp,
   StyleSheet,
   Text,
-  TextStyle,
+  type TextStyle,
   View,
-  ViewStyle,
+  type ViewStyle,
 } from "react-native";
 
 type Props = {

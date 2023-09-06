@@ -1,4 +1,9 @@
-sample
+# Github
+.github
 
 # Husky
 .husky
+
+# VSCode
+.vscode/
+jsconfig.json

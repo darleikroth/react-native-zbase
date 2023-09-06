@@ -1,12 +1,11 @@
 import React from "react";
 import {
-  StyleProp,
+  type StyleProp,
   StyleSheet,
   Text,
   TextInput,
-  useWindowDimensions,
   View,
-  ViewStyle,
+  type ViewStyle,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Color from "color";
@@ -57,8 +56,6 @@ interface Props extends SearchAndroidProps {
 }
 
 export const SearchAndroid: React.FC<Props> = (props) => {
-  const screen = useWindowDimensions();
-
   const renderTitle = () => {
     const { title, tintColor, titleStyle } = props;
 

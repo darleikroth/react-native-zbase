@@ -75,7 +75,7 @@ export const SelectItems: React.FC<Props> = (props) => {
   };
 
   const renderItem = ({ item }: Item) => {
-    const title = options.current?.itemFunc?.(item);
+    const itemTitle = options.current?.itemFunc?.(item);
 
     return (
       <TouchableOpacity
@@ -84,7 +84,7 @@ export const SelectItems: React.FC<Props> = (props) => {
       >
         <View style={styles.itemContent}>
           <Text style={styles.itemText}>
-            {title}
+            {itemTitle}
           </Text>
         </View>
       </TouchableOpacity>
@@ -117,7 +117,10 @@ export const SelectItems: React.FC<Props> = (props) => {
   const renderContent = () => {
     const loading = visible && (values.length === 0);
     const size = values.length;
-    const dialogHeight = size < 10 ? (size * 48) + 72 : (9 * 48) + 72;
+    const dialogHeight = {
+      height: loading ? 128 : size < 10 ? (size * 48) + 72 : (9 * 48) + 72,
+    };
+    const dialogWidth = { width: screen.width - 64 };
 
     return (
       <View style={styles.container}>
@@ -125,8 +128,8 @@ export const SelectItems: React.FC<Props> = (props) => {
           <View
             style={[
               styles.dialog,
-              { width: screen.width - 64 },
-              { height: loading ? 128 : dialogHeight },
+              dialogWidth,
+              dialogHeight,
             ]}
           >
             <View style={styles.titleContent}>

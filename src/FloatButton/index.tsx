@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Pressable,
-  StyleProp,
-  StyleSheet,
-  View,
-  ViewStyle,
-} from "react-native";
+import { Pressable, type StyleProp, View, type ViewStyle } from "react-native";
 
 type Props = {
   /**
@@ -60,6 +54,12 @@ export const FloatButton: React.FC<Props> = (props) => {
     },
     elevation: elevation,
   };
+  const contentStyle: ViewStyle = {
+    height: size,
+    width: size,
+    alignItems: "center",
+    justifyContent: "center",
+  };
 
   // @ts-ignore
   const bg = containerStyle?.backgroundColor || currentStyle.backgroundColor;
@@ -73,14 +73,7 @@ export const FloatButton: React.FC<Props> = (props) => {
         { backgroundColor: pressed ? background : bg },
       ]}
     >
-      <View
-        style={{
-          height: size,
-          width: size,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <View style={contentStyle}>
         {children}
       </View>
     </Pressable>

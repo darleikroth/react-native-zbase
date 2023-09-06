@@ -1,19 +1,28 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "react-native-zbase": ["./src/index"]
+    },
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "es6"
-    ],
+    "lib": ["esnext"],
+    "module": "esnext",
     "moduleResolution": "node",
-    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noStrictGenericChecks": false,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
-  },
-  "exclude": [
-    "node_modules",
-  ]
+    "target": "esnext",
+    "verbatimModuleSyntax": true
+  }
 }

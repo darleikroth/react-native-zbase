@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Platform } from "react-native";
-import { SearchAndroid, SearchAndroidProps } from "./SearchViewAndroid";
-import { SearchIOS, SearchIOSProps } from "./SearchViewIOS";
+import { SearchAndroid, type SearchAndroidProps } from "./SearchViewAndroid";
+import { SearchIOS, type SearchIOSProps } from "./SearchViewIOS";
 
 type Props = SearchAndroidProps & SearchIOSProps;
 

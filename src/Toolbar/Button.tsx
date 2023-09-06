@@ -1,10 +1,10 @@
 import React from "react";
 import {
   Pressable,
-  StyleProp,
+  type StyleProp,
   StyleSheet,
   View,
-  ViewStyle,
+  type ViewStyle,
 } from "react-native";
 
 interface Props {

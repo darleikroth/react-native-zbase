@@ -1,7 +1,2 @@
-import { Button } from "./Button";
-import { Search } from "./Search";
-
-export default {
-  Button,
-  Search,
-};
+export { Button as ToolbarButton } from "./Button";
+export { Search as ToolbarSearch } from "./Search";

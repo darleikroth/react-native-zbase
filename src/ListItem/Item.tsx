@@ -1,12 +1,12 @@
 import React from "react";
 import {
   Pressable,
-  StyleProp,
+  type StyleProp,
   StyleSheet,
   Text,
-  TextStyle,
+  type TextStyle,
   View,
-  ViewStyle,
+  type ViewStyle,
 } from "react-native";
 
 type Props = {
@@ -31,8 +31,8 @@ type Props = {
    */
   iconLeft?: any;
   /**
-    * Expects a React Element. Rendered at the item's start/right.
-    */
+   * Expects a React Element. Rendered at the item's start/right.
+   */
   iconRight?: any;
   /**
    * Used to truncate the text with an ellipsis after computing the text layout,
@@ -178,7 +178,7 @@ export const Item: React.FC<Props> = (props) => {
           </View>
         </Pressable>
       </View>
-      {!!divider && (<View style={[styles.divider, dividerStyle]} />)}
+      {!!divider && <View style={[styles.divider, dividerStyle]} />}
     </>
   );
 };
