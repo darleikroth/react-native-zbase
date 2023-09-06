@@ -17,7 +17,6 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "bootstrap": "yarn install",
     "commit": "git-cz",
-    "postinstall": "husky install",
     "prepack": "bob build",
     "release": "release-it --only-version",
     "release:patch": "release-it patch --ci",
