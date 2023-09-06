@@ -109,6 +109,11 @@ export const Item: React.FC<Props> = (props) => {
     onPress,
     onLongPress,
   } = props;
+  const titleContainerStyle: ViewStyle = {
+    marginRight: !iconRight ? 16 : 54,
+    marginLeft: !iconLeft ? 16 : 72,
+  };
+  const disabledColor = { color: "rgba(0, 0, 0, .38)" };
 
   return (
     <>
@@ -125,27 +130,24 @@ export const Item: React.FC<Props> = (props) => {
           ]}
         >
           {!!iconLeft && (
-            <View style={[styles.icon, { left: 0 }]}>
+            <View style={[styles.icon, styles.iconLeft]}>
               {iconLeft}
             </View>
           )}
           {!!iconRight && (
-            <View style={[styles.icon, { right: 0, width: 48 }]}>
+            <View style={[styles.icon, styles.iconRight]}>
               {iconRight}
             </View>
           )}
 
           <View
-            style={[styles.titleContainer, {
-              marginRight: !iconRight ? 16 : 54,
-              marginLeft: !iconLeft ? 16 : 72,
-            }]}
+            style={[styles.titleContainer, titleContainerStyle]}
           >
             <Text
               style={[
                 styles.title,
                 titleStyle,
-                disabled ? { color: "rgba(0, 0, 0, .38)" } : undefined,
+                disabled ? disabledColor : undefined,
               ]}
               numberOfLines={titleNumberOfLines}
             >
@@ -156,7 +158,7 @@ export const Item: React.FC<Props> = (props) => {
                 style={[
                   styles.subtitle,
                   subtitleStyle,
-                  disabled ? { color: "rgba(0, 0, 0, .38)" } : undefined,
+                  disabled ? disabledColor : undefined,
                 ]}
                 numberOfLines={subtitleNumberOfLines}
               >
@@ -168,7 +170,7 @@ export const Item: React.FC<Props> = (props) => {
                 style={[
                   styles.subtitle,
                   subtitleStyle,
-                  disabled ? { color: "rgba(0, 0, 0, .38)" } : undefined,
+                  disabled ? disabledColor : undefined,
                 ]}
                 numberOfLines={1}
               >
@@ -221,6 +223,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
+  },
+  iconLeft: {
+    left: 0,
+  },
+  iconRight: {
+    right: 0,
+    width: 48,
   },
   divider: {
     height: 1,

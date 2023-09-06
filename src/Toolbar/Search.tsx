@@ -16,11 +16,11 @@ export const Search: React.FC<Props> = (props) => {
     setTimeout(() => props.onChangeText?.(""), 200);
   };
 
-  const onChangeText = (text: string) => {
-    setText(text);
+  const onChangeText = (textValue: string) => {
+    setText(textValue);
     clearTimeout(timeout.current as number);
     timeout.current = setTimeout(() => {
-      const s = text.replace(/\r?\n|\r/g, "");
+      const s = textValue.replace(/\r?\n|\r/g, "");
       props.onChangeText?.(s.toUpperCase());
     }, 500);
   };

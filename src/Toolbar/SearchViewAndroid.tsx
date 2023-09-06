@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  type TextStyle,
   View,
   type ViewStyle,
 } from "react-native";
@@ -56,8 +57,15 @@ interface Props extends SearchAndroidProps {
 }
 
 export const SearchAndroid: React.FC<Props> = (props) => {
+  const actionButtonStyle = React.useMemo<ViewStyle>(() => ({
+    position: "absolute",
+    right: 0,
+    marginRight: props.hasHeaderRight ? -22 : -18,
+  }), [props.hasHeaderRight]);
+
   const renderTitle = () => {
     const { title, tintColor, titleStyle } = props;
+    const inputStyle: TextStyle = { color: tintColor, width: "100%" };
 
     if (!props.isSearchable) {
       return (
@@ -78,7 +86,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
         placeholderTextColor={`${Color(tintColor).fade(0.46)}`}
         returnKeyType="done"
         selectTextOnFocus
-        style={[styles.input, { color: tintColor, width: "100%" }]}
+        style={[styles.input, inputStyle]}
         underlineColorAndroid="transparent"
         value={props.text}
       />
@@ -93,11 +101,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
       <ActionButton
         background={props.underlayColor}
         onPress={props.toggleSearchable}
-        style={{
-          position: "absolute",
-          right: 0,
-          marginRight: props.hasHeaderRight ? -22 : -18,
-        }}
+        style={actionButtonStyle}
       >
         <Icon name={search ? "close" : "magnify"} color={iconColor} size={24} />
       </ActionButton>
