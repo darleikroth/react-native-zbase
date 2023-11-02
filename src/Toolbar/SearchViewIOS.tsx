@@ -35,6 +35,10 @@ export interface SearchIOSProps {
    */
   titleStyle?: StyleProp<ViewStyle>;
   /**
+   * The string that will be rendered before text input has been entered.
+   */
+  placeholder?: string;
+  /**
    * Callback that is called when the text input's text changes.
    * Changed text is passed as an argument to the callback handler.
    */
@@ -53,6 +57,10 @@ export const SearchIOS: React.FC<Props> = (props) => {
   const translateX = [{
     translateX: props.hasHeaderRight ? 0 : -35,
   }];
+
+  const placeholder = props.placeholder || props.title
+    ? `Buscar ${props.title.toLowerCase()}`
+    : "pesquisar";
 
   const renderCloseButton = () => {
     if (!props.isSearchable) {
@@ -89,7 +97,7 @@ export const SearchIOS: React.FC<Props> = (props) => {
           <Text
             style={[styles.title, { color: props.tintColor }, props.titleStyle]}
           >
-            {`Buscar ${props.title}`}
+            {`Buscar ${props.title.toLowerCase()}`}
           </Text>
         </View>
       </Pressable>
@@ -113,7 +121,7 @@ export const SearchIOS: React.FC<Props> = (props) => {
         autoFocus
         maxLength={100}
         onChangeText={props.onChangeText}
-        placeholder={`Buscar ${props.title}`}
+        placeholder={placeholder}
         placeholderTextColor={`${Color(props.tintColor).fade(0.46)}`}
         returnKeyType="done"
         selectTextOnFocus
@@ -131,7 +139,7 @@ export const SearchIOS: React.FC<Props> = (props) => {
 };
 
 SearchIOS.defaultProps = {
-  title: "Título",
+  title: "Title",
   tintColor: "white",
   iconColor: "white",
 };

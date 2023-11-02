@@ -44,6 +44,10 @@ export interface SearchAndroidProps {
    */
   titleStyle?: StyleProp<ViewStyle>;
   /**
+   * The string that will be rendered before text input has been entered.
+   */
+  placeholder?: string;
+  /**
    * Callback that is called when the text input's text changes.
    * Changed text is passed as an argument to the callback handler.
    */
@@ -75,6 +79,10 @@ export const SearchAndroid: React.FC<Props> = (props) => {
       );
     }
 
+    const placeholder = props.placeholder || title
+      ? `Buscar ${title.toLowerCase()}`
+      : "pesquisar";
+
     return (
       <TextInput
         autoCapitalize="none"
@@ -82,7 +90,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
         autoFocus
         maxLength={100}
         onChangeText={props.onChangeText}
-        placeholder={`Buscar ${title}`}
+        placeholder={placeholder}
         placeholderTextColor={`${Color(tintColor).fade(0.46)}`}
         returnKeyType="done"
         selectTextOnFocus
@@ -119,7 +127,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
 };
 
 SearchAndroid.defaultProps = {
-  title: "Título",
+  title: "Title",
   tintColor: "white",
   iconColor: "white",
   hasHeaderLeft: false,
