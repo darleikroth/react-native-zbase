@@ -32,6 +32,7 @@ export const Search: React.FC<Props> = (props) => {
         iconColor={props.iconColor}
         isSearchable={isSearchable}
         onChangeText={onChangeText}
+        placeholder={props.placeholder}
         text={text}
         tintColor={props.tintColor}
         title={props.title}
@@ -46,6 +47,7 @@ export const Search: React.FC<Props> = (props) => {
         iconColor={props.iconColor}
         isSearchable={isSearchable}
         onChangeText={onChangeText}
+        placeholder={props.placeholder}
         text={text}
         tintColor={props.tintColor}
         title={props.title}
