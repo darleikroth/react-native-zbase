@@ -68,7 +68,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
   }), [props.hasHeaderRight]);
 
   const renderTitle = () => {
-    const { title, tintColor, titleStyle } = props;
+    const { title, tintColor, titleStyle, placeholder } = props;
     const inputStyle: TextStyle = { color: tintColor, width: "100%" };
 
     if (!props.isSearchable) {
@@ -79,7 +79,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
       );
     }
 
-    const placeholder = props.placeholder || title
+    const hint = placeholder || title
       ? `Buscar ${title.toLowerCase()}`
       : "pesquisar";
 
@@ -90,7 +90,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
         autoFocus
         maxLength={100}
         onChangeText={props.onChangeText}
-        placeholder={placeholder}
+        placeholder={hint}
         placeholderTextColor={`${Color(tintColor).fade(0.46)}`}
         returnKeyType="done"
         selectTextOnFocus
