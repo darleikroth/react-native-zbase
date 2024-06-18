@@ -6,17 +6,12 @@ type Props = {
   height?: number;
 };
 
-export const Divider: React.FC<Props> = (props) => {
+export const Divider = (props: Props) => {
   const style: ViewStyle = {
-    backgroundColor: props.color,
-    height: props.height,
+    backgroundColor: props.color || "#bbb",
+    height: props.height || StyleSheet.hairlineWidth,
   };
   return <View style={style} />;
-};
-
-Divider.defaultProps = {
-  color: "#bbb",
-  height: StyleSheet.hairlineWidth,
 };
 
 export default Divider;

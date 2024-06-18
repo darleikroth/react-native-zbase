@@ -51,15 +51,19 @@ interface Props extends SearchIOSProps {
   toggleSearchable(): void;
 }
 
-export const SearchIOS: React.FC<Props> = (props) => {
+export const SearchIOS = (props: Props) => {
+  const computedTitle = props.title || "Title";
+  const computedTintColor = props.tintColor || "white";
+  const computedIconColor = props.iconColor || "white";
+
   const screen = useWindowDimensions();
   const searchWidth = screen.width - 90;
   const translateX = [{
     translateX: props.hasHeaderRight ? 0 : -35,
   }];
 
-  const placeholder = props.placeholder || props.title
-    ? `Buscar ${props.title.toLowerCase()}`
+  const placeholder = props.placeholder || computedTitle
+    ? `Buscar ${computedTitle.toLowerCase()}`
     : "pesquisar";
 
   const renderCloseButton = () => {
@@ -71,14 +75,14 @@ export const SearchIOS: React.FC<Props> = (props) => {
       <View style={[styles.iconButtonHeader]}>
         <Pressable onPress={props.toggleSearchable}>
           <View style={styles.iconHeader}>
-            <Icon name="close-outline" color={props.iconColor} size={24} />
+            <Icon name="close-outline" color={computedIconColor} size={24} />
           </View>
         </Pressable>
       </View>
     );
   };
 
-  const backgroundColor = `${Color(props.tintColor).fade(0.88)}`;
+  const backgroundColor = `${Color(computedTintColor).fade(0.88)}`;
 
   if (!props.isSearchable) {
     return (
@@ -93,11 +97,11 @@ export const SearchIOS: React.FC<Props> = (props) => {
             },
           ]}
         >
-          <Icon name="search-outline" color={props.tintColor} size={19} />
+          <Icon name="search-outline" color={computedTintColor} size={19} />
           <Text
-            style={[styles.title, { color: props.tintColor }, props.titleStyle]}
+            style={[styles.title, { color: computedTintColor }, props.titleStyle]}
           >
-            {`Buscar ${props.title.toLowerCase()}`}
+            {`Buscar ${computedTitle.toLowerCase()}`}
           </Text>
         </View>
       </Pressable>
@@ -122,26 +126,20 @@ export const SearchIOS: React.FC<Props> = (props) => {
         maxLength={100}
         onChangeText={props.onChangeText}
         placeholder={placeholder}
-        placeholderTextColor={`${Color(props.tintColor).fade(0.46)}`}
+        placeholderTextColor={`${Color(computedTintColor).fade(0.46)}`}
         returnKeyType="done"
         selectTextOnFocus
         underlineColorAndroid="transparent"
         value={props.text}
         style={[
           styles.input,
-          { color: props.tintColor, width: screen.width - 110 },
+          { color: computedTintColor, width: screen.width - 110 },
         ]}
       />
 
       {renderCloseButton()}
     </View>
   );
-};
-
-SearchIOS.defaultProps = {
-  title: "Title",
-  tintColor: "white",
-  iconColor: "white",
 };
 
 const styles = StyleSheet.create({

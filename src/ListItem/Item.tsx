@@ -89,7 +89,18 @@ type Props = {
   onLongPress?(): void;
 };
 
-export const Item: React.FC<Props> = (props) => {
+export const Item = (props: Props) => {
+  const computedProps = React.useMemo(() => {
+    return {
+      ...props,
+      activeOpacity: props.activeOpacity ?? 0.4,
+      titleNumberOfLines: props.titleNumberOfLines ?? 1,
+      subtitleNumberOfLines: props.subtitleNumberOfLines ?? 1,
+      touchDisabled: props.touchDisabled ?? false,
+      divider: props.divider ?? false,
+    };
+  }, [props]);
+
   const {
     activeOpacity,
     containerStyle,
@@ -108,7 +119,8 @@ export const Item: React.FC<Props> = (props) => {
     titleStyle,
     onPress,
     onLongPress,
-  } = props;
+  } = computedProps;
+
   const titleContainerStyle: ViewStyle = {
     marginRight: !iconRight ? 16 : 54,
     marginLeft: !iconLeft ? 16 : 72,
@@ -121,7 +133,7 @@ export const Item: React.FC<Props> = (props) => {
         <Pressable
           android_disableSound
           onPress={onPress}
-          disabled={props.touchDisabled}
+          disabled={computedProps.touchDisabled}
           onLongPress={onLongPress}
           style={({ pressed }) => [
             styles.content,
@@ -183,14 +195,6 @@ export const Item: React.FC<Props> = (props) => {
       {!!divider && <View style={[styles.divider, dividerStyle]} />}
     </>
   );
-};
-
-Item.defaultProps = {
-  activeOpacity: 0.4,
-  divider: false,
-  subtitleNumberOfLines: 1,
-  titleNumberOfLines: 1,
-  touchDisabled: false,
 };
 
 const styles = StyleSheet.create({

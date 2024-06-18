@@ -1,11 +1,11 @@
 import React from "react";
 import {
   Pressable,
-  type StyleProp,
   StyleSheet,
   Text,
-  type TextStyle,
   View,
+  type StyleProp,
+  type TextStyle,
   type ViewStyle,
 } from "react-native";
 
@@ -28,12 +28,17 @@ type Props = {
   right?(): JSX.Element | undefined;
 };
 
-export const SimpleItem: React.FC<Props> = (props) => {
+export const SimpleItem = (props: Props) => {
+
+  const activeOpacity = props.activeOpacity ?? 0.4;
+  const titleNumberOfLines = props.titleNumberOfLines ?? 1;
+  const touchDisabled = props.touchDisabled ?? false;
+
   const renderContent = () => (
     <>
       <View style={styles.flexContent}>
         <Text
-          numberOfLines={props.titleNumberOfLines}
+          numberOfLines={titleNumberOfLines}
           style={[styles.title, props.titleStyle]}
         >
           {props.title}
@@ -58,13 +63,13 @@ export const SimpleItem: React.FC<Props> = (props) => {
   return (
     <Pressable
       android_disableSound
-      disabled={props.touchDisabled}
+      disabled={touchDisabled}
       onPress={props.onPress}
       onLongPress={props.onLongPress}
       style={({ pressed }) => [
         styles.container,
         props.containerStyle,
-        { opacity: pressed ? props.activeOpacity : 1 },
+        { opacity: pressed ? activeOpacity : 1 },
       ]}
     >
       <View style={[styles.content, props.contentStyle]}>
@@ -72,12 +77,6 @@ export const SimpleItem: React.FC<Props> = (props) => {
       </View>
     </Pressable>
   );
-};
-
-SimpleItem.defaultProps = {
-  activeOpacity: 0.4,
-  titleNumberOfLines: 1,
-  touchDisabled: false,
 };
 
 const styles = StyleSheet.create({

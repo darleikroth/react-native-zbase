@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type PropsWithChildren } from "react";
 import {
   Pressable,
   type StyleProp,
@@ -7,7 +7,7 @@ import {
   type ViewStyle,
 } from "react-native";
 
-interface Props {
+type Props = {
   /**
    * Background color ripple for Android
    */
@@ -21,18 +21,14 @@ interface Props {
    */
   style?: StyleProp<ViewStyle>;
   /**
-   * An image or icon element
-   */
-  children: JSX.Element;
-  /**
    * Called when the touch is released
    */
   onPress?(): void;
 }
 
-export const Button: React.FC<Props> = (props) => (
+export const Button = (props: PropsWithChildren<Props>) => (
   <Pressable
-    disabled={props.touchDisabled}
+    disabled={props.touchDisabled ?? false}
     onPress={props.onPress}
     style={({ pressed }) => [
       styles.iconButtonHeader,
@@ -45,10 +41,6 @@ export const Button: React.FC<Props> = (props) => (
     </View>
   </Pressable>
 );
-
-Button.defaultProps = {
-  touchDisabled: false,
-};
 
 const styles = StyleSheet.create({
   iconButtonHeader: {

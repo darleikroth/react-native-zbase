@@ -60,18 +60,30 @@ interface Props extends SearchAndroidProps {
   toggleSearchable(): void;
 }
 
-export const SearchAndroid: React.FC<Props> = (props) => {
+export const SearchAndroid = (props: Props) => {
+  const computedProps = React.useMemo(() => {
+    return {
+      ...props,
+      tintColor: props.tintColor || "white",
+      iconColor: props.iconColor || "white",
+      underlayColor: props.underlayColor || "rgba(0, 0, 0, 0.1)",
+      hasHeaderLeft: props.hasHeaderLeft ?? true,
+      hasHeaderRight: props.hasHeaderRight ?? true,
+      title: props.title || "Title",
+    };
+  }, [props]);
+
   const actionButtonStyle = React.useMemo<ViewStyle>(() => ({
     position: "absolute",
     right: 0,
-    marginRight: props.hasHeaderRight ? -22 : -18,
-  }), [props.hasHeaderRight]);
+    marginRight: computedProps.hasHeaderRight ? -22 : -18,
+  }), [computedProps.hasHeaderRight]);
 
   const renderTitle = () => {
-    const { title, tintColor, titleStyle, placeholder } = props;
+    const { title, tintColor, titleStyle, placeholder } = computedProps;
     const inputStyle: TextStyle = { color: tintColor, width: "100%" };
 
-    if (!props.isSearchable) {
+    if (!computedProps.isSearchable) {
       return (
         <Text style={[styles.title, { color: tintColor }, titleStyle]}>
           {title}
@@ -89,26 +101,26 @@ export const SearchAndroid: React.FC<Props> = (props) => {
         autoCorrect={false}
         autoFocus
         maxLength={100}
-        onChangeText={props.onChangeText}
+        onChangeText={computedProps.onChangeText}
         placeholder={hint}
         placeholderTextColor={`${Color(tintColor).fade(0.46)}`}
         returnKeyType="done"
         selectTextOnFocus
         style={[styles.input, inputStyle]}
         underlineColorAndroid="transparent"
-        value={props.text}
+        value={computedProps.text}
       />
     );
   };
 
   const renderSearchButton = () => {
-    const search = props.isSearchable;
-    const iconColor = props.iconColor;
+    const search = computedProps.isSearchable;
+    const iconColor = computedProps.iconColor;
 
     return (
       <ActionButton
-        background={props.underlayColor}
-        onPress={props.toggleSearchable}
+        background={computedProps.underlayColor}
+        onPress={computedProps.toggleSearchable}
         style={actionButtonStyle}
       >
         <Icon name={search ? "close" : "magnify"} color={iconColor} size={24} />
@@ -116,7 +128,7 @@ export const SearchAndroid: React.FC<Props> = (props) => {
     );
   };
 
-  const style = props.hasHeaderRight ? { marginRight: 48 } : undefined;
+  const style = computedProps.hasHeaderRight ? { marginRight: 48 } : undefined;
 
   return (
     <View style={[styles.container, style]}>
@@ -124,14 +136,6 @@ export const SearchAndroid: React.FC<Props> = (props) => {
       {renderSearchButton()}
     </View>
   );
-};
-
-SearchAndroid.defaultProps = {
-  title: "Title",
-  tintColor: "white",
-  iconColor: "white",
-  hasHeaderLeft: false,
-  hasHeaderRight: false,
 };
 
 const styles = StyleSheet.create({
