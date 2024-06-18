@@ -1,6 +1,6 @@
 {
   "name": "react-native-zbase",
-  "version": "3.0.3-rc.0",
+  "version": "3.0.3",
   "description": "This project brings together custom native components. The goal is to facilitate the organization and maintenance of them.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
