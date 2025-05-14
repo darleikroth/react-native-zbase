@@ -5,10 +5,10 @@ import { SearchIOS, type SearchIOSProps } from "./SearchViewIOS";
 
 type Props = SearchAndroidProps & SearchIOSProps;
 
-export const Search: React.FC<Props> = (props) => {
+export const Search = (props: Props) => {
   const [isSearchable, setSearchable] = useState(false);
   const [text, setText] = useState("");
-  const timeout = useRef<NodeJS.Timeout | number>(-1);
+  const timeout = useRef<any>(null!);
 
   const toggleSearchable = () => {
     setSearchable((prev) => !prev);
